@@ -120,6 +120,7 @@ ElementValue decode_vendor_multi_ap(Decoder& d);
 ElementValue decode_vendor_qos_mgmt(Decoder& d);
 ElementValue decode_vendor_rsn_override(Decoder& d);
 ElementValue decode_vendor_rsnx_override(Decoder& d);
+ElementValue decode_vendor_wfa_capabilities(Decoder& d);
 /// Adds a WFA vendor-extension / Multi-AP subelement (ids 0x05-0x08) to `parent`; `start` is
 /// the content offset of the subelement header. Returns false for other ids / lengths.
 bool multi_ap_subelement(TreeNode& parent, std::uint8_t id, std::span<const std::uint8_t> v,
@@ -133,6 +134,7 @@ ElementValue decode_vendor_aruba(Decoder& d);
 ElementValue decode_vendor_ap_name_type(Decoder& d);
 ElementValue decode_vendor_aerohive(Decoder& d);
 ElementValue decode_vendor_arista(Decoder& d);
+ElementValue decode_vendor_huawei(Decoder& d);
 ElementValue decode_vendor_fortinet(Decoder& d);
 ElementValue decode_vendor_meru(Decoder& d);
 ElementValue decode_vendor_extreme(Decoder& d);

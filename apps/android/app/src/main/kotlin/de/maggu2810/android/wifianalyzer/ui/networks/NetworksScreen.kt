@@ -406,7 +406,7 @@ fun NetworkCard(n: Network, now: Long, connected: Boolean, onClick: () -> Unit, 
                     n.channel?.let { InfoChip(stringResource(R.string.channel_short, it)) }
                     InfoChip(stringResource(R.string.unit_mhz, n.widthMhz))
                     s?.phy?.generationLabel?.let { InfoChip(it, emphasis = n.generation >= 6) }
-                    s?.security?.let { InfoChip(it.label, warning = it.weak) }
+                    s?.security?.let { InfoChip(it.displayLabel ?: it.label, warning = it.weak) }
                     if (connected) InfoChip(stringResource(R.string.connected), emphasis = true)
                 }
             }
@@ -451,7 +451,7 @@ private fun GroupCard(
                 )
                 strongest.summary?.security?.let {
                     Spacer(Modifier.height(2.dp))
-                    InfoChip(it.label, warning = it.weak)
+                    InfoChip(it.displayLabel ?: it.label, warning = it.weak)
                 }
             }
             Icon(if (expanded) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, null)

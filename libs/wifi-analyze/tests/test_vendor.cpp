@@ -136,8 +136,10 @@ TEST_CASE("Aruba GPS and French drone ID", "[vendor]") {
 
 TEST_CASE("Wi-Fi Alliance RSN override, Multi-AP and Wi-Fi Display", "[vendor]") {
     const auto rsno = single("dd18 506f9a 29 0100 000fac04 0100 000fac04 0100 000fac08 cc00");
-    // Decoded with the RSN decoder, but not exposed as typed RSN value (summary uses RSN only).
-    CHECK(std::holds_alternative<std::monostate>(rsno.value));
+    // Decoded with the RSN decoder; typed as RsnOverride (never as the legacy Rsn).
+    REQUIRE(std::holds_alternative<RsnOverride>(rsno.value));
+    CHECK(std::get<RsnOverride>(rsno.value).variant == 1);
+    CHECK(std::get<RsnOverride>(rsno.value).rsn.akms.at(0).type == 8);
     const auto* akm = node(rsno.tree, MessageId::rsn_akm_list);
     REQUIRE(akm != nullptr);
     CHECK(akm->bytes->offset == 16);
@@ -157,4 +159,29 @@ TEST_CASE("Wi-Fi Alliance RSN override, Multi-AP and Wi-Fi Display", "[vendor]")
 
     const auto bad = single("dd09 506f9a 0a 00 0006 0011"); // subelement longer than element
     CHECK(bad.status == DecodeStatus::malformed);
+}
+
+TEST_CASE("vendor decoders from Wireshark master", "[vendor]") {
+    CHECK(text_of(single("dd08 00156d 01 41502d38"), MessageId::vendor_ap_name) == "AP-8");
+    CHECK(single("dd08 00156d 00 01010001").status == DecodeStatus::unknown); // type 0: no source
+    CHECK(text_of(single("dd0a 00e0fc 01 01 00 41502d39"), MessageId::vendor_ap_name) == "AP-9");
+    CHECK(text_of(single("dd06 848094 00 4d31"), MessageId::vendor_ap_name) == "M1");
+    CHECK(text_of(single("dd06 48d017 02 5431"), MessageId::vendor_ap_name) == "T1");
+    CHECK(text_of(single("dd06 3cb9a6 01 4231"), MessageId::vendor_ap_name) == "B1");
+
+    const auto arm = single("dd07 000b86 01 04 00 05");
+    CHECK(std::get<std::int64_t>(node(arm.tree, MessageId::aruba_arm_power)->value) == 20);
+    // AP Health: version 0, IPv6, no uplink, type Mesh(2), network layer 3 (DHCP failure).
+    const auto health = single("dd0a 000b86 01 0a 00 00000358");
+    CHECK(health.status == DecodeStatus::ok);
+    CHECK(std::get<EnumValue>(node(health.tree, MessageId::aruba_health_uplink_type)->value).raw ==
+          2);
+    CHECK(std::get<EnumValue>(node(health.tree, MessageId::aruba_health_network)->value).raw == 3);
+
+    const auto capa = single("dd0c 506f9a 23 01 01 01 04 01 0c 01 08");
+    CHECK(capa.status == DecodeStatus::ok);
+    CHECK(capa.diagnostics.empty());
+    CHECK(std::get<bool>(node(capa.tree, MessageId::wfa_capa_dscp_policy)->value));
+    CHECK(std::get<bool>(node(capa.tree, MessageId::wfa_capa_wifi7)->value));
+    CHECK(std::get<bool>(node(capa.tree, MessageId::wfa_capa_cert_7)->value));
 }

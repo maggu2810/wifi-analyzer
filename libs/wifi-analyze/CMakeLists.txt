@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.31...4.3)
 # Usable standalone (e.g. add_subdirectory from the Android build) or as part of the repo.
 # The library always declares its own project (and version), also when included.
 # SemVer; bump on every change (AGENTS.md "Versioning").
-project(wifi-analyze VERSION 0.3.0 LANGUAGES CXX)
+project(wifi-analyze VERSION 0.4.0 LANGUAGES CXX)
 if(PROJECT_IS_TOP_LEVEL)
     option(WIFI_BUILD_TESTS "Build unit tests" OFF)
     option(WIFI_BUILD_FUZZERS "Build libFuzzer targets (Clang only)" OFF)

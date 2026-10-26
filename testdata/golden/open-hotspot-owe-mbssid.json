@@ -17,10 +17,12 @@
       "weak": false,
       "sae_h2e": false,
       "sae_pk": false,
+      "display_label": "Open (OWE transition)",
       "akms": [],
       "pairwise_ciphers": [],
       "group_cipher": null,
-      "group_management_cipher": null
+      "group_management_cipher": null,
+      "overrides": []
     },
     "phy": {
       "generation": 0,

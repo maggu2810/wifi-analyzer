@@ -10,14 +10,38 @@ the `spec` string of its registry entry (`src/ie/registry.cpp`, shown by
 - **Public standards first.** IEEE 802.11 elements follow IEEE Std 802.11-2020 clause 9.4.2
   (element formats) and the amendments 802.11ax-2021 (HE) and 802.11be-2024 (EHT). Wi-Fi
   Alliance vendor elements follow the named Wi-Fi Alliance specification.
-- **Cross-check:** every decoder was compared with the Wireshark **4.6.9** dissector named below
-  (`epan/dissectors/packet-ieee80211.c` unless another file is given) and, where available,
-  Linux `include/linux/ieee80211.h`. Wireshark is GPL: it is read as documentation only; no code
+- **Cross-check:** every decoder was compared with the Wireshark dissector named below (revision
+  4.6.9 unless marked **master**, see "Reference versions") and, where available, Linux
+  `include/linux/ieee80211.h`. Wireshark is GPL: it is read as documentation only; no code
   or tables are copied.
 - **Proprietary vendor elements** (no public specification) follow the Wireshark dissector only;
-  their registry `spec` is "Wireshark 4.6.9 (proprietary, no public spec)". Fields that
+  their registry `spec` is "Wireshark 4.6.9 (proprietary, no public spec)" or "Wireshark master
+  a9349d7b (proprietary, no public spec)". Fields that
   Wireshark does not interpret stay raw.
 - Where the standard and Wireshark disagree, the standard wins and the difference is noted.
+
+## Reference versions
+
+| Name used below | Wireshark revision | Date | Used for |
+|---|---|---|---|
+| **4.6.9** | tag `v4.6.9`, commit `2d548b197c7582332f143c15259e1650aff7cc26` | 2026-09-23 | all decoders unless marked otherwise |
+| **master@a9349d7b** | branch `master`, commit `a9349d7b787ac631c7a66d1dbf539e0dbfbce341` (4.7 development) | 2026-10-26 | rows marked "master": vendor dissectors added after 4.6.9, HE 6 GHz Regulatory Info values, RSNX octets 3-5, Aruba ARM / AP Health, Wi-Fi Alliance Capabilities |
+
+Files: `epan/dissectors/packet-ieee80211.c` (unless another file is named), `packet-ieee80211.h`,
+`epan/oui.h`, `packet-wps.c`, `packet-wifi-p2p.c`, `packet-wifi-display.c`, `packet-wifi-nan.c`,
+`packet-wifi-dpp.c`. Raw URL pattern:
+`https://gitlab.com/wireshark/wireshark/-/raw/<commit>/epan/dissectors/<file>`.
+
+**Checking for upstream changes later:** compare the newest revision against the commit of the
+row (e.g. `git diff a9349d7b..master -- epan/dissectors/packet-ieee80211.c epan/oui.h`), look for
+new `dissector_add_uint("wlan.tag.vendor.oui", …)` / `"wlan.ie.wifi_alliance.subtype"` /
+`"wlan.tag.number"` registrations and changed `hf_` field masks of the dissectors listed here,
+then update the decoders, this table and the reference commit.
+
+Difference 4.6.9 → master@a9349d7b relevant to beacons (all adopted): the new vendor dissectors (Ubiquiti, Huawei, Meter, Telecom Infra Project,
+Belden), Aruba ARM and AP Health, the Wi-Fi Alliance Capabilities element, more RSNX bits and
+the full HE 6 GHz Regulatory Info value list; the TID-to-Link Mapping difference noted below is
+still present in master.
 
 ## Standard elements (Element ID)
 
@@ -82,14 +106,14 @@ the `spec` string of its registry entry (`src/ie/registry.cpp`, shown by
 | 216 | Target Wake Time | 802.11ax-2021 9.4.2 (+ 802.11be link ID / aligned TWT bitmaps) | `ieee80211_tag_twt` |
 | 240 | FILS Indication | 802.11-2020 9.4.2 | `ieee80211_tag_fils_indication` |
 | 242 | Fragment | 802.11-2020 element fragmentation rules, handled by TLV reassembly | – |
-| 244 | RSN Extension | 802.11-2020 9.4.2 (+ later bits) | `ieee80211_tag_rsnx` |
+| 244 | RSN Extension | 802.11-2020 9.4.2 (+ later bits); octets 3-5 (KEK in PASN, (Re)Association frame encryption, 802.1X via Authentication frames, PMKSA caching privacy, SAE password identifier change, unauthenticated EPPKE) are IEEE P802.11bi draft bits as in **master** | `ieee80211_tag_rsnx` (4.6.9: octets 1-2) |
 
 ## Extension elements (Element ID 255, Element ID Extension)
 
 | Ext | Element | Source | Wireshark 4.6.9 |
 |---|---|---|---|
 | 35 | HE Capabilities | 802.11ax-2021 9.4.2 | `dissect_he_capabilities` |
-| 36 | HE Operation | 802.11ax-2021 9.4.2 | `dissect_he_operation` |
+| 36 | HE Operation | 802.11ax-2021 9.4.2; 6 GHz Regulatory Info is 4 bits (B3-B6) with values 0-3, 7, 8 from 802.11-2024 (**master** `he_regulatory_info_rvals`) | `dissect_he_operation` |
 | 37 | UORA Parameter Set | 802.11ax-2021 9.4.2 | `dissect_uora_parameter_set` |
 | 38 | MU EDCA Parameter Set | 802.11ax-2021 9.4.2 | `dissect_mu_edca_parameter_set` |
 | 39 | Spatial Reuse Parameter Set | 802.11ax-2021 9.4.2 | `dissect_spatial_reuse_parameter_set` |
@@ -126,10 +150,11 @@ the `spec` string of its registry entry (`src/ie/registry.cpp`, shown by
 | 50:6F:9A / 0x1B | Multi-AP (EasyMesh) | Wi-Fi EasyMesh Specification | `packet-wps.c`: `dissect_wps_wfa_ext_via_dt` |
 | 50:6F:9A / 0x1C | OWE Transition Mode | Wi-Fi Alliance Enhanced Open / OWE | `dissect_owe_transition_mode` |
 | 50:6F:9A / 0x22 | QoS Management | Wi-Fi QoS Management Specification (attribute list) | `dissect_qos_mgmt` |
-| 50:6F:9A / 0x29, 0x2A | RSN Element Override (2) | Wi-Fi Alliance WPA3 Specification v3.4 (RSN body, decoded by the RSN decoder; not used for the summary) | `dissect_wfa_rsn_override(_2)` |
+| 50:6F:9A / 0x29, 0x2A | RSN Element Override (2) | Wi-Fi Alliance WPA3 Specification v3.4 (RSN body, decoded by the RSN decoder; summarized separately as "RSN overriding", see `docs/library.md`) | `dissect_wfa_rsn_override(_2)` |
 | 50:6F:9A / 0x2B | RSNX Override | Wi-Fi Alliance WPA3 Specification v3.4 (RSNX body) | `dissect_wfa_rsnx_override` |
+| 50:6F:9A / 0x23 | Wi-Fi Alliance Capabilities (QoS management / statistics capabilities, supported and certified Wi-Fi generations) | Wi-Fi Alliance; layout from **master** | **master**: `dissect_wfa_capa` |
 | 00:40:96 | Cisco Aironet / CCX (DTPC, CCX version, QoS, QBSS v2, client MFP, AP name v2) | proprietary | `dissect_vendor_ie_aironet` |
-| 00:0B:86 | Aruba (AP name, GPS ellipse) | proprietary | `dissect_vendor_ie_aruba` |
+| 00:0B:86 | Aruba (AP name, GPS ellipse; ARM transmit power and AP Health from **master**) | proprietary | `dissect_vendor_ie_aruba` |
 | 00:13:92 / 3 | Ruckus AP name | proprietary | `dissect_vendor_ie_ruckus` |
 | 5C:5B:35 / 1 | Mist AP name | proprietary | `dissect_vendor_ie_mist` |
 | DC:08:56 / 1 | Alcatel-Lucent AP name | proprietary | `dissect_vendor_ie_alcatel` |
@@ -146,6 +171,11 @@ the `spec` string of its registry entry (`src/ie/registry.cpp`, shown by
 | 00:17:F2 | Apple (type/subtype only, body raw) | proprietary | `dissect_vendor_ie_apple` |
 | 00:90:4C / 51, 52 | Broadcom pre-802.11n HT Capabilities / Information | IEEE 802.11n draft 1.0 = HT element layouts | `dissect_vendor_ie_ht` |
 | 6A:5C:35 / 1 | Drone remote ID (France) | French arrêté NOR ECOI1934044A (27 Dec 2019) | `dissect_vendor_ie_sgdsn` |
+| 00:15:6D / 1 | Ubiquiti (UniFi) AP name | proprietary | **master**: `dissect_vendor_ie_ubiquiti` |
+| 00:E0:FC | Huawei (subtype 1 = AP name) | proprietary | **master**: `dissect_vendor_ie_huawei` |
+| 84:80:94 / 0 | Meter AP name | proprietary | **master**: `dissect_vendor_ie_meter` |
+| 48:D0:17 / 2 | Telecom Infra Project AP name | proprietary | **master**: `dissect_vendor_ie_telecom` |
+| 3C:B9:A6 / 1 | Belden AP name | proprietary | **master**: `dissect_vendor_ie_belden` |
 
 ## Not decoded (named only), and why
 
@@ -165,6 +195,8 @@ are decoded. Remaining named-only entries:
   (00:0F:AC KDEs, EAPOL key data only), `dissect_vendor_ie_wisun` (Wi-SUN FAN KDEs, EAPOL only),
   WFA subtypes 0x00/0x01 (Hotspot 2.0 WNM action frames), 0x17 (60 GHz), 0x20 (Transition
   Disable KDE), 0x2C/0x2D (RSN selection / override link KDE, association and EAPOL frames).
-- **Vendor elements without any public or Wireshark description** (e.g. Qualcomm 8C:FD:F0,
-  Ubiquiti 00:15:6D, MediaTek, Realtek): shown with the vendor name from the OUI table and raw
-  content.
+- **Vendor elements without any public or Wireshark description**: shown with the vendor name
+  from the OUI table and raw content. Searched without result (2026-10-26): Qualcomm
+  8C:FD:F0 (types 1, 4; not in Wireshark master, hostapd `qca-vendor.h` uses OUI 00:13:74,
+  nothing in ath11k/ath12k docs), Ubiquiti 00:15:6D types other than 1 (e.g. type 0), MediaTek,
+  Realtek.

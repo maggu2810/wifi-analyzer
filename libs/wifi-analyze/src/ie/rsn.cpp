@@ -235,9 +235,30 @@ ElementValue decode_rsn_extension(Decoder& d) {
     caps->flag(4, WA_TR(rsnx_protected_twt, "Protected TWT Operations Support"));
     caps->flag(5, WA_TR(rsnx_sae_h2e, "SAE Hash-to-Element"));
     caps->flag(6, WA_TR(rsnx_sae_pk, "SAE-PK"));
+    caps->flag(7, WA_TR(rsnx_protected_wur, "Protected WUR Frame Support"));
     if (size >= 2) {
         caps->flag(8, WA_TR(rsnx_secure_ltf, "Secure LTF Support"));
         caps->flag(9, WA_TR(rsnx_secure_rtt, "Secure RTT Support"));
+        caps->flag(10, WA_TR(rsnx_urnm_mfpr_x20, "URNM-MFPR-X20"));
+        caps->flag(11, WA_TR(rsnx_protected_announce, "Protected Announce Support"));
+        caps->flag(12, WA_TR(rsnx_pbac, "PBAC (Protected Block Ack Agreement)"));
+        caps->flag(13, WA_TR(rsnx_ext_s1g_action, "Extended S1G Action Protection"));
+        caps->flag(14, WA_TR(rsnx_spp_amsdu, "SPP A-MSDU Capable"));
+        caps->flag(15, WA_TR(rsnx_urnm_mfpr, "URNM-MFPR"));
+    }
+    // Octets 3-5: IEEE P802.11bi (draft) bits as dissected by Wireshark master a9349d7b.
+    if (size >= 3) {
+        caps->flag(18, WA_TR(rsnx_kek_in_pasn, "KEK in PASN"));
+    }
+    if (size >= 4) {
+        caps->flag(27, WA_TR(rsnx_assoc_encryption, "(Re)Association Frame Encryption"));
+        caps->flag(28, WA_TR(rsnx_8021x_auth_frame,
+                             "IEEE 802.1X Authentication Utilizing Authentication Frames"));
+        caps->flag(29, WA_TR(rsnx_pmksa_caching_privacy, "PMKSA Caching Privacy"));
+    }
+    if (size >= 5) {
+        caps->flag(34, WA_TR(rsnx_sae_password_id_change, "SAE Password Identifier Change"));
+        caps->flag(36, WA_TR(rsnx_unauth_eppke, "Unauthenticated EPPKE"));
     }
     d.add(caps->take());
     return rsnx;

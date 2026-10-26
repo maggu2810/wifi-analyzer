@@ -82,7 +82,10 @@ struct TreeNode {
 
 `summarize()` derives: SSID/hidden; security type (open, WEP, OWE, WPA/WPA2/WPA3 personal
 and enterprise variants incl. transition modes, Suite-B 192), PMF, ciphers, AKMs, SAE-H2E/PK,
-`weak` flag; Wi-Fi generation, standards, band, primary channel/frequency, operating width
+`weak` flag (legacy configuration), RSN overriding configurations (`security.overrides`,
+from the WFA RSN Element Override / Override 2 and RSNX Override; legacy stations use the RSN
+element, stations supporting RSN overriding the overrides; `security_label()` shows both);
+Wi-Fi generation, standards, band, primary channel/frequency, operating width
 (HT → VHT → HE 6 GHz → EHT, 80+80, ext. NSS BW via HT CCFS2), center frequencies, EHT
 puncturing, max NSS, estimated max PHY rate (`N_SD × bits × R / T_sym`); BSS load, country,
 802.11k/v/r, WMM/U-APSD, BSS color, TWT, MLO, RNR neighbors, nontransmitted BSSIDs, WPS

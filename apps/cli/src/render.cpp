@@ -273,14 +273,23 @@ void TextRenderer::bss(const DecodedBss& bss) {
 }
 
 void TextRenderer::table(const std::vector<const DecodedBss*>& rows) {
-    // Fixed columns: SIGNAL(9) CH(4) BAND(5) WIDTH(6) GEN(9) SECURITY(22) SSID(rest) BSSID(17)
-    const std::size_t fixed = 9 + 1 + 4 + 1 + 5 + 1 + 6 + 1 + 9 + 1 + 22 + 1 + 1 + 17;
+    // Columns: SIGNAL(9) CH(4) BAND(5) WIDTH(6) GEN(9) SECURITY(22..72) SSID(rest) BSSID(17).
+    // SECURITY grows for RSN overriding labels ("<legacy> (legacy clients) · ...").
+    std::vector<std::string> labels;
+    std::size_t security_width = 22;
+    for (const auto* row : rows) {
+        labels.push_back(wa::security_label(row->summary.security, loc_));
+        security_width =
+            std::max(security_width, std::min<std::size_t>(display_width(labels.back()), 72));
+    }
+    const std::size_t fixed = 9 + 1 + 4 + 1 + 5 + 1 + 6 + 1 + 9 + 1 + security_width + 1 + 1 + 17;
     const std::size_t ssid_width = options_.width > fixed + 8 ? options_.width - fixed : 16;
-    out_ << style(std::format("{:<9} {:>4} {:<5} {:<6} {:<9} {:<22} {} {:<17}", "SIGNAL", "CH",
-                              "BAND", "WIDTH", "GEN", "SECURITY", pad_right("SSID", ssid_width),
-                              "BSSID"),
+    out_ << style(std::format("{:<9} {:>4} {:<5} {:<6} {:<9} {} {} {:<17}", "SIGNAL", "CH", "BAND",
+                              "WIDTH", "GEN", pad_right("SECURITY", security_width),
+                              pad_right("SSID", ssid_width), "BSSID"),
                   bold)
          << '\n';
+    std::size_t index = 0;
     for (const auto* row : rows) {
         const auto& s = row->summary;
         std::string signal = "    ?    ";
@@ -294,8 +303,7 @@ void TextRenderer::table(const std::vector<const DecodedBss*>& rows) {
         const auto band = wa::band_name(s.phy.band);
         const auto width = s.phy.eighty_plus_eighty ? std::string{"80+80"}
                                                     : std::to_string(s.phy.channel_width_mhz);
-        std::string security{wa::security_type_name(s.security.type).render(loc_)};
-        security = pad_right(truncate(security, 22), 22);
+        auto security = pad_right(truncate(labels[index++], security_width), security_width);
         if (s.security.weak) {
             security = style(security, yellow);
         }

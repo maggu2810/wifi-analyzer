@@ -6,7 +6,7 @@ find_package(CURL QUIET)
 option(WIFI_CLI_WITH_CURL "Enable 'oui update' (download via libcurl)" ${CURL_FOUND})
 
 # Version of wifi-analyze-cli (SemVer, bump on every change; see AGENTS.md "Versioning").
-set(WIFI_CLI_VERSION "0.1.2")
+set(WIFI_CLI_VERSION "0.2.0")
 
 add_library(wifi_analyze_cli_core STATIC
     src/app.cpp

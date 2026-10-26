@@ -95,7 +95,9 @@ Without context (raw hex only), the header shows what is derivable from the IEs 
 ```
 
 Colors by signal quality; insecure configurations (open/WEP/TKIP) highlighted; `NO_COLOR`
-respected; terminal width aware.
+respected; terminal width aware. The SECURITY column shows the library's display label; for
+APs with RSN overriding (WPA3 v3.4) it reads "WPA2-Personal (legacy clients) · WPA3-Personal
+(RSN overriding)" and the column widens (up to 72 characters).
 
 ## OUI cache
 

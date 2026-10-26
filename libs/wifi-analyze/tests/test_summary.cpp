@@ -192,6 +192,40 @@ TEST_CASE("security classification of RSN variants", "[summary]") {
     CHECK(classify("0100 000fac04 0100 000fac04 0100 506f9a02 c000") == SecurityType::other);
 }
 
+TEST_CASE("RSN overriding (WPA3 v3.4) is summarized separately", "[summary]") {
+    // Legacy RSN: WPA2-PSK, PMF capable. RSNO: SAE, PMF required. RSNO2: SAE-EXT-KEY with
+    // GCMP-256. RSNXO: SAE-H2E (the legacy RSNX has no H2E).
+    const auto ies =
+        decode(test_support::hex("3014 0100 000fac04 0100 000fac04 0100 000fac02 8000"
+                                 "f401 00"
+                                 "dd18 506f9a29 0100 000fac04 0100 000fac04 0100 000fac08 c000"
+                                 "dd18 506f9a2a 0100 000fac09 0100 000fac09 0100 000fac18 c000"
+                                 "dd05 506f9a2b 20"));
+    for (const auto& e : ies.elements) {
+        CHECK(e.status == DecodeStatus::ok);
+    }
+    const auto s = summarize(ies);
+    CHECK(s.security.type == SecurityType::wpa2_personal);
+    CHECK_FALSE(s.security.sae_hash_to_element);
+    REQUIRE(s.security.overrides.size() == 2);
+    CHECK(s.security.overrides[0].variant == 1);
+    CHECK(s.security.overrides[0].type == SecurityType::wpa3_personal);
+    CHECK(s.security.overrides[0].pmf == Pmf::required);
+    CHECK(s.security.overrides[0].sae_hash_to_element);
+    CHECK(s.security.overrides[1].variant == 2);
+    CHECK(s.security.overrides[1].pairwise_ciphers.at(0).type == 9);
+    CHECK(security_label(s.security, Localizer{}) ==
+          "WPA2-Personal (legacy clients) · WPA3-Personal (RSN overriding)");
+    // Without overrides the label is the plain type name.
+    const auto plain = summarize(decode(test_support::hex("3014 0100 000fac04 0100 000fac04 "
+                                                          "0100 000fac02 8000")));
+    CHECK(security_label(plain.security, Localizer{}) == "WPA2-Personal");
+    // The overview tree lists both configurations.
+    const auto tree = describe(s);
+    CHECK(test_support::node(tree, MessageId::summary_rsn_override) != nullptr);
+    CHECK(test_support::node(tree, MessageId::summary_rsn_override_2) != nullptr);
+}
+
 TEST_CASE("summary overview renders in every locale", "[summary]") {
     const auto s = summarize(decode(capture("wpa2-wpa3-5ghz-ax")));
     const auto overview = describe(s);

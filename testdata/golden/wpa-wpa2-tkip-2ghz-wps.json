@@ -17,6 +17,7 @@
       "weak": true,
       "sae_h2e": false,
       "sae_pk": false,
+      "display_label": "WPA/WPA2-Personal",
       "akms": [
         {
           "suite": "00:0f:ac:2",
@@ -37,7 +38,8 @@
         "suite": "00:0f:ac:2",
         "name": "TKIP"
       },
-      "group_management_cipher": null
+      "group_management_cipher": null,
+      "overrides": []
     },
     "phy": {
       "generation": 4,

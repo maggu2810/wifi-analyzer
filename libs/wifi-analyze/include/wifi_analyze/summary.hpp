@@ -41,6 +41,19 @@ enum class Pmf : std::uint8_t {
     required,
 };
 
+/// Security configuration announced in an RSN Element Override.
+struct SecurityOverride {
+    std::uint8_t variant{1};
+    SecurityType type{SecurityType::unknown};
+    Pmf pmf{Pmf::unknown};
+    std::optional<Suite> group_cipher;
+    std::vector<Suite> pairwise_ciphers;
+    std::vector<Suite> akms;
+    std::optional<Suite> group_management_cipher;
+    bool sae_hash_to_element{false};
+    bool sae_pk{false};
+};
+
 struct SecuritySummary {
     SecurityType type{SecurityType::unknown};
     Pmf pmf{Pmf::unknown};
@@ -53,6 +66,10 @@ struct SecuritySummary {
     bool sae_hash_to_element{false};
     bool sae_pk{false};
     bool weak{false}; ///< WEP or TKIP in use, open, or legacy WPA
+    /// RSN overriding (WPA3 Specification v3.4): configurations offered to stations that
+    /// support it, from RSN Element Override (variant 1) and Override 2 (variant 2). The fields
+    /// above describe what legacy stations get (RSN element).
+    std::vector<SecurityOverride> overrides;
 };
 
 enum class PhyStandard : std::uint8_t { b, a, g, n, ac, ax, be };
@@ -152,6 +169,10 @@ struct BssSummary {
 [[nodiscard]] TreeNode describe(const BssSummary& summary);
 
 [[nodiscard]] Text security_type_name(SecurityType type) noexcept;
+/// Display label of the security summary: the type name, or with RSN overriding
+/// "<legacy> (legacy clients) · <override types> (RSN overriding)".
+[[nodiscard]] std::string security_label(const SecuritySummary& security,
+                                         const Localizer& localizer);
 [[nodiscard]] Text pmf_name(Pmf pmf) noexcept;
 [[nodiscard]] std::string_view phy_standard_name(PhyStandard standard) noexcept;
 /// "Wi-Fi 6E" style name, "Legacy" for generation 0.

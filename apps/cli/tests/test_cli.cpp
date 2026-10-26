@@ -90,6 +90,15 @@ TEST_CASE("decode from stdin and literal hex", "[cli]") {
     CHECK(cli({"decode", "0004 74657374", "--summary"}).out.contains("Open or WEP"));
 }
 
+TEST_CASE("RSN overriding is shown with both configurations", "[cli]") {
+    const std::string ies = "0004 74657374 3014 0100 000fac04 0100 000fac04 0100 000fac02 8000 "
+                            "dd18 506f9a29 0100 000fac04 0100 000fac04 0100 000fac08 c000";
+    const auto list = cli({"list", ies});
+    CHECK(list.code == exit_ok);
+    CHECK(list.out.contains("WPA2-Personal (legacy clients) · WPA3-Personal (RSN overriding)"));
+    CHECK(cli({"decode", ies, "--summary"}).out.contains("RSN Overriding"));
+}
+
 TEST_CASE("decode JSON output", "[cli]") {
     const auto r = cli({"decode", testdata("captures/wpa/bss-dump.txt"), "--format", "json"});
     REQUIRE(r.code == exit_ok);

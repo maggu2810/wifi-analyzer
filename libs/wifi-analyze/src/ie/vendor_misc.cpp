@@ -88,6 +88,50 @@ void atheros_capabilities(Decoder& d, MessageId label) {
     }
 }
 
+/// Aruba AP Health bitmap (32 bit, big-endian). Wireshark master: dissect_vendor_ie_aruba.
+void aruba_ap_health(Decoder& d) {
+    const auto start = d.offset();
+    const auto raw = d.reader().u32be();
+    if (!raw) {
+        d.malformed();
+        return;
+    }
+    const auto range = d.range_from(start);
+    auto n = Decoder::node(WA_TR(aruba_ap_health, "AP Health"), std::uint64_t{*raw}, range);
+    n.display = Display::hex;
+    const auto field = [&](MessageId label, unsigned shift, unsigned bits, Text name) {
+        const auto v = (*raw >> shift) & ((1U << bits) - 1U);
+        n.children.push_back(Decoder::node(label, EnumValue{.raw = v, .name = name}, range));
+    };
+    const auto v = [&](unsigned shift, unsigned bits) {
+        return (*raw >> shift) & ((1U << bits) - 1U);
+    };
+    const auto status = [](std::uint32_t x, std::uint32_t failure_previous) -> Text {
+        if (x == 0) {
+            return WA_TR(aruba_health_success, "Success");
+        }
+        return x == failure_previous
+                   ? Text{WA_TR(aruba_health_previous_layer, "Failure at previous layer")}
+                   : Text{WA_TR(aruba_health_failure, "Failure")};
+    };
+    field(msg::version, 0, 3, v(0, 3) == 0 ? Text{"1"} : Text{msg::reserved});
+    field(WA_TR(aruba_health_ip, "IP Protocol"), 3, 1, v(3, 1) == 0 ? "IPv4" : "IPv6");
+    field(WA_TR(aruba_health_uplink, "Uplink"), 4, 1,
+          v(4, 1) == 0 ? Text{WA_TR(aruba_health_uplink_ok, "Uplink existed")}
+                       : Text{WA_TR(aruba_health_no_uplink, "No uplink")});
+    {
+        constexpr std::array<Text, 4> types{"Ethernet", WA_TR(aruba_health_modem, "Modem"),
+                                            WA_TR(aruba_mesh, "Mesh"),
+                                            WA_TR(aruba_health_wifi_uplink, "Wi-Fi uplink")};
+        field(WA_TR(aruba_health_uplink_type, "Uplink Type"), 5, 3, table_name(types, v(5, 3)));
+    }
+    field(WA_TR(aruba_health_network, "Network Layer"), 8, 4, status(v(8, 4), 15));
+    field(WA_TR(aruba_health_proxy, "Proxy Server"), 12, 2, status(v(12, 2), 3));
+    field(WA_TR(aruba_health_activate, "Activate"), 14, 4, status(v(14, 4), 15));
+    field(WA_TR(aruba_health_central, "Central"), 18, 3, status(v(18, 3), 7));
+    d.add(std::move(n));
+}
+
 } // namespace
 
 // --- Cisco ------------------------------------------------------------------------------
@@ -179,6 +223,18 @@ ElementValue decode_vendor_aruba(Decoder& d) {
     if (subtype == 3) {
         d.u8(d.root(), msg::unknown);
         ap_name_rest(d);
+    } else if (subtype == 4) {
+        // ARM (Wireshark master): one unknown octet, then the transmit power in 4 dB steps.
+        d.u8(d.root(), msg::unknown);
+        const auto start = d.offset();
+        if (const auto arm = d.reader().u8()) {
+            d.add(Decoder::node(WA_TR(aruba_arm_power, "ARM Transmit Power"),
+                                std::int64_t{4} * *arm, d.range_from(start), Unit::dbm));
+        }
+    } else if (subtype == 10 && d.remaining() >= 5) {
+        // AP Health (Wireshark master): one unknown octet, then a 32-bit big-endian bitmap.
+        d.u8(d.root(), msg::unknown);
+        aruba_ap_health(d);
     } else if (subtype == 9) {
         d.u8(d.root(), msg::unknown);
         d.u8(d.root(), msg::length);
@@ -198,7 +254,10 @@ ElementValue decode_vendor_aruba(Decoder& d) {
 // --- vendors whose only known content is the AP name -----------------------------------
 
 // Ruckus Networks 00:13:92 (type 3), Mist Systems 5C:5B:35 (type 1), Alcatel-Lucent
-// DC:08:56 (type 1). Wireshark: dissect_vendor_ie_ruckus / _mist / _alcatel.
+// DC:08:56 (type 1); Wireshark master also: Ubiquiti 00:15:6D (type 1), Meter 84:80:94 (type 0),
+// Telecom Infra Project 48:D0:17 (type 2), Belden 3C:B9:A6 (type 1).
+// Wireshark: dissect_vendor_ie_ruckus / _mist / _alcatel / _ubiquiti / _meter / _telecom /
+// _belden.
 ElementValue decode_vendor_ap_name_type(Decoder& d) {
     vendor_type(d);
     ap_name_rest(d);
@@ -228,6 +287,19 @@ ElementValue decode_vendor_arista(Decoder& d) {
     vendor_type(d);
     const auto subtype = d.u8(d.root(), WA_TR(vendor_subtype, "Subtype"));
     if (subtype == 6) {
+        d.u8(d.root(), msg::unknown);
+        ap_name_rest(d);
+    }
+    d.rest(d.root(), msg::data);
+    return {};
+}
+
+// Huawei 00:E0:FC (Wireshark master): vendor type, subtype (1 = AP name: one unknown octet +
+// name). Wireshark: dissect_vendor_ie_huawei.
+ElementValue decode_vendor_huawei(Decoder& d) {
+    vendor_type(d);
+    const auto subtype = d.u8(d.root(), WA_TR(vendor_subtype, "Subtype"));
+    if (subtype == 1) {
         d.u8(d.root(), msg::unknown);
         ap_name_rest(d);
     }

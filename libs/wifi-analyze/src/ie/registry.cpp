@@ -21,6 +21,8 @@ constexpr std::string_view std_ax = "IEEE 802.11ax-2021";
 constexpr std::string_view std_be = "IEEE 802.11be-2024";
 // Proprietary formats without public documentation: Wireshark is the only source.
 constexpr std::string_view wireshark = "Wireshark 4.6.9 (proprietary, no public spec)";
+constexpr std::string_view wireshark_master =
+    "Wireshark master a9349d7b (proprietary, no public spec)";
 
 constexpr std::array standard{
     ElementEntry{0, "ssid", WA_TR(element_ssid, "SSID"), std2020, decode_ssid},
@@ -240,6 +242,11 @@ constexpr Oui oui_nintendo{0x00, 0x1f, 0x32};
 constexpr Oui oui_apple{0x00, 0x17, 0xf2};
 constexpr Oui oui_broadcom_pre11n{0x00, 0x90, 0x4c};
 constexpr Oui oui_sgdsn{0x6a, 0x5c, 0x35};
+constexpr Oui oui_ubiquiti{0x00, 0x15, 0x6d};
+constexpr Oui oui_huawei{0x00, 0xe0, 0xfc};
+constexpr Oui oui_meter{0x84, 0x80, 0x94};
+constexpr Oui oui_telecom_infra{0x48, 0xd0, 0x17};
+constexpr Oui oui_belden{0x3c, 0xb9, 0xa6};
 
 constexpr std::array vendor{
     VendorEntry{oui_microsoft, 1, "vendor.microsoft.wpa", WA_TR(element_wpa, "WPA"),
@@ -281,6 +288,9 @@ constexpr std::array vendor{
     VendorEntry{oui_wfa, 0x2b, "vendor.wfa.rsnx_override",
                 WA_TR(element_rsnx_override, "RSN Extension Element Override"),
                 "Wi-Fi Alliance WPA3 Specification v3.4", decode_vendor_rsnx_override},
+    VendorEntry{oui_wfa, 0x23, "vendor.wfa.capabilities",
+                WA_TR(element_wfa_capabilities, "Wi-Fi Alliance Capabilities"),
+                "Wi-Fi Alliance (Wireshark master a9349d7b)", decode_vendor_wfa_capabilities},
     VendorEntry{oui_cisco, std::nullopt, "vendor.cisco",
                 WA_TR(element_cisco, "Cisco Aironet / CCX"), wireshark, decode_vendor_cisco},
     VendorEntry{oui_aruba, std::nullopt, "vendor.aruba", WA_TR(element_aruba, "Aruba"), wireshark,
@@ -318,6 +328,19 @@ constexpr std::array vendor{
     VendorEntry{oui_broadcom_pre11n, std::nullopt, "vendor.broadcom.ht",
                 WA_TR(element_broadcom_ht, "Broadcom pre-802.11n HT"), wireshark,
                 decode_vendor_broadcom_ht},
+    VendorEntry{oui_ubiquiti, 1, "vendor.ubiquiti.ap_name",
+                WA_TR(element_ubiquiti_ap_name, "Ubiquiti AP Name"), wireshark_master,
+                decode_vendor_ap_name_type},
+    VendorEntry{oui_huawei, std::nullopt, "vendor.huawei", WA_TR(element_huawei, "Huawei"),
+                wireshark_master, decode_vendor_huawei},
+    VendorEntry{oui_meter, 0, "vendor.meter.ap_name", WA_TR(element_meter_ap_name, "Meter AP Name"),
+                wireshark_master, decode_vendor_ap_name_type},
+    VendorEntry{oui_telecom_infra, 2, "vendor.telecom_infra.ap_name",
+                WA_TR(element_telecom_infra_ap_name, "Telecom Infra Project AP Name"),
+                wireshark_master, decode_vendor_ap_name_type},
+    VendorEntry{oui_belden, 1, "vendor.belden.ap_name",
+                WA_TR(element_belden_ap_name, "Belden AP Name"), wireshark_master,
+                decode_vendor_ap_name_type},
     VendorEntry{oui_sgdsn, std::nullopt, "vendor.sgdsn.drone_id",
                 WA_TR(element_drone_id_fr, "Drone Remote ID (France)"),
                 "Arrêté NOR ECOI1934044A (France)", decode_vendor_drone_id_fr},

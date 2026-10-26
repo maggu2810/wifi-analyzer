@@ -31,7 +31,8 @@ JNI and embedded in the CLI result. Labels are localized; keys are stable. Examp
                   "pmf": "capable", "pmf_label": "Capable", "rsn": true, "wpa1": false,
                   "weak": false, "sae_h2e": true, "sae_pk": false,
                   "akms": [{"suite": "00:0f:ac:2", "name": "PSK"}, …],
-                  "pairwise_ciphers": […], "group_cipher": {…}, "group_management_cipher": null },
+                  "pairwise_ciphers": […], "group_cipher": {…}, "group_management_cipher": null,
+                  "display_label": "WPA2/WPA3-Personal", "overrides": [] },
     "phy": { "generation": 6, "generation_label": "Wi-Fi 6",
              "standards": ["802.11a", "802.11n", "802.11ac", "802.11ax"],
              "band": "5", "band_label": "5 GHz", "primary_channel": 36,
@@ -65,6 +66,14 @@ JNI and embedded in the CLI result. Labels are localized; keys are stable. Examp
   "diagnostics": []
 }
 ```
+
+`security.label` is the legacy type name (RSN element); `security.display_label` is what
+frontends show. With RSN overriding (WPA3 Specification v3.4) it reads e.g.
+"WPA2-Personal (legacy clients) · WPA3-Personal (RSN overriding)", and `security.overrides`
+lists one object per RSN Element Override (`variant` 1) / Override 2 (`variant` 2) with
+`type`, `label`, `pmf`, `pmf_label`, `sae_h2e`, `sae_pk`, `akms`, `pairwise_ciphers`,
+`group_cipher`, `group_management_cipher` (added in lib 0.4.0; backward compatible, schema
+version unchanged).
 
 Node rules: `key` = message key of the label; `text` = display string (`format_value`);
 `value` = raw value (bool/number/string; bytes as hex; enums as number plus `value_name`);

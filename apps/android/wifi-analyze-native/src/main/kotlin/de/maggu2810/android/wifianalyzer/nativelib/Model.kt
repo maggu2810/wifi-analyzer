@@ -97,6 +97,25 @@ data class Security(
     @SerialName("pairwise_ciphers") val pairwiseCiphers: List<Suite> = emptyList(),
     @SerialName("group_cipher") val groupCipher: Suite? = null,
     @SerialName("group_management_cipher") val groupManagementCipher: Suite? = null,
+    /** Combined label incl. RSN overriding, rendered by the library (falls back to [label]). */
+    @SerialName("display_label") val displayLabel: String? = null,
+    /** RSN overriding (WPA3 v3.4): configurations for stations that support it. */
+    val overrides: List<SecurityOverride> = emptyList(),
+)
+
+@Serializable
+data class SecurityOverride(
+    val variant: Int,
+    val type: String,
+    val label: String,
+    val pmf: String,
+    @SerialName("pmf_label") val pmfLabel: String,
+    @SerialName("sae_h2e") val saeH2e: Boolean = false,
+    @SerialName("sae_pk") val saePk: Boolean = false,
+    val akms: List<Suite> = emptyList(),
+    @SerialName("pairwise_ciphers") val pairwiseCiphers: List<Suite> = emptyList(),
+    @SerialName("group_cipher") val groupCipher: Suite? = null,
+    @SerialName("group_management_cipher") val groupManagementCipher: Suite? = null,
 )
 
 @Serializable

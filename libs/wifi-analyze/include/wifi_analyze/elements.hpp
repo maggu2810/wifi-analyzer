@@ -108,6 +108,19 @@ struct RsnExtension {
     [[nodiscard]] bool sae_pk() const noexcept { return bit(6); }
 };
 
+/// RSN Element Override (variant 1, WFA subtype 0x29) / Override 2 (variant 2, 0x2A), Wi-Fi
+/// Alliance WPA3 Specification v3.4 "RSN overriding": the RSN configuration used by stations
+/// that support RSN overriding (the RSN element stays for legacy stations).
+struct RsnOverride {
+    std::uint8_t variant{1};
+    Rsn rsn;
+};
+
+/// RSNX Override (WFA subtype 0x2B): RSNX used together with the RSN overrides.
+struct RsnxOverride {
+    RsnExtension rsnx;
+};
+
 struct MobilityDomain {
     std::uint16_t mdid{0};
     bool ft_over_ds{false};
@@ -354,6 +367,6 @@ using ElementValue =
                  RmEnabledCapabilities, ExtendedCapabilities, VhtCapabilities, VhtOperation,
                  Interworking, HeCapabilities, HeOperation, EhtCapabilities, EhtOperation,
                  MultiLink, ReducedNeighborReport, MultipleBssid, Wpa, Wmm, Wps, OweTransition,
-                 Hs20Indication>;
+                 Hs20Indication, RsnOverride, RsnxOverride>;
 
 } // namespace wifi_analyze

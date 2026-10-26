@@ -4,6 +4,17 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## libwifianalyze
 
+### 0.4.0 – 2026-10-26
+- RSN overriding (Wi-Fi Alliance WPA3 Specification v3.4): RSN Element Override / Override 2
+  and RSNX Override are typed (`RsnOverride`, `RsnxOverride`) and summarized in
+  `SecuritySummary::overrides`; `security_label()` shows legacy and overriding configuration;
+  JSON `security.display_label` and `security.overrides` (backward compatible).
+- Decoders from Wireshark master (a9349d7b): Ubiquiti, Huawei, Meter, Telecom Infra Project and
+  Belden AP names, Aruba ARM and AP Health, Wi-Fi Alliance Capabilities element; RSNX octets
+  2-5 bits.
+- Fix: HE Operation 6 GHz Regulatory Info is 4 bits (was 3) with all defined values.
+- `docs/decoder-sources.md` records the Wireshark tag/commit each decoder was checked against.
+
 ### 0.3.0 – 2026-10-26
 - Vendor decoders for every vendor element Wireshark 4.6.9 understands in beacons: Cisco
   Aironet/CCX (+ element 133), Aruba, Ruckus, Mist, Alcatel-Lucent, Aerohive, Arista, Fortinet,
@@ -32,6 +43,10 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## wifi-analyze-cli
 
+### 0.2.0 – 2026-10-26
+- Embeds libwifianalyze 0.4.0; `list` shows the security display label (incl. RSN overriding)
+  in a SECURITY column that widens as needed; JSON contains `display_label` / `overrides`.
+
 ### 0.1.2 – 2026-10-26
 - Embeds libwifianalyze 0.3.0 (vendor elements decoded).
 
@@ -43,6 +58,10 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
   dumps, capture JSON; text, JSON and capture output; anonymization.
 
 ## Android app (de.maggu2810.android.wifianalyzer)
+
+### 0.2.0 (versionCode 4) – 2026-10-26
+- Embeds libwifianalyze 0.4.0; network list chips show the security display label (incl. RSN
+  overriding), the overview lists the RSN overriding configurations.
 
 ### 0.1.2 (versionCode 3) – 2026-10-26
 - Embeds libwifianalyze 0.3.0 (vendor elements decoded).

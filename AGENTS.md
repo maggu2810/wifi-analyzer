@@ -56,8 +56,8 @@ tools/                 build-time generators (OUI subset table, i18n catalogs)
    (CCMP-128, 802.11ax) are `Text` literals. Reuse an existing key only with identical text.
 6. Every decoder cites its source in a comment and in `docs/decoder-sources.md`: the standard
    (`IEEE 802.11-2020 9.4.2`, amendment, or Wi-Fi Alliance specification) and the Wireshark
-   dissector it was cross-checked with (reference: Wireshark 4.6.9, read only – GPL, never copy
-   code). Proprietary vendor elements use the Wireshark dissector as only source. Unit tests use
+   dissector it was cross-checked with (Wireshark revision/commit recorded in
+   `docs/decoder-sources.md` "Reference versions"; read only – GPL, never copy code). Proprietary vendor elements use the Wireshark dissector as only source. Unit tests use
    real captured bytes where available. Cross-check with Linux `include/linux/ieee80211.h`
    when in doubt; where sources disagree, the standard wins and the difference is documented.
 7. Never take element IDs or bit layouts from memory or secondary tables: verify them against

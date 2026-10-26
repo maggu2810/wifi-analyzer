@@ -308,6 +308,35 @@ void suite(JsonWriter& w, const Suite& s, bool akm, const Localizer& loc) {
     w.end_object();
 }
 
+void suites(JsonWriter& w, const std::vector<Suite>& akms, const std::vector<Suite>& pairwise,
+            const std::optional<Suite>& group, const std::optional<Suite>& group_mgmt,
+            const Localizer& loc) {
+    w.key("akms");
+    w.begin_array();
+    for (const auto& a : akms) {
+        suite(w, a, true, loc);
+    }
+    w.end_array();
+    w.key("pairwise_ciphers");
+    w.begin_array();
+    for (const auto& c : pairwise) {
+        suite(w, c, false, loc);
+    }
+    w.end_array();
+    w.key("group_cipher");
+    if (group) {
+        suite(w, *group, false, loc);
+    } else {
+        w.null();
+    }
+    w.key("group_management_cipher");
+    if (group_mgmt) {
+        suite(w, *group_mgmt, false, loc);
+    } else {
+        w.null();
+    }
+}
+
 void summary(JsonWriter& w, const BssSummary& s, const Localizer& loc) {
     w.begin_object();
     w.field("ssid", s.ssid);
@@ -326,30 +355,24 @@ void summary(JsonWriter& w, const BssSummary& s, const Localizer& loc) {
     w.field("weak", s.security.weak);
     w.field("sae_h2e", s.security.sae_hash_to_element);
     w.field("sae_pk", s.security.sae_pk);
-    w.key("akms");
+    w.field("display_label", security_label(s.security, loc));
+    suites(w, s.security.akms, s.security.pairwise_ciphers, s.security.group_cipher,
+           s.security.group_management_cipher, loc);
+    w.key("overrides");
     w.begin_array();
-    for (const auto& a : s.security.akms) {
-        suite(w, a, true, loc);
+    for (const auto& o : s.security.overrides) {
+        w.begin_object();
+        w.field("variant", std::uint64_t{o.variant});
+        w.field("type", security_type_key(o.type));
+        w.field("label", security_type_name(o.type).render(loc));
+        w.field("pmf", pmf_key(o.pmf));
+        w.field("pmf_label", pmf_name(o.pmf).render(loc));
+        w.field("sae_h2e", o.sae_hash_to_element);
+        w.field("sae_pk", o.sae_pk);
+        suites(w, o.akms, o.pairwise_ciphers, o.group_cipher, o.group_management_cipher, loc);
+        w.end_object();
     }
     w.end_array();
-    w.key("pairwise_ciphers");
-    w.begin_array();
-    for (const auto& c : s.security.pairwise_ciphers) {
-        suite(w, c, false, loc);
-    }
-    w.end_array();
-    w.key("group_cipher");
-    if (s.security.group_cipher) {
-        suite(w, *s.security.group_cipher, false, loc);
-    } else {
-        w.null();
-    }
-    w.key("group_management_cipher");
-    if (s.security.group_management_cipher) {
-        suite(w, *s.security.group_management_cipher, false, loc);
-    } else {
-        w.null();
-    }
     w.end_object();
 
     const auto& p = s.phy;

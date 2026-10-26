@@ -338,12 +338,20 @@ ElementValue decode_he_operation(Decoder& d) {
                     return table_name(names, v);
                 }));
             six.duplicate_beacon = control->flag(2, WA_TR(he_6ghz_dup_beacon, "Duplicate Beacon"));
+            // Regulatory Info is B3-B6 (4 bits); values 3, 7 and 8 from IEEE 802.11-2024,
+            // cross-checked with Wireshark master a9349d7b (he_regulatory_info_rvals).
             six.regulatory_info = static_cast<std::uint8_t>(control->enumeration(
-                3, 3, WA_TR(he_6ghz_regulatory, "Regulatory Info"), [](std::uint64_t v) -> Text {
-                    constexpr std::array<Text, 3> names{
+                3, 4, WA_TR(he_6ghz_regulatory, "Regulatory Info"), [](std::uint64_t v) -> Text {
+                    constexpr std::array<Text, 9> names{
                         WA_TR(he_6ghz_indoor, "Indoor AP"),
                         WA_TR(he_6ghz_standard_power, "Standard Power AP"),
-                        WA_TR(he_6ghz_very_low_power, "Very Low Power AP")};
+                        WA_TR(he_6ghz_very_low_power, "Very Low Power AP"),
+                        WA_TR(he_6ghz_indoor_enabled, "Indoor Enabled AP"),
+                        Text{},
+                        Text{},
+                        Text{},
+                        WA_TR(he_6ghz_role_not_relevant, "AP Role Not Relevant"),
+                        WA_TR(he_6ghz_indoor_standard_power, "Indoor Standard Power AP")};
                     return table_name(names, v);
                 }));
             info.children.push_back(control->take());

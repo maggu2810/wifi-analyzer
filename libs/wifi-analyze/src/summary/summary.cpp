@@ -10,6 +10,7 @@
 #include <set>
 #include <string>
 
+#include <wifi_analyze/i18n.hpp>
 #include <wifi_analyze/oui.hpp>
 #include <wifi_analyze/summary.hpp>
 
@@ -182,74 +183,92 @@ bool is_weak(const Suite& s) {
            (s.type == 1 || s.type == 2 || s.type == 5);
 }
 
+/// Security type, PMF and suites of one RSN configuration (RSN element or RSN override).
+struct RsnConfig {
+    SecurityType type{SecurityType::unknown};
+    Pmf pmf{Pmf::unknown};
+    std::optional<Suite> group_cipher;
+    std::vector<Suite> pairwise_ciphers;
+    std::vector<Suite> akms;
+    std::optional<Suite> group_management_cipher;
+};
+
+RsnConfig classify_rsn(const Rsn& rsn, const AkmClasses& wpa_classes) {
+    RsnConfig cfg;
+    cfg.group_cipher = rsn.group_cipher;
+    cfg.pairwise_ciphers = rsn.pairwise_ciphers;
+    cfg.akms = rsn.akms;
+    cfg.group_management_cipher = rsn.group_management_cipher;
+    cfg.pmf = !rsn.capabilities    ? Pmf::disabled
+              : rsn.mfp_required() ? Pmf::required
+              : rsn.mfp_capable()  ? Pmf::capable
+                                   : Pmf::disabled;
+    // Defaults when the element is shortened (IEEE 802.11-2020: CCMP-128 and PSK/802.1X).
+    if (!rsn.group_cipher) {
+        cfg.group_cipher = Suite{.oui = oui_ieee80211, .type = 4};
+    }
+    if (rsn.pairwise_ciphers.empty() && rsn.akms.empty()) {
+        cfg.pairwise_ciphers = {Suite{.oui = oui_ieee80211, .type = 4}};
+        cfg.akms = {Suite{.oui = oui_ieee80211, .type = 1}};
+    }
+
+    const auto c = classify(cfg.akms);
+    if (c.owe && !c.psk && !c.sae && !c.eap && !c.eap_192) {
+        cfg.type = SecurityType::enhanced_open;
+    } else if (c.psk || c.sae) {
+        if (c.psk && c.sae) {
+            cfg.type = SecurityType::wpa2_wpa3_personal;
+        } else if (c.sae) {
+            cfg.type = SecurityType::wpa3_personal;
+        } else {
+            cfg.type =
+                wpa_classes.psk ? SecurityType::wpa_wpa2_personal : SecurityType::wpa2_personal;
+        }
+    } else if (c.eap_192) {
+        cfg.type = SecurityType::wpa3_enterprise_192;
+    } else if (c.eap) {
+        if (cfg.pmf == Pmf::required) {
+            cfg.type = SecurityType::wpa3_enterprise;
+        } else if (c.eap_sha256 && cfg.pmf == Pmf::capable) {
+            cfg.type = SecurityType::wpa2_wpa3_enterprise;
+        } else {
+            cfg.type =
+                wpa_classes.eap ? SecurityType::wpa_wpa2_enterprise : SecurityType::wpa2_enterprise;
+        }
+    } else if (c.other) {
+        cfg.type = SecurityType::other;
+    } else {
+        cfg.type = SecurityType::unknown;
+    }
+    return cfg;
+}
+
 SecuritySummary summarize_security(const DecodedIes& ies, const DecodeContext& context) {
     SecuritySummary sec;
     const auto* rsn = ies.first<Rsn>();
     const auto* wpa = ies.first<Wpa>();
-    if (const auto* rsnx = ies.first<RsnExtension>()) {
+    const auto* rsnx = ies.first<RsnExtension>();
+    if (rsnx != nullptr) {
         sec.sae_hash_to_element = rsnx->sae_hash_to_element();
         sec.sae_pk = rsnx->sae_pk();
     }
     sec.rsn = rsn != nullptr;
     sec.wpa1 = wpa != nullptr;
+    const auto wpa_classes = wpa != nullptr ? classify(wpa->akms) : AkmClasses{};
 
     if (rsn != nullptr) {
-        sec.group_cipher = rsn->group_cipher;
-        sec.pairwise_ciphers = rsn->pairwise_ciphers;
-        sec.akms = rsn->akms;
-        sec.group_management_cipher = rsn->group_management_cipher;
-        sec.pmf = !rsn->capabilities    ? Pmf::disabled
-                  : rsn->mfp_required() ? Pmf::required
-                  : rsn->mfp_capable()  ? Pmf::capable
-                                        : Pmf::disabled;
-        // Defaults when the element is shortened (IEEE 802.11-2020: CCMP-128 and PSK/802.1X).
-        if (!rsn->group_cipher) {
-            sec.group_cipher = Suite{.oui = oui_ieee80211, .type = 4};
-        }
-        if (rsn->pairwise_ciphers.empty() && rsn->akms.empty()) {
-            sec.pairwise_ciphers = {Suite{.oui = oui_ieee80211, .type = 4}};
-            sec.akms = {Suite{.oui = oui_ieee80211, .type = 1}};
-        }
+        auto cfg = classify_rsn(*rsn, wpa_classes);
+        sec.type = cfg.type;
+        sec.pmf = cfg.pmf;
+        sec.group_cipher = cfg.group_cipher;
+        sec.pairwise_ciphers = std::move(cfg.pairwise_ciphers);
+        sec.akms = std::move(cfg.akms);
+        sec.group_management_cipher = cfg.group_management_cipher;
     } else if (wpa != nullptr) {
         sec.group_cipher = wpa->group_cipher;
         sec.pairwise_ciphers = wpa->pairwise_ciphers;
         sec.akms = wpa->akms;
         sec.pmf = Pmf::disabled;
-    }
-
-    const auto rsn_classes = classify(sec.akms);
-    const auto wpa_classes = wpa != nullptr ? classify(wpa->akms) : AkmClasses{};
-
-    if (rsn != nullptr) {
-        const auto& c = rsn_classes;
-        if (c.owe && !c.psk && !c.sae && !c.eap && !c.eap_192) {
-            sec.type = SecurityType::enhanced_open;
-        } else if (c.psk || c.sae) {
-            if (c.psk && c.sae) {
-                sec.type = SecurityType::wpa2_wpa3_personal;
-            } else if (c.sae) {
-                sec.type = SecurityType::wpa3_personal;
-            } else {
-                sec.type =
-                    wpa_classes.psk ? SecurityType::wpa_wpa2_personal : SecurityType::wpa2_personal;
-            }
-        } else if (c.eap_192) {
-            sec.type = SecurityType::wpa3_enterprise_192;
-        } else if (c.eap) {
-            if (sec.pmf == Pmf::required) {
-                sec.type = SecurityType::wpa3_enterprise;
-            } else if (c.eap_sha256 && sec.pmf == Pmf::capable) {
-                sec.type = SecurityType::wpa2_wpa3_enterprise;
-            } else {
-                sec.type = wpa_classes.eap ? SecurityType::wpa_wpa2_enterprise
-                                           : SecurityType::wpa2_enterprise;
-            }
-        } else if (c.other) {
-            sec.type = SecurityType::other;
-        } else {
-            sec.type = SecurityType::unknown;
-        }
-    } else if (wpa != nullptr) {
         sec.type = wpa_classes.eap ? SecurityType::wpa_enterprise : SecurityType::wpa_personal;
     } else if (ies.first<OweTransition>() != nullptr) {
         sec.type = SecurityType::enhanced_open_transition;
@@ -258,6 +277,25 @@ SecuritySummary summarize_security(const DecodedIes& ies, const DecodeContext& c
     } else {
         sec.type = SecurityType::open_or_wep;
     }
+
+    // RSN overriding (WPA3 v3.4): RSNXO replaces RSNX for stations using the overrides.
+    const auto* rsnxo = ies.first<RsnxOverride>();
+    const RsnExtension* override_rsnx = rsnxo != nullptr ? &rsnxo->rsnx : rsnx;
+    for (const auto* o : ies.all<RsnOverride>()) {
+        auto cfg = classify_rsn(o->rsn, AkmClasses{});
+        sec.overrides.push_back(SecurityOverride{
+            .variant = o->variant,
+            .type = cfg.type,
+            .pmf = cfg.pmf,
+            .group_cipher = cfg.group_cipher,
+            .pairwise_ciphers = std::move(cfg.pairwise_ciphers),
+            .akms = std::move(cfg.akms),
+            .group_management_cipher = cfg.group_management_cipher,
+            .sae_hash_to_element = override_rsnx != nullptr && override_rsnx->sae_hash_to_element(),
+            .sae_pk = override_rsnx != nullptr && override_rsnx->sae_pk(),
+        });
+    }
+    std::ranges::sort(sec.overrides, {}, &SecurityOverride::variant);
 
     const bool weak_cipher =
         (sec.group_cipher && is_weak(*sec.group_cipher)) ||
@@ -665,6 +703,28 @@ Text security_type_name(SecurityType type) noexcept {
     return msg::unknown;
 }
 
+std::string security_label(const SecuritySummary& security, const Localizer& localizer) {
+    std::string legacy{security_type_name(security.type).render(localizer)};
+    if (security.overrides.empty()) {
+        return legacy;
+    }
+    std::string overrides;
+    std::set<SecurityType> seen;
+    for (const auto& o : security.overrides) {
+        if (!seen.insert(o.type).second) {
+            continue;
+        }
+        if (!overrides.empty()) {
+            overrides += " / ";
+        }
+        overrides += security_type_name(o.type).render(localizer);
+    }
+    const std::array args{legacy, overrides};
+    return format_message(localizer.text(WA_TR(security_label_with_overrides,
+                                               "{0} (legacy clients) · {1} (RSN overriding)")),
+                          args);
+}
+
 std::string_view security_type_key(SecurityType type) noexcept {
     switch (type) {
     case SecurityType::unknown:
@@ -789,40 +849,58 @@ TreeNode describe(const BssSummary& s) {
     if (s.security.weak) {
         security.significance = Significance::warning;
     }
-    if (s.security.rsn || s.security.wpa1) {
-        security.children.push_back(
-            Decoder::node(WA_TR(summary_pmf, "Management Frame Protection"),
-                          EnumValue{.raw = static_cast<std::uint64_t>(s.security.pmf),
-                                    .name = pmf_name(s.security.pmf)}));
-        security.children.back().display = Display::name_only;
-        const auto list = [&](MessageId label, const std::vector<Suite>& suites, bool akm) {
-            auto n = Decoder::node(label);
-            for (const auto& suite : suites) {
-                n.children.push_back(Decoder::node(
-                    msg::item,
-                    EnumValue{.raw = (std::uint64_t{core::oui_value(suite.oui)} << 8U) | suite.type,
-                              .name =
-                                  akm ? ie::akm_suite_name(suite) : ie::cipher_suite_name(suite)}));
-                n.children.back().display = Display::suite;
-            }
-            security.children.push_back(std::move(n));
-        };
-        list(WA_TR(summary_akms, "Authentication"), s.security.akms, true);
-        list(WA_TR(summary_pairwise, "Pairwise Ciphers"), s.security.pairwise_ciphers, false);
-        if (s.security.group_cipher) {
-            list(WA_TR(summary_group_cipher, "Group Cipher"), {*s.security.group_cipher}, false);
+    const auto list = [](TreeNode& parent, MessageId label, const std::vector<Suite>& suites,
+                         bool akm) {
+        auto n = Decoder::node(label);
+        for (const auto& suite : suites) {
+            n.children.push_back(Decoder::node(
+                msg::item,
+                EnumValue{.raw = (std::uint64_t{core::oui_value(suite.oui)} << 8U) | suite.type,
+                          .name = akm ? ie::akm_suite_name(suite) : ie::cipher_suite_name(suite)}));
+            n.children.back().display = Display::suite;
         }
-        if (s.security.group_management_cipher) {
-            list(WA_TR(summary_group_mgmt_cipher, "Group Management Cipher"),
-                 {*s.security.group_management_cipher}, false);
+        parent.children.push_back(std::move(n));
+    };
+    const auto details = [&list](TreeNode& parent, Pmf pmf, const std::vector<Suite>& akms,
+                                 const std::vector<Suite>& pairwise,
+                                 const std::optional<Suite>& group,
+                                 const std::optional<Suite>& group_mgmt, bool h2e, bool pk) {
+        parent.children.push_back(Decoder::node(
+            WA_TR(summary_pmf, "Management Frame Protection"),
+            EnumValue{.raw = static_cast<std::uint64_t>(pmf), .name = pmf_name(pmf)}));
+        parent.children.back().display = Display::name_only;
+        list(parent, WA_TR(summary_akms, "Authentication"), akms, true);
+        list(parent, WA_TR(summary_pairwise, "Pairwise Ciphers"), pairwise, false);
+        if (group) {
+            list(parent, WA_TR(summary_group_cipher, "Group Cipher"), {*group}, false);
         }
-        if (s.security.sae_hash_to_element) {
-            security.children.push_back(
+        if (group_mgmt) {
+            list(parent, WA_TR(summary_group_mgmt_cipher, "Group Management Cipher"), {*group_mgmt},
+                 false);
+        }
+        if (h2e) {
+            parent.children.push_back(
                 Decoder::node(WA_TR(rsnx_sae_h2e, "SAE Hash-to-Element"), true));
         }
-        if (s.security.sae_pk) {
-            security.children.push_back(Decoder::node(WA_TR(rsnx_sae_pk, "SAE-PK"), true));
+        if (pk) {
+            parent.children.push_back(Decoder::node(WA_TR(rsnx_sae_pk, "SAE-PK"), true));
         }
+    };
+    const auto& sec = s.security;
+    if (sec.rsn || sec.wpa1) {
+        details(security, sec.pmf, sec.akms, sec.pairwise_ciphers, sec.group_cipher,
+                sec.group_management_cipher, sec.sae_hash_to_element, sec.sae_pk);
+    }
+    for (const auto& o : sec.overrides) {
+        auto n = Decoder::node(o.variant == 2
+                                   ? WA_TR(summary_rsn_override_2, "RSN Overriding (Override 2)")
+                                   : WA_TR(summary_rsn_override, "RSN Overriding"),
+                               EnumValue{.raw = static_cast<std::uint64_t>(o.type),
+                                         .name = security_type_name(o.type)});
+        n.display = Display::name_only;
+        details(n, o.pmf, o.akms, o.pairwise_ciphers, o.group_cipher, o.group_management_cipher,
+                o.sae_hash_to_element, o.sae_pk);
+        security.children.push_back(std::move(n));
     }
     add(std::move(security));
 

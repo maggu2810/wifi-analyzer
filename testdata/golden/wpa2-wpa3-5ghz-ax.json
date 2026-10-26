@@ -17,6 +17,7 @@
       "weak": false,
       "sae_h2e": true,
       "sae_pk": false,
+      "display_label": "WPA2/WPA3-Personal",
       "akms": [
         {
           "suite": "00:0f:ac:2",
@@ -37,7 +38,8 @@
         "suite": "00:0f:ac:4",
         "name": "CCMP-128"
       },
-      "group_management_cipher": null
+      "group_management_cipher": null,
+      "overrides": []
     },
     "phy": {
       "generation": 6,
@@ -6523,6 +6525,20 @@
               ],
               "bits": [
                 6,
+                1
+              ]
+            },
+            {
+              "key": "rsnx_protected_wur",
+              "label": "Protected WUR Frame Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                7,
                 1
               ]
             }

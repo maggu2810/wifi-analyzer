@@ -19,8 +19,8 @@ namespace {
 using core::BitField;
 using core::table_name;
 
-void read_vendor_type(Decoder& d) {
-    d.u8(d.root(), WA_TR(vendor_type, "Vendor Type"));
+std::uint8_t read_vendor_type(Decoder& d) {
+    return d.u8(d.root(), WA_TR(vendor_type, "Vendor Type")).value_or(0);
 }
 
 MessageId p2p_attribute_label(std::uint8_t id) {
@@ -563,12 +563,16 @@ ElementValue decode_vendor_qos_mgmt(Decoder& d) {
 }
 
 // RSN Element Override (and Override 2): RSN element body. Wireshark: dissect_wfa_rsn_override.
-// The typed value is not returned, so the BSS summary keeps using the RSN element.
+// Returned as RsnOverride (not Rsn), so the legacy RSN configuration stays separate.
 ElementValue decode_vendor_rsn_override(Decoder& d) {
-    read_vendor_type(d);
+    const auto type = read_vendor_type(d);
     const auto start = d.offset();
     const auto body = d.reader().rest();
-    d.sub_decode(d.root(), decode_rsn, body, start);
+    auto value = d.sub_decode(d.root(), decode_rsn, body, start);
+    if (auto* rsn = std::get_if<Rsn>(&value)) {
+        return RsnOverride{.variant = static_cast<std::uint8_t>(type == 0x2a ? 2 : 1),
+                           .rsn = std::move(*rsn)};
+    }
     return {};
 }
 
@@ -577,7 +581,75 @@ ElementValue decode_vendor_rsnx_override(Decoder& d) {
     read_vendor_type(d);
     const auto start = d.offset();
     const auto body = d.reader().rest();
-    d.sub_decode(d.root(), decode_rsn_extension, body, start);
+    auto value = d.sub_decode(d.root(), decode_rsn_extension, body, start);
+    if (auto* rsnx = std::get_if<RsnExtension>(&value)) {
+        return RsnxOverride{.rsnx = std::move(*rsnx)};
+    }
+    return {};
+}
+
+// Wi-Fi Alliance Capabilities element (subtype 0x23): capabilities length + capability octets,
+// then attributes (id u8, length u8; 1 = generational capabilities). Wireshark master
+// a9349d7b: dissect_wfa_capa.
+ElementValue decode_vendor_wfa_capabilities(Decoder& d) {
+    read_vendor_type(d);
+    const auto len = d.u8(d.root(), WA_TR(wfa_capa_length, "Capabilities Length"));
+    if (!len) {
+        return {};
+    }
+    if (*len > 0) {
+        auto caps = d.bits(WA_TR(wfa_capa_capabilities, "Capabilities"), *len);
+        if (!caps) {
+            return {};
+        }
+        caps->flag(0, WA_TR(wfa_capa_dscp_policy, "QoS Management DSCP Policy"));
+        caps->flag(1, WA_TR(wfa_capa_unsolicited_dscp,
+                            "QoS Management Unsolicited DSCP Policy at Association"));
+        caps->flag(
+            2, WA_TR(wfa_capa_scs_traffic_description, "QoS Management SCS Traffic Description"));
+        caps->flag(3, WA_TR(wfa_capa_5g_qos_mapping, "5G QoS to Wi-Fi QoS Mapping"));
+        caps->flag(4, WA_TR(wfa_capa_data_plane_stats, "Data Plane Statistics Reporting"));
+        caps->flag(5, WA_TR(wfa_capa_radio_counters, "Radio Counters Statistics"));
+        caps->flag(6, WA_TR(wfa_capa_control_plane_stats, "Control Plane Statistics Reporting"));
+        caps->flag(7, WA_TR(wfa_capa_unsolicited_report, "Unsolicited Report"));
+        d.add(caps->take());
+    }
+    attribute_list(
+        d, LengthField::u8,
+        [](std::uint8_t id) {
+            return id == 1 ? WA_TR(wfa_capa_generations, "Generational Capabilities Indication")
+                           : WA_TR(wfa_capa_attribute, "Attribute");
+        },
+        [](TreeNode& node, std::uint8_t id, std::span<const std::uint8_t> v, std::size_t start) {
+            if (id != 1 || v.size() < 2) {
+                return false;
+            }
+            const auto generations = [&](MessageId label, std::size_t pos, bool certified) {
+                BitField b{Decoder::node(label, std::uint64_t{v[pos]},
+                                         ByteRange{.offset = start + pos, .length = 1}),
+                           {v[pos]}};
+                b.node().display = Display::hex;
+                if (certified) {
+                    b.flag(0, WA_TR(wfa_capa_cert_n, "Wi-Fi CERTIFIED n"));
+                    b.flag(1, WA_TR(wfa_capa_cert_ac, "Wi-Fi CERTIFIED ac"));
+                    b.flag(2, WA_TR(wfa_capa_cert_6, "Wi-Fi CERTIFIED 6"));
+                    b.flag(3, WA_TR(wfa_capa_cert_7, "Wi-Fi CERTIFIED 7"));
+                } else {
+                    b.flag(0, WA_TR(wfa_capa_wifi4, "Wi-Fi 4"));
+                    b.flag(1, WA_TR(wfa_capa_wifi5, "Wi-Fi 5"));
+                    b.flag(2, WA_TR(wfa_capa_wifi6, "Wi-Fi 6"));
+                    b.flag(3, WA_TR(wfa_capa_wifi7, "Wi-Fi 7"));
+                }
+                node.children.push_back(b.take());
+            };
+            // Supported generations: length octet + bitmap; optional certified generations.
+            generations(WA_TR(wfa_capa_supported_generations, "Supported Generations"), 1, false);
+            if (v.size() >= 4) {
+                generations(WA_TR(wfa_capa_certified_generations, "Certified Generations"), 3,
+                            true);
+            }
+            return v.size() == 2 || v.size() == 4;
+        });
     return {};
 }
 

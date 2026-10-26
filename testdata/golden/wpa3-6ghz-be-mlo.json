@@ -17,6 +17,7 @@
       "weak": false,
       "sae_h2e": true,
       "sae_pk": false,
+      "display_label": "WPA3-Personal",
       "akms": [
         {
           "suite": "00:0f:ac:8",
@@ -44,7 +45,8 @@
       "group_management_cipher": {
         "suite": "00:0f:ac:6",
         "name": "BIP-CMAC-128"
-      }
+      },
+      "overrides": []
     },
     "phy": {
       "generation": 7,
@@ -921,6 +923,20 @@
               ],
               "bits": [
                 6,
+                1
+              ]
+            },
+            {
+              "key": "rsnx_protected_wur",
+              "label": "Protected WUR Frame Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                7,
                 1
               ]
             }
@@ -4287,7 +4303,7 @@
                   ],
                   "bits": [
                     3,
-                    3
+                    4
                   ]
                 }
               ]
