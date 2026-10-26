@@ -54,7 +54,14 @@ fun AppNavigation(vm: AppViewModel) {
     val snackbar = remember { SnackbarHostState() }
     val resources = LocalResources.current
     LaunchedEffect(resources) {
-        vm.messages.collect { m -> snackbar.showSnackbar(resources.getString(m.text, *m.args.toTypedArray())) }
+        vm.messages.collect { m ->
+            val text = if (m.quantity != null) {
+                resources.getQuantityString(m.text, m.quantity, *m.args.toTypedArray())
+            } else {
+                resources.getString(m.text, *m.args.toTypedArray())
+            }
+            snackbar.showSnackbar(text)
+        }
     }
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route

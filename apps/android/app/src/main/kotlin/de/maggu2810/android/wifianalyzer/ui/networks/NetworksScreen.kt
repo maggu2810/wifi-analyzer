@@ -62,6 +62,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -341,7 +342,7 @@ private fun StatusLine(vm: AppViewModel, lastUpdate: Long?, now: Long, autoScan:
             else stringResource(R.string.status_updated, formatAge(now - lastUpdate)),
         )
         add(stringResource(if (autoScan) R.string.status_auto_on else R.string.status_auto_off))
-        vm.remainingScanBudget()?.let { add(stringResource(R.string.status_budget, it)) }
+        vm.remainingScanBudget()?.let { add(pluralStringResource(R.plurals.status_budget, it, it)) }
     }
     Text(
         parts.joinToString(" · "),
@@ -439,7 +440,12 @@ private fun GroupCard(
             Column(Modifier.weight(1f).padding(start = 8.dp)) {
                 Text(group.ssid, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
                 Text(
-                    stringResource(R.string.group_aps, group.networks.size, group.networks.mapNotNull { it.band }.distinct().sorted().joinToString(" / ")),
+                    pluralStringResource(
+                        R.plurals.group_aps,
+                        group.networks.size,
+                        group.networks.size,
+                        group.networks.mapNotNull { it.band }.distinct().sorted().joinToString(" / "),
+                    ),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- SPDX-License-Identifier: MIT -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="about_app_version">App version</string>
     <string name="about_library_version">Decoder library</string>
     <string name="about_license">License</string>
@@ -81,25 +81,22 @@
     <string name="detail_tab_raw">Raw</string>
     <string name="detail_tab_signal">Signal</string>
     <string name="device_capabilities">Device capabilities</string>
-    <string name="element_header">ID %1$s · %2$d octets · offset %3$d</string>
+    <string name="element_header" tools:ignore="PluralsCandidate">ID %1$s · %2$d octets · offset %3$d</string>
     <string name="element_hex_hint">Tap a field to highlight its octets.</string>
     <string name="element_not_decoded">not decoded</string>
     <string name="filter_hide_hidden">Hide hidden</string>
     <string name="filter_insecure">Insecure only</string>
-    <string name="group_aps">%1$d access points · %2$s GHz</string>
     <string name="hidden_network">Hidden network</string>
-    <string name="link_rx">Rx %1$d Mbit/s</string>
-    <string name="link_tx">Tx %1$d Mbit/s</string>
-    <string name="message_export_done">Exported %1$d networks</string>
+    <string name="link_rx" tools:ignore="PluralsCandidate">Rx %1$d Mbit/s</string>
+    <string name="link_tx" tools:ignore="PluralsCandidate">Tx %1$d Mbit/s</string>
     <string name="message_export_failed">Export failed</string>
-    <string name="message_import_done">Imported %1$d networks</string>
     <string name="message_import_failed">Import failed: %1$s</string>
     <string name="message_permission_missing">Location permission is required for scanning.</string>
     <string name="message_scan_rejected">Android rejected the scan request (throttled).</string>
     <string name="message_scan_throttled">Scan limit reached – next scan possible in %1$d s.</string>
     <string name="message_wifi_off">Wi-Fi is off.</string>
     <string name="minutes_short">%1$d min</string>
-    <string name="networks_count">%1$d shown of %2$d</string>
+    <string name="networks_count" tools:ignore="PluralsCandidate">%1$d shown of %2$d</string>
     <string name="networks_empty">No networks yet. Pull down or tap Scan.</string>
     <string name="networks_filtered_empty">No network matches the filter.</string>
     <string name="no">no</string>
@@ -123,7 +120,6 @@
     <string name="platform_venue">Venue</string>
     <string name="platform_wifi_standard">Wi-Fi standard</string>
     <string name="raw_cli_hint">Share produces wpa_cli-style text that wifi-analyze-cli decodes directly.</string>
-    <string name="raw_title">IE stream (%1$d octets)</string>
     <string name="search_hint">SSID, BSSID or vendor</string>
     <string name="settings_about">About</string>
     <string name="settings_anonymize">Anonymize exports</string>
@@ -145,16 +141,14 @@
     <string name="settings_vendor_error">Error: %1$s</string>
     <string name="settings_vendor_hint">Downloads the IEEE OUI registry (about 3.5 MB) from standards-oui.ieee.org, or import an oui.csv file you downloaded yourself.</string>
     <string name="settings_vendor_import">Import file</string>
-    <string name="settings_vendor_loaded">Full vendor database: %1$d entries (updated %2$s)</string>
     <string name="settings_vendor_remove">Remove</string>
     <string name="signal_avg">Average</string>
     <string name="signal_current">Current</string>
-    <string name="signal_last_minutes">Last %1$d minutes</string>
+    <string name="signal_last_minutes" tools:ignore="PluralsCandidate">Last %1$d minutes</string>
     <string name="signal_max">Maximum</string>
     <string name="signal_min">Minimum</string>
     <string name="signal_samples">Samples</string>
     <string name="signal_statistics">Statistics</string>
-    <string name="signal_top_n">Strongest %1$d networks</string>
     <string name="sort_band">Band</string>
     <string name="sort_bssid">BSSID</string>
     <string name="sort_channel">Channel</string>
@@ -167,7 +161,6 @@
     <string name="sort_vendor">Vendor</string>
     <string name="status_auto_off">auto scan off</string>
     <string name="status_auto_on">auto scan on</string>
-    <string name="status_budget">%1$d scans left</string>
     <string name="status_no_scan">no scan yet</string>
     <string name="status_updated">updated %1$s ago</string>
     <string name="tab_channels">Channels</string>
@@ -175,8 +168,36 @@
     <string name="tab_networks">Networks</string>
     <string name="tab_signal">Signal</string>
     <string name="unit_dbm">%1$d dBm</string>
-    <string name="unit_mbps">%1$d Mbit/s</string>
+    <string name="unit_mbps" tools:ignore="PluralsCandidate">%1$d Mbit/s</string>
     <string name="unit_mhz">%1$d MHz</string>
     <string name="unknown">unknown</string>
     <string name="yes">yes</string>
+    <plurals name="group_aps">
+        <item quantity="one">%1$d access point · %2$s GHz</item>
+        <item quantity="other">%1$d access points · %2$s GHz</item>
+    </plurals>
+    <plurals name="message_export_done">
+        <item quantity="one">Exported %1$d network</item>
+        <item quantity="other">Exported %1$d networks</item>
+    </plurals>
+    <plurals name="message_import_done">
+        <item quantity="one">Imported %1$d network</item>
+        <item quantity="other">Imported %1$d networks</item>
+    </plurals>
+    <plurals name="raw_title">
+        <item quantity="one">IE stream (%1$d octet)</item>
+        <item quantity="other">IE stream (%1$d octets)</item>
+    </plurals>
+    <plurals name="settings_vendor_loaded">
+        <item quantity="one">Full vendor database: %1$d entry (updated %2$s)</item>
+        <item quantity="other">Full vendor database: %1$d entries (updated %2$s)</item>
+    </plurals>
+    <plurals name="signal_top_n">
+        <item quantity="one">Strongest network</item>
+        <item quantity="other">Strongest %1$d networks</item>
+    </plurals>
+    <plurals name="status_budget">
+        <item quantity="one">%1$d scan left</item>
+        <item quantity="other">%1$d scans left</item>
+    </plurals>
 </resources>

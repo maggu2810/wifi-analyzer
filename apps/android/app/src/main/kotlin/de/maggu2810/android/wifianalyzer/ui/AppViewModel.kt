@@ -42,7 +42,12 @@ import kotlinx.coroutines.withContext
 import kotlin.random.Random
 
 /** A short message for the snackbar. */
-data class UiMessage(@param:StringRes val text: Int, val args: List<Any> = emptyList())
+data class UiMessage(
+    /** String resource, or plurals resource if [quantity] is set. */
+    val text: Int,
+    val args: List<Any> = emptyList(),
+    val quantity: Int? = null,
+)
 
 class AppViewModel(private val app: Application, private val c: AppContainer) : ViewModel() {
     val settings: StateFlow<Settings> =
@@ -156,7 +161,11 @@ class AppViewModel(private val app: Application, private val c: AppContainer) : 
                         ?: error("cannot open output")
                 }
             }
-            post(if (result.isSuccess) R.string.message_export_done else R.string.message_export_failed, observations.size)
+            if (result.isSuccess) {
+                _messages.trySend(UiMessage(R.plurals.message_export_done, listOf(observations.size), observations.size))
+            } else {
+                post(R.string.message_export_failed)
+            }
         }
     }
 
@@ -171,7 +180,7 @@ class AppViewModel(private val app: Application, private val c: AppContainer) : 
                 c.scans.importCapture(observations, uri.lastPathSegment ?: "capture")
                 observations.size
             }
-            result.onSuccess { post(R.string.message_import_done, it) }
+            result.onSuccess { _messages.trySend(UiMessage(R.plurals.message_import_done, listOf(it), it)) }
                 .onFailure { post(R.string.message_import_failed, it.message ?: "") }
         }
     }

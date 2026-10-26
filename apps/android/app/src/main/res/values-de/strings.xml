@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- SPDX-License-Identifier: MIT -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="about_app_version">App-Version</string>
     <string name="about_library_version">Decoder-Bibliothek</string>
     <string name="about_license">Lizenz</string>
@@ -80,25 +80,22 @@
     <string name="detail_tab_raw">Rohdaten</string>
     <string name="detail_tab_signal">Signal</string>
     <string name="device_capabilities">Gerätefähigkeiten</string>
-    <string name="element_header">ID %1$s · %2$d Oktette · Offset %3$d</string>
+    <string name="element_header" tools:ignore="PluralsCandidate">ID %1$s · %2$d Oktette · Offset %3$d</string>
     <string name="element_hex_hint">Ein Feld antippen, um seine Oktette hervorzuheben.</string>
     <string name="element_not_decoded">nicht dekodiert</string>
     <string name="filter_hide_hidden">Versteckte ausblenden</string>
     <string name="filter_insecure">Nur unsichere</string>
-    <string name="group_aps">%1$d Access Points · %2$s GHz</string>
     <string name="hidden_network">Verstecktes Netzwerk</string>
-    <string name="link_rx">Rx %1$d Mbit/s</string>
-    <string name="link_tx">Tx %1$d Mbit/s</string>
-    <string name="message_export_done">%1$d Netzwerke exportiert</string>
+    <string name="link_rx" tools:ignore="PluralsCandidate">Rx %1$d Mbit/s</string>
+    <string name="link_tx" tools:ignore="PluralsCandidate">Tx %1$d Mbit/s</string>
     <string name="message_export_failed">Export fehlgeschlagen</string>
-    <string name="message_import_done">%1$d Netzwerke importiert</string>
     <string name="message_import_failed">Import fehlgeschlagen: %1$s</string>
     <string name="message_permission_missing">Für das Scannen ist die Standortberechtigung nötig.</string>
     <string name="message_scan_rejected">Android hat den Scan abgelehnt (gedrosselt).</string>
     <string name="message_scan_throttled">Scan-Limit erreicht – nächster Scan in %1$d s möglich.</string>
     <string name="message_wifi_off">WLAN ist ausgeschaltet.</string>
     <string name="minutes_short">%1$d min</string>
-    <string name="networks_count">%1$d von %2$d angezeigt</string>
+    <string name="networks_count" tools:ignore="PluralsCandidate">%1$d von %2$d angezeigt</string>
     <string name="networks_empty">Noch keine Netzwerke. Nach unten ziehen oder Scannen tippen.</string>
     <string name="networks_filtered_empty">Kein Netzwerk passt zum Filter.</string>
     <string name="no">nein</string>
@@ -122,7 +119,6 @@
     <string name="platform_venue">Standort</string>
     <string name="platform_wifi_standard">WLAN-Standard</string>
     <string name="raw_cli_hint">Teilen erzeugt Text im wpa_cli-Format, den wifi-analyze-cli direkt dekodiert.</string>
-    <string name="raw_title">IE-Strom (%1$d Oktette)</string>
     <string name="search_hint">SSID, BSSID oder Hersteller</string>
     <string name="settings_about">Über</string>
     <string name="settings_anonymize">Exporte anonymisieren</string>
@@ -144,16 +140,14 @@
     <string name="settings_vendor_error">Fehler: %1$s</string>
     <string name="settings_vendor_hint">Lädt das IEEE-OUI-Register (ca. 3,5 MB) von standards-oui.ieee.org oder importiert eine selbst heruntergeladene oui.csv.</string>
     <string name="settings_vendor_import">Datei importieren</string>
-    <string name="settings_vendor_loaded">Vollständige Hersteller-Datenbank: %1$d Einträge (Stand %2$s)</string>
     <string name="settings_vendor_remove">Entfernen</string>
     <string name="signal_avg">Durchschnitt</string>
     <string name="signal_current">Aktuell</string>
-    <string name="signal_last_minutes">Letzte %1$d Minuten</string>
+    <string name="signal_last_minutes" tools:ignore="PluralsCandidate">Letzte %1$d Minuten</string>
     <string name="signal_max">Maximum</string>
     <string name="signal_min">Minimum</string>
     <string name="signal_samples">Messwerte</string>
     <string name="signal_statistics">Statistik</string>
-    <string name="signal_top_n">Stärkste %1$d Netzwerke</string>
     <string name="sort_band">Band</string>
     <string name="sort_bssid">BSSID</string>
     <string name="sort_channel">Kanal</string>
@@ -166,7 +160,6 @@
     <string name="sort_vendor">Hersteller</string>
     <string name="status_auto_off">Auto-Scan aus</string>
     <string name="status_auto_on">Auto-Scan an</string>
-    <string name="status_budget">%1$d Scans übrig</string>
     <string name="status_no_scan">noch kein Scan</string>
     <string name="status_updated">aktualisiert vor %1$s</string>
     <string name="tab_channels">Kanäle</string>
@@ -174,8 +167,36 @@
     <string name="tab_networks">Netzwerke</string>
     <string name="tab_signal">Signal</string>
     <string name="unit_dbm">%1$d dBm</string>
-    <string name="unit_mbps">%1$d Mbit/s</string>
+    <string name="unit_mbps" tools:ignore="PluralsCandidate">%1$d Mbit/s</string>
     <string name="unit_mhz">%1$d MHz</string>
     <string name="unknown">unbekannt</string>
     <string name="yes">ja</string>
+    <plurals name="group_aps">
+        <item quantity="one">%1$d Access Point · %2$s GHz</item>
+        <item quantity="other">%1$d Access Points · %2$s GHz</item>
+    </plurals>
+    <plurals name="message_export_done">
+        <item quantity="one">%1$d Netzwerk exportiert</item>
+        <item quantity="other">%1$d Netzwerke exportiert</item>
+    </plurals>
+    <plurals name="message_import_done">
+        <item quantity="one">%1$d Netzwerk importiert</item>
+        <item quantity="other">%1$d Netzwerke importiert</item>
+    </plurals>
+    <plurals name="raw_title">
+        <item quantity="one">IE-Strom (%1$d Oktett)</item>
+        <item quantity="other">IE-Strom (%1$d Oktette)</item>
+    </plurals>
+    <plurals name="settings_vendor_loaded">
+        <item quantity="one">Vollständige Hersteller-Datenbank: %1$d Eintrag (Stand %2$s)</item>
+        <item quantity="other">Vollständige Hersteller-Datenbank: %1$d Einträge (Stand %2$s)</item>
+    </plurals>
+    <plurals name="signal_top_n">
+        <item quantity="one">Stärkstes Netzwerk</item>
+        <item quantity="other">Stärkste %1$d Netzwerke</item>
+    </plurals>
+    <plurals name="status_budget">
+        <item quantity="one">%1$d Scan übrig</item>
+        <item quantity="other">%1$d Scans übrig</item>
+    </plurals>
 </resources>

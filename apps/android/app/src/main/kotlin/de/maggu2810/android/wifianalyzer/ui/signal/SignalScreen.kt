@@ -33,6 +33,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -75,7 +76,7 @@ fun SignalScreen(vm: AppViewModel, onOpen: (String) -> Unit, onSettings: () -> U
                 }
             }
             item {
-                SectionCard(stringResource(R.string.signal_top_n, top.size)) {
+                SectionCard(pluralStringResource(R.plurals.signal_top_n, top.size, top.size)) {
                     SignalChart(series, now, minutes * 60_000L)
                 }
             }

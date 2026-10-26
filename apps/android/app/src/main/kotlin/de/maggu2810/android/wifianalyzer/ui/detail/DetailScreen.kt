@@ -52,6 +52,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -346,7 +347,7 @@ private fun RawTab(network: Network, onExport: () -> Unit) {
     val hex = network.observation.ies.toHex()
     LazyColumn(contentPadding = PaddingValues(12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
         item {
-            SectionCard(stringResource(R.string.raw_title, network.observation.ies.size)) {
+            SectionCard(pluralStringResource(R.plurals.raw_title, network.observation.ies.size, network.observation.ies.size)) {
                 SelectionContainer {
                     Text(hex.chunked(32).joinToString("\n"), fontFamily = FontFamily.Monospace, style = MaterialTheme.typography.bodySmall)
                 }

@@ -37,6 +37,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -115,8 +116,9 @@ fun SettingsScreen(vm: AppViewModel, onBack: () -> Unit) {
                 SectionCard(stringResource(R.string.settings_vendor_db)) {
                     Text(
                         if (oui.entries == null) stringResource(R.string.settings_vendor_builtin)
-                        else stringResource(
-                            R.string.settings_vendor_loaded,
+                        else pluralStringResource(
+                            R.plurals.settings_vendor_loaded,
+                            oui.entries ?: 0,
                             oui.entries ?: 0,
                             oui.updatedMs?.let { DateFormat.getDateInstance().format(Date(it)) } ?: "",
                         ),
