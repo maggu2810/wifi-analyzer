@@ -6,7 +6,7 @@
 namespace wifi_analyze {
 
 std::string_view version() noexcept {
-    return WIFI_ANALYZE_VERSION_STRING;
+    return config::version;
 }
 
 } // namespace wifi_analyze

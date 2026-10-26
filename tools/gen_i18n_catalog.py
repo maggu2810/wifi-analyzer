@@ -243,7 +243,7 @@ def generate(pot: Path, pos: list[Path], out: Path) -> None:
         inc.append("")
     inc.append(f"inline constexpr std::array<LocaleCatalog, {len(locales)}> catalogs{{{{")
     for locale, _ in locales:
-        inc.append(f"    {{{cxx_string(locale)}, &catalog_{locale}}},")
+        inc.append(f"    {{.locale = {cxx_string(locale)}, .texts = &catalog_{locale}}},")
     inc.append("}};")
     inc.append("")
 

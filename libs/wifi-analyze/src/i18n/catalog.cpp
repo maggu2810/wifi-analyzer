@@ -31,7 +31,7 @@ constexpr std::size_t index_of(MessageId id) noexcept {
 }
 
 std::optional<std::size_t> find_catalog(std::string_view name) noexcept {
-    const auto it = std::ranges::find(catalogs, name, &LocaleCatalog::locale);
+    const auto* const it = std::ranges::find(catalogs, name, &LocaleCatalog::locale);
     if (it == catalogs.end()) {
         return std::nullopt;
     }
@@ -108,7 +108,7 @@ std::string_view message_key(MessageId id) noexcept {
 
 std::optional<MessageId> message_id_from_key(std::string_view key) noexcept {
     // message_keys is sorted by the generator.
-    const auto it = std::ranges::lower_bound(message_keys, key);
+    const auto* const it = std::ranges::lower_bound(message_keys, key);
     if (it == message_keys.end() || *it != key) {
         return std::nullopt;
     }

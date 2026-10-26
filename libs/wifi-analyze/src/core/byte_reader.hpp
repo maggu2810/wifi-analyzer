@@ -115,7 +115,7 @@ public:
     constexpr bool skip(std::size_t n) noexcept { return bytes(n).has_value(); }
 
 private:
-    std::span<const std::uint8_t> data_{};
+    std::span<const std::uint8_t> data_;
     std::size_t pos_{0};
 };
 

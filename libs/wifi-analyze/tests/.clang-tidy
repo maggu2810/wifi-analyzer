@@ -1,0 +1,10 @@
+---
+# Tests: Catch2 REQUIRE() guards optionals in ways clang-tidy cannot see, and property tests
+# use fixed seeds on purpose (reproducible failures).
+InheritParentConfig: true
+Checks: >
+  -bugprone-unchecked-optional-access,
+  -bugprone-random-generator-seed,
+  -cert-msc32-c,
+  -cert-msc51-cpp
+...
