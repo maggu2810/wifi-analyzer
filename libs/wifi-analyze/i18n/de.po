@@ -7,6 +7,422 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
 
+msgctxt "ac_be"
+msgid "Best Effort (BE)"
+msgstr "Best Effort (BE)"
+
+msgctxt "ac_bk"
+msgid "Background (BK)"
+msgstr "Hintergrund (BK)"
+
+msgctxt "ac_vi"
+msgid "Video (VI)"
+msgstr "Video (VI)"
+
+msgctxt "ac_vo"
+msgid "Voice (VO)"
+msgstr "Sprache (VO)"
+
+msgctxt "ant_chargeable_public"
+msgid "Chargeable public network"
+msgstr "Kostenpflichtiges öffentliches Netz"
+
+msgctxt "ant_emergency"
+msgid "Emergency services only network"
+msgstr "Nur Notdienste"
+
+msgctxt "ant_free_public"
+msgid "Free public network"
+msgstr "Kostenloses öffentliches Netz"
+
+msgctxt "ant_personal_device"
+msgid "Personal device network"
+msgstr "Netz eines persönlichen Geräts"
+
+msgctxt "ant_private"
+msgid "Private network"
+msgstr "Privates Netz"
+
+msgctxt "ant_private_guest"
+msgid "Private network with guest access"
+msgstr "Privates Netz mit Gastzugang"
+
+msgctxt "ant_test"
+msgid "Test or experimental"
+msgstr "Test oder experimentell"
+
+msgctxt "ant_wildcard"
+msgid "Wildcard"
+msgstr "Platzhalter"
+
+msgctxt "bss_load_admission_capacity"
+msgid "Available Admission Capacity (32 µs/s)"
+msgstr "Verfügbare Zulassungskapazität (32 µs/s)"
+
+msgctxt "bss_load_stations"
+msgid "Station Count"
+msgstr "Anzahl Stationen"
+
+msgctxt "bss_load_utilization"
+msgid "Channel Utilization"
+msgstr "Kanalauslastung"
+
+msgctxt "bss_load_utilization_raw"
+msgid "Raw Value (x/255)"
+msgstr "Rohwert (x/255)"
+
+msgctxt "common_channel"
+msgid "Channel"
+msgstr "Kanal"
+
+msgctxt "common_count"
+msgid "Count"
+msgstr "Anzahl"
+
+msgctxt "common_data"
+msgid "Data"
+msgstr "Daten"
+
+msgctxt "common_item"
+msgid "Item"
+msgstr "Eintrag"
+
+msgctxt "common_length"
+msgid "Length"
+msgstr "Länge"
+
+msgctxt "common_mac"
+msgid "MAC Address"
+msgstr "MAC-Adresse"
+
+msgctxt "common_no"
+msgid "no"
+msgstr "nein"
+
+msgctxt "common_none"
+msgid "None"
+msgstr "Keine"
+
+msgctxt "common_not_supported"
+msgid "Not supported"
+msgstr "Nicht unterstützt"
+
+msgctxt "common_operating_class"
+msgid "Operating Class"
+msgstr "Betriebsklasse"
+
+msgctxt "common_reserved"
+msgid "Reserved"
+msgstr "Reserviert"
+
+msgctxt "common_supported"
+msgid "Supported"
+msgstr "Unterstützt"
+
+msgctxt "common_unknown"
+msgid "Unknown"
+msgstr "Unbekannt"
+
+msgctxt "common_unparsed"
+msgid "Unparsed Data"
+msgstr "Nicht ausgewertete Daten"
+
+msgctxt "common_value"
+msgid "Value"
+msgstr "Wert"
+
+msgctxt "common_version"
+msgid "Version"
+msgstr "Version"
+
+msgctxt "common_yes"
+msgid "yes"
+msgstr "ja"
+
+msgctxt "country_channel_count"
+msgid "Number of Channels"
+msgstr "Anzahl Kanäle"
+
+msgctxt "country_code"
+msgid "Country Code"
+msgstr "Ländercode"
+
+msgctxt "country_coverage_class"
+msgid "Coverage Class"
+msgstr "Abdeckungsklasse"
+
+msgctxt "country_env_any"
+msgid "All environments"
+msgstr "Alle Umgebungen"
+
+msgctxt "country_env_indoor"
+msgid "Indoor"
+msgstr "Innen"
+
+msgctxt "country_env_noncountry"
+msgid "Non-country entity"
+msgstr "Keine Länderzuordnung"
+
+msgctxt "country_env_outdoor"
+msgid "Outdoor"
+msgstr "Außen"
+
+msgctxt "country_env_table"
+msgid "Operating classes of Annex E table"
+msgstr "Betriebsklassen der Tabelle in Anhang E"
+
+msgctxt "country_environment"
+msgid "Environment"
+msgstr "Umgebung"
+
+msgctxt "country_first_channel"
+msgid "First Channel"
+msgstr "Erster Kanal"
+
+msgctxt "country_max_power"
+msgid "Maximum Transmit Power"
+msgstr "Maximale Sendeleistung"
+
+msgctxt "country_operating_class"
+msgid "Operating Class"
+msgstr "Betriebsklasse"
+
+msgctxt "country_operating_extension"
+msgid "Operating Extension Identifier"
+msgstr "Operating Extension Identifier"
+
+msgctxt "country_operating_triplet"
+msgid "Operating Triplet"
+msgstr "Betriebs-Triplet"
+
+msgctxt "country_padding"
+msgid "Padding"
+msgstr "Auffüllung"
+
+msgctxt "country_subband_triplet"
+msgid "Subband Triplet"
+msgstr "Teilband-Triplet"
+
+msgctxt "decode_max_depth"
+msgid "Nested elements not decoded: maximum depth reached"
+msgstr "Verschachtelte Elemente nicht dekodiert: maximale Tiefe erreicht"
+
+msgctxt "decode_too_short"
+msgid "Element content ends unexpectedly at octet {0}"
+msgstr "Elementinhalt endet unerwartet bei Oktett {0}"
+
+msgctxt "decode_trailing_data"
+msgid "{0} octets after the known fields were not interpreted"
+msgstr "{0} Oktette nach den bekannten Feldern wurden nicht ausgewertet"
+
+msgctxt "ds_current_channel"
+msgid "Current Channel"
+msgstr "Aktueller Kanal"
+
+msgctxt "eht_channel_width"
+msgid "Channel Width"
+msgstr "Kanalbreite"
+
+msgctxt "eht_operation_info"
+msgid "EHT Operation Information"
+msgstr "EHT-Betriebsinformationen"
+
+msgctxt "element_ap_channel_report"
+msgid "AP Channel Report"
+msgstr "AP-Kanalbericht"
+
+msgctxt "element_bss_load"
+msgid "BSS Load"
+msgstr "BSS-Last"
+
+msgctxt "element_coexistence"
+msgid "20/40 BSS Coexistence"
+msgstr "20/40-BSS-Koexistenz"
+
+msgctxt "element_country"
+msgid "Country"
+msgstr "Land"
+
+msgctxt "element_csa"
+msgid "Channel Switch Announcement"
+msgstr "Kanalwechsel-Ankündigung"
+
+msgctxt "element_ds_parameter_set"
+msgid "DSSS Parameter Set"
+msgstr "DSSS-Parametersatz"
+
+msgctxt "element_ecsa"
+msgid "Extended Channel Switch Announcement"
+msgstr "Erweiterte Kanalwechsel-Ankündigung"
+
+msgctxt "element_eht_capabilities"
+msgid "EHT Capabilities"
+msgstr "EHT-Fähigkeiten"
+
+msgctxt "element_eht_operation"
+msgid "EHT Operation"
+msgstr "EHT-Betrieb"
+
+msgctxt "element_erp"
+msgid "ERP Information"
+msgstr "ERP-Informationen"
+
+msgctxt "element_extended_capabilities"
+msgid "Extended Capabilities"
+msgstr "Erweiterte Fähigkeiten"
+
+msgctxt "element_extended_rates"
+msgid "Extended Supported Rates"
+msgstr "Erweiterte unterstützte Datenraten"
+
+msgctxt "element_fragment"
+msgid "Fragment"
+msgstr "Fragment"
+
+msgctxt "element_fte"
+msgid "Fast BSS Transition"
+msgstr "Fast BSS Transition"
+
+msgctxt "element_he_6ghz_caps"
+msgid "HE 6 GHz Band Capabilities"
+msgstr "HE-6-GHz-Band-Fähigkeiten"
+
+msgctxt "element_he_capabilities"
+msgid "HE Capabilities"
+msgstr "HE-Fähigkeiten"
+
+msgctxt "element_he_operation"
+msgid "HE Operation"
+msgstr "HE-Betrieb"
+
+msgctxt "element_hs20"
+msgid "Hotspot 2.0 Indication"
+msgstr "Hotspot-2.0-Kennzeichnung"
+
+msgctxt "element_ht_capabilities"
+msgid "HT Capabilities"
+msgstr "HT-Fähigkeiten"
+
+msgctxt "element_ht_operation"
+msgid "HT Operation"
+msgstr "HT-Betrieb"
+
+msgctxt "element_interworking"
+msgid "Interworking"
+msgstr "Interworking"
+
+msgctxt "element_mobility_domain"
+msgid "Mobility Domain"
+msgstr "Mobilitätsdomäne"
+
+msgctxt "element_multi_link"
+msgid "Multi-Link"
+msgstr "Multi-Link"
+
+msgctxt "element_multiple_bssid"
+msgid "Multiple BSSID"
+msgstr "Mehrfach-BSSID"
+
+msgctxt "element_neighbor_report"
+msgid "Neighbor Report"
+msgstr "Nachbarbericht"
+
+msgctxt "element_owe_transition"
+msgid "OWE Transition Mode"
+msgstr "OWE-Übergangsmodus"
+
+msgctxt "element_power_constraint"
+msgid "Power Constraint"
+msgstr "Leistungsbeschränkung"
+
+msgctxt "element_quiet"
+msgid "Quiet"
+msgstr "Ruhezeit"
+
+msgctxt "element_rm_capabilities"
+msgid "RM Enabled Capabilities"
+msgstr "RM-Fähigkeiten"
+
+msgctxt "element_rnr"
+msgid "Reduced Neighbor Report"
+msgstr "Reduzierter Nachbarbericht"
+
+msgctxt "element_roaming_consortium"
+msgid "Roaming Consortium"
+msgstr "Roaming-Konsortium"
+
+msgctxt "element_rsnx"
+msgid "RSN Extension"
+msgstr "RSN-Erweiterung"
+
+msgctxt "element_supported_rates"
+msgid "Supported Rates"
+msgstr "Unterstützte Datenraten"
+
+msgctxt "element_tim"
+msgid "Traffic Indication Map (TIM)"
+msgstr "Traffic Indication Map (TIM)"
+
+msgctxt "element_tpe"
+msgid "Transmit Power Envelope"
+msgstr "Sendeleistungs-Hüllkurve"
+
+msgctxt "element_twt"
+msgid "Target Wake Time"
+msgstr "Target Wake Time"
+
+msgctxt "element_unknown"
+msgid "Unknown Element"
+msgstr "Unbekanntes Element"
+
+msgctxt "element_unknown_extension"
+msgid "Unknown Extension Element"
+msgstr "Unbekanntes Erweiterungselement"
+
+msgctxt "element_vendor_specific"
+msgid "Vendor Specific"
+msgstr "Herstellerspezifisch"
+
+msgctxt "element_vht_capabilities"
+msgid "VHT Capabilities"
+msgstr "VHT-Fähigkeiten"
+
+msgctxt "element_vht_operation"
+msgid "VHT Operation"
+msgstr "VHT-Betrieb"
+
+msgctxt "element_wps"
+msgid "Wi-Fi Protected Setup"
+msgstr "Wi-Fi Protected Setup"
+
+msgctxt "feedback_both"
+msgid "Both"
+msgstr "Beides"
+
+msgctxt "feedback_none"
+msgid "No feedback"
+msgstr "Kein Feedback"
+
+msgctxt "feedback_unsolicited"
+msgid "Unsolicited"
+msgstr "Unaufgefordert"
+
+msgctxt "he_bss_color"
+msgid "BSS Color"
+msgstr "BSS-Farbe"
+
+msgctxt "he_mac_capabilities"
+msgid "HE MAC Capabilities Information"
+msgstr "HE-MAC-Fähigkeiten"
+
+msgctxt "he_operation_parameters"
+msgid "HE Operation Parameters"
+msgstr "HE-Betriebsparameter"
+
+msgctxt "he_phy_capabilities"
+msgid "HE PHY Capabilities Information"
+msgstr "HE-PHY-Fähigkeiten"
+
 msgctxt "hex_invalid_character"
 msgid "Invalid character '{0}' at position {1}"
 msgstr "Ungültiges Zeichen '{0}' an Position {1}"
@@ -14,6 +430,354 @@ msgstr "Ungültiges Zeichen '{0}' an Position {1}"
 msgctxt "hex_odd_length"
 msgid "Hex input has an odd number of digits ({0})"
 msgstr "Hex-Eingabe hat eine ungerade Anzahl an Ziffern ({0})"
+
+msgctxt "ht_capability_info"
+msgid "HT Capability Information"
+msgstr "HT-Fähigkeitsinformationen"
+
+msgctxt "ht_operation_info"
+msgid "HT Operation Information"
+msgstr "HT-Betriebsinformationen"
+
+msgctxt "ht_primary_channel"
+msgid "Primary Channel"
+msgstr "Primärkanal"
+
+msgctxt "ht_secondary_channel_offset"
+msgid "Secondary Channel Offset"
+msgstr "Sekundärkanal-Versatz"
+
+msgctxt "ht_sta_channel_width"
+msgid "STA Channel Width (any width allowed)"
+msgstr "STA-Kanalbreite (jede Breite erlaubt)"
+
+msgctxt "interworking_access_network_options"
+msgid "Access Network Options"
+msgstr "Zugangsnetz-Optionen"
+
+msgctxt "interworking_access_network_type"
+msgid "Access Network Type"
+msgstr "Zugangsnetz-Typ"
+
+msgctxt "interworking_venue_group"
+msgid "Venue Group"
+msgstr "Standortgruppe"
+
+msgctxt "interworking_venue_type"
+msgid "Venue Type"
+msgstr "Standorttyp"
+
+msgctxt "mbo_association_disallowed_diag"
+msgid "AP currently disallows association"
+msgstr "Der AP lässt derzeit keine Anmeldung zu"
+
+msgctxt "ml_mld_mac"
+msgid "MLD MAC Address"
+msgstr "MLD-MAC-Adresse"
+
+msgctxt "mlo_link_id"
+msgid "Link ID"
+msgstr "Link-ID"
+
+msgctxt "mobility_domain_ft_over_ds"
+msgid "Fast BSS Transition over DS"
+msgstr "Fast BSS Transition über DS"
+
+msgctxt "mobility_domain_id"
+msgid "Mobility Domain Identifier"
+msgstr "Mobilitätsdomänen-ID"
+
+msgctxt "mobility_domain_policy"
+msgid "FT Capability and Policy"
+msgstr "FT-Fähigkeit und -Richtlinie"
+
+msgctxt "mobility_domain_resource_request"
+msgid "Resource Request Protocol Capability"
+msgstr "Resource-Request-Protokoll"
+
+msgctxt "nss_1"
+msgid "1 Spatial Stream"
+msgstr "1 räumlicher Datenstrom"
+
+msgctxt "nss_2"
+msgid "2 Spatial Streams"
+msgstr "2 räumliche Datenströme"
+
+msgctxt "nss_3"
+msgid "3 Spatial Streams"
+msgstr "3 räumliche Datenströme"
+
+msgctxt "nss_4"
+msgid "4 Spatial Streams"
+msgstr "4 räumliche Datenströme"
+
+msgctxt "nss_5"
+msgid "5 Spatial Streams"
+msgstr "5 räumliche Datenströme"
+
+msgctxt "nss_6"
+msgid "6 Spatial Streams"
+msgstr "6 räumliche Datenströme"
+
+msgctxt "nss_7"
+msgid "7 Spatial Streams"
+msgstr "7 räumliche Datenströme"
+
+msgctxt "nss_8"
+msgid "8 Spatial Streams"
+msgstr "8 räumliche Datenströme"
+
+msgctxt "oui_csv_invalid"
+msgid "The OUI file contains no IEEE MA-L assignments"
+msgstr "Die OUI-Datei enthält keine IEEE-MA-L-Zuweisungen"
+
+msgctxt "pmf_capable"
+msgid "Capable"
+msgstr "Unterstützt"
+
+msgctxt "pmf_disabled"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgctxt "pmf_required"
+msgid "Required"
+msgstr "Erforderlich"
+
+msgctxt "rates_basic_rate"
+msgid "Basic Rate"
+msgstr "Basisrate"
+
+msgctxt "rates_membership_selector"
+msgid "BSS Membership Selector"
+msgstr "BSS-Membership-Selektor"
+
+msgctxt "rates_rate"
+msgid "Supported Rate"
+msgstr "Unterstützte Rate"
+
+msgctxt "rates_selector_sae_h2e"
+msgid "SAE Hash-to-Element only"
+msgstr "Nur SAE Hash-to-Element"
+
+msgctxt "rnr_co_located"
+msgid "Co-Located AP"
+msgstr "Am selben Ort betriebener AP"
+
+msgctxt "rnr_neighbor_ap"
+msgid "Neighbor AP Information"
+msgstr "Nachbar-AP-Informationen"
+
+msgctxt "rnr_same_ssid"
+msgid "Same SSID"
+msgstr "Gleiche SSID"
+
+msgctxt "rsn_akm"
+msgid "AKM Suite"
+msgstr "AKM-Suite"
+
+msgctxt "rsn_akm_list"
+msgid "AKM Suites"
+msgstr "AKM-Suiten"
+
+msgctxt "rsn_capabilities"
+msgid "RSN Capabilities"
+msgstr "RSN-Fähigkeiten"
+
+msgctxt "rsn_group_cipher"
+msgid "Group Data Cipher Suite"
+msgstr "Gruppen-Verschlüsselung"
+
+msgctxt "rsn_group_mgmt_cipher"
+msgid "Group Management Cipher Suite"
+msgstr "Gruppen-Management-Verschlüsselung"
+
+msgctxt "rsn_mfpc"
+msgid "Management Frame Protection Capable"
+msgstr "Management Frame Protection unterstützt"
+
+msgctxt "rsn_mfpr"
+msgid "Management Frame Protection Required"
+msgstr "Management Frame Protection erforderlich"
+
+msgctxt "rsn_mfpr_without_mfpc"
+msgid "MFP required but not capable (invalid)"
+msgstr "MFP erforderlich, aber nicht unterstützt (ungültig)"
+
+msgctxt "rsn_pairwise"
+msgid "Pairwise Cipher Suite"
+msgstr "Paarweise Verschlüsselung"
+
+msgctxt "rsn_pairwise_list"
+msgid "Pairwise Cipher Suites"
+msgstr "Paarweise Verschlüsselungen"
+
+msgctxt "rsn_preauth"
+msgid "Preauthentication"
+msgstr "Vorauthentifizierung"
+
+msgctxt "rsn_weak_cipher"
+msgid "Insecure cipher in use (WEP or TKIP)"
+msgstr "Unsichere Verschlüsselung in Verwendung (WEP oder TKIP)"
+
+msgctxt "sco_above"
+msgid "Above"
+msgstr "Oberhalb"
+
+msgctxt "sco_below"
+msgid "Below"
+msgstr "Unterhalb"
+
+msgctxt "sco_none"
+msgid "No secondary channel"
+msgstr "Kein Sekundärkanal"
+
+msgctxt "sec_enhanced_open"
+msgid "Enhanced Open (OWE)"
+msgstr "Enhanced Open (OWE)"
+
+msgctxt "sec_enhanced_open_transition"
+msgid "Open (OWE transition)"
+msgstr "Offen (OWE-Übergang)"
+
+msgctxt "sec_open"
+msgid "Open"
+msgstr "Offen"
+
+msgctxt "sec_open_or_wep"
+msgid "Open or WEP"
+msgstr "Offen oder WEP"
+
+msgctxt "sec_other"
+msgid "Other"
+msgstr "Andere"
+
+msgctxt "ssid_hidden"
+msgid "Hidden SSID"
+msgstr "Versteckte SSID"
+
+msgctxt "ssid_too_long"
+msgid "SSID is longer than 32 octets ({0})"
+msgstr "SSID ist länger als 32 Oktette ({0})"
+
+msgctxt "stbc_1"
+msgid "One spatial stream"
+msgstr "Ein räumlicher Datenstrom"
+
+msgctxt "stbc_2"
+msgid "One and two spatial streams"
+msgstr "Ein und zwei räumliche Datenströme"
+
+msgctxt "stbc_3"
+msgid "One, two and three spatial streams"
+msgstr "Ein, zwei und drei räumliche Datenströme"
+
+msgctxt "summary_11k"
+msgid "802.11k (Radio Measurement)"
+msgstr "802.11k (Funkmessungen)"
+
+msgctxt "summary_11r"
+msgid "802.11r (Fast Transition)"
+msgstr "802.11r (schneller Übergang)"
+
+msgctxt "summary_11v"
+msgid "802.11v (BSS Transition)"
+msgstr "802.11v (BSS-Wechsel)"
+
+msgctxt "summary_akms"
+msgid "Authentication"
+msgstr "Authentifizierung"
+
+msgctxt "summary_band"
+msgid "Band"
+msgstr "Band"
+
+msgctxt "summary_center_frequency"
+msgid "Center Frequency"
+msgstr "Mittenfrequenz"
+
+msgctxt "summary_channel_width"
+msgid "Channel Width"
+msgstr "Kanalbreite"
+
+msgctxt "summary_device"
+msgid "Device"
+msgstr "Gerät"
+
+msgctxt "summary_features"
+msgid "Features"
+msgstr "Funktionen"
+
+msgctxt "summary_frequency"
+msgid "Frequency"
+msgstr "Frequenz"
+
+msgctxt "summary_group_cipher"
+msgid "Group Cipher"
+msgstr "Gruppen-Verschlüsselung"
+
+msgctxt "summary_group_mgmt_cipher"
+msgid "Group Management Cipher"
+msgstr "Gruppen-Management-Verschlüsselung"
+
+msgctxt "summary_hs20_release"
+msgid "Hotspot 2.0 Release"
+msgstr "Hotspot-2.0-Release"
+
+msgctxt "summary_load"
+msgid "Load"
+msgstr "Last"
+
+msgctxt "summary_max_rate"
+msgid "Max PHY Rate (estimate)"
+msgstr "Max. PHY-Rate (Schätzung)"
+
+msgctxt "summary_mlo"
+msgid "Multi-Link Operation"
+msgstr "Multi-Link-Betrieb"
+
+msgctxt "summary_neighbors"
+msgid "Reported Neighbor APs"
+msgstr "Gemeldete Nachbar-APs"
+
+msgctxt "summary_nontransmitted"
+msgid "Nontransmitted BSSIDs"
+msgstr "Nicht gesendete BSSIDs"
+
+msgctxt "summary_nss"
+msgid "Spatial Streams"
+msgstr "Räumliche Datenströme"
+
+msgctxt "summary_pairwise"
+msgid "Pairwise Ciphers"
+msgstr "Paarweise Verschlüsselungen"
+
+msgctxt "summary_pmf"
+msgid "Management Frame Protection"
+msgstr "Management Frame Protection"
+
+msgctxt "summary_primary_channel"
+msgid "Primary Channel"
+msgstr "Primärkanal"
+
+msgctxt "summary_punctured"
+msgid "Punctured Subchannels"
+msgstr "Ausgeblendete Teilkanäle"
+
+msgctxt "summary_security"
+msgid "Security"
+msgstr "Sicherheit"
+
+msgctxt "summary_standards"
+msgid "Standards"
+msgstr "Standards"
+
+msgctxt "summary_title"
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+msgctxt "summary_vendors"
+msgid "Vendor Elements"
+msgstr "Herstellerelemente"
 
 msgctxt "tlv_extension_without_id"
 msgid "Extension element at offset {0} has no Element ID Extension octet"
@@ -34,3 +798,75 @@ msgstr "Fragment-Element an Offset {0} folgt keinem fragmentierbaren Element"
 msgctxt "tlv_truncated"
 msgid "Element {0} at offset {1} declares {2} octets but only {3} remain"
 msgstr "Element {0} an Offset {1} gibt {2} Oktette an, aber nur {3} sind vorhanden"
+
+msgctxt "vendor_name"
+msgid "Vendor"
+msgstr "Hersteller"
+
+msgctxt "vendor_type"
+msgid "Vendor Type"
+msgstr "Herstellertyp"
+
+msgctxt "vht_capability_info"
+msgid "VHT Capabilities Information"
+msgstr "VHT-Fähigkeitsinformationen"
+
+msgctxt "vht_operation_width"
+msgid "Channel Width"
+msgstr "Kanalbreite"
+
+msgctxt "wmm_information"
+msgid "WMM Information Element"
+msgstr "WMM-Informationselement"
+
+msgctxt "wmm_parameter"
+msgid "WMM Parameter Element"
+msgstr "WMM-Parameterelement"
+
+msgctxt "wmm_parameter_set_count"
+msgid "Parameter Set Count"
+msgstr "Parametersatz-Zähler"
+
+msgctxt "wmm_subtype"
+msgid "Subtype"
+msgstr "Untertyp"
+
+msgctxt "wpa_legacy"
+msgid "Legacy WPA (WPA1) is deprecated and insecure"
+msgstr "Altes WPA (WPA1) ist veraltet und unsicher"
+
+msgctxt "wps_ap_setup_locked"
+msgid "AP Setup Locked"
+msgstr "AP-Einrichtung gesperrt"
+
+msgctxt "wps_configured"
+msgid "Configured"
+msgstr "Konfiguriert"
+
+msgctxt "wps_device_name"
+msgid "Device Name"
+msgstr "Gerätename"
+
+msgctxt "wps_manufacturer"
+msgid "Manufacturer"
+msgstr "Hersteller"
+
+msgctxt "wps_model_name"
+msgid "Model Name"
+msgstr "Modellname"
+
+msgctxt "wps_model_number"
+msgid "Model Number"
+msgstr "Modellnummer"
+
+msgctxt "wps_not_configured"
+msgid "Not configured"
+msgstr "Nicht konfiguriert"
+
+msgctxt "wps_serial_number"
+msgid "Serial Number"
+msgstr "Seriennummer"
+
+msgctxt "wps_state"
+msgid "Wi-Fi Protected Setup State"
+msgstr "WPS-Status"
