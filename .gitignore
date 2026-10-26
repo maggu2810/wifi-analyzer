@@ -1,0 +1,20 @@
+# Build output
+/build/
+/out/
+CMakeUserPresets.json
+
+# IDEs
+.idea/
+.vscode/
+*.user
+.cache/
+compile_commands.json
+
+# Fuzzing artifacts
+crash-*
+leak-*
+timeout-*
+oom-*
+
+# Python
+__pycache__/

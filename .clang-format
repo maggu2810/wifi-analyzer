@@ -1,0 +1,26 @@
+---
+BasedOnStyle: LLVM
+Language: Cpp
+Standard: Latest
+IndentWidth: 4
+ColumnLimit: 100
+AccessModifierOffset: -4
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: Inline
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Attach
+DerivePointerAlignment: false
+PointerAlignment: Left
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<wifi_analyze/'
+    Priority: 2
+  - Regex: '^"'
+    Priority: 3
+  - Regex: '^<'
+    Priority: 1
+NamespaceIndentation: None
+FixNamespaceComments: true
+SpaceAfterTemplateKeyword: true
+...
