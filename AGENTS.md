@@ -67,6 +67,28 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
 10. Python 3 is a build requirement: generated sources (OUI subset, i18n catalogs) are
     produced at build time into the build tree and are never checked in.
 
+## Versioning (mandatory)
+
+Every change to a deliverable **bumps its version in the same commit** (SemVer) and adds an
+entry to `CHANGELOG.md`.
+
+| Deliverable | Version lives in |
+|---|---|
+| `libwifianalyze` | `libs/wifi-analyze/CMakeLists.txt` → `project(wifi-analyze VERSION x.y.z)` |
+| `wifi-analyze-cli` | `apps/cli/CMakeLists.txt` → `WIFI_CLI_VERSION` |
+| Android app | `apps/android/app/build.gradle.kts` → `versionName` **and** `versionCode` (+1 every time) |
+| JSON formats | `json_schema_version` (`json.hpp`), `capture_format_version` (`capture.hpp`) – only on format changes |
+
+- PATCH: bug fixes without behaviour change for users of the API/output.
+- MINOR: new features, backward compatible (new elements decoded, new options, new JSON fields).
+- MAJOR: breaking changes (library public API or JSON schema; CLI options/output format;
+  app data/export compatibility). While a version is `0.x`, breaking changes bump MINOR.
+- A library change that is visible in the CLI or the app (they embed the library) also bumps
+  those (at least PATCH) – e.g. a decoder fix bumps lib, CLI and app.
+- No bump for changes that do not affect a deliverable: docs, tests, CI, `tools/` scripts,
+  test data.
+- Releases are tagged `lib-vX.Y.Z`, `cli-vX.Y.Z`, `android-vX.Y.Z` (only when asked).
+
 ## Coding conventions
 
 ### C++

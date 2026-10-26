@@ -30,6 +30,12 @@ namespace {
 
 namespace wa = wifi_analyze;
 
+constexpr std::string_view cli_version = WIFI_CLI_VERSION;
+
+std::string version_text() {
+    return std::format("{} (libwifianalyze {})", cli_version, wa::version());
+}
+
 struct GlobalOptions {
     std::string lang;
     std::string color{"auto"};
@@ -198,7 +204,8 @@ void write_capture(const std::vector<InputBss>& list, const Session& session) {
     doc["created"] = created;
     doc["source"] = {{"platform", "linux-cli"},
                      {"app", "wifi-analyze-cli"},
-                     {"app_version", std::string{wa::version()}}};
+                     {"app_version", std::string{cli_version}},
+                     {"library_version", std::string{wa::version()}}};
     nlohmann::json bss_list = nlohmann::json::array();
     for (const auto& b : list) {
         nlohmann::json j;
@@ -428,7 +435,7 @@ int cmd_list(const InputOptions& o, const std::string& filter, const std::string
 int cmd_interactive(std::istream& in, Session& session) {
     const bool tty = &in == &std::cin && isatty(STDIN_FILENO) != 0;
     if (tty) {
-        session.out << "wifi-analyze-cli " << wa::version()
+        session.out << "wifi-analyze-cli " << version_text()
                     << " – paste an IE hex string (one line) or a wpa_cli BSS block followed by an "
                        "empty line. Ctrl-D quits.\n";
     }
@@ -584,7 +591,7 @@ int run(const std::vector<std::string>& args, std::istream& in, std::ostream& ou
         std::ostream& err) {
     CLI::App app{"Decode IEEE 802.11 Information Elements (IEs) and summarize WiFi networks",
                  "wifi-analyze-cli"};
-    app.set_version_flag("--version", std::string{wa::version()});
+    app.set_version_flag("--version", version_text());
     app.require_subcommand(1);
     app.fallthrough();
 

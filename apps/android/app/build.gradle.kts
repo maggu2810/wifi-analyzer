@@ -15,6 +15,7 @@ android {
         applicationId = "de.maggu2810.android.wifianalyzer"
         minSdk = 30
         targetSdk = 37
+        // SemVer; bump versionName AND versionCode (+1) on every change (AGENTS.md "Versioning").
         versionCode = 1
         versionName = "0.1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

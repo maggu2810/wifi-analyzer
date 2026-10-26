@@ -11,4 +11,4 @@ catch_discover_tests(wifi_analyze_cli_tests)
 
 # Smoke test of the real binary.
 add_test(NAME cli.version COMMAND wifi-analyze-cli --version)
-set_tests_properties(cli.version PROPERTIES PASS_REGULAR_EXPRESSION "^[0-9]+\\.[0-9]+\\.[0-9]+")
+set_tests_properties(cli.version PROPERTIES PASS_REGULAR_EXPRESSION "^[0-9]+\\.[0-9]+\\.[0-9]+ \\(libwifianalyze [0-9]+\\.[0-9]+\\.[0-9]+\\)")

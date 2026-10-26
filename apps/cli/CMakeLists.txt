@@ -5,6 +5,9 @@ wifi_fetch_nlohmann_json()
 find_package(CURL QUIET)
 option(WIFI_CLI_WITH_CURL "Enable 'oui update' (download via libcurl)" ${CURL_FOUND})
 
+# Version of wifi-analyze-cli (SemVer, bump on every change; see AGENTS.md "Versioning").
+set(WIFI_CLI_VERSION "0.1.0")
+
 add_library(wifi_analyze_cli_core STATIC
     src/app.cpp
     src/input.cpp
@@ -13,6 +16,7 @@ add_library(wifi_analyze_cli_core STATIC
 )
 target_compile_features(wifi_analyze_cli_core PUBLIC cxx_std_23)
 target_include_directories(wifi_analyze_cli_core PUBLIC src)
+target_compile_definitions(wifi_analyze_cli_core PRIVATE WIFI_CLI_VERSION="${WIFI_CLI_VERSION}")
 target_link_libraries(wifi_analyze_cli_core
     PUBLIC wifi_analyze::wifi_analyze
     PRIVATE CLI11::CLI11 nlohmann_json::nlohmann_json)

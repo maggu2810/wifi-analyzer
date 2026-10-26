@@ -44,8 +44,10 @@
 
 ## Versioning
 
-SemVer per deliverable (library, CLI, Android app) but released from the monorepo with
-tags like `lib-v0.1.0`, `cli-v0.1.0`, `android-v0.1.0`. JSON schema has its own version.
+See `AGENTS.md` → "Versioning" (mandatory rules) and `CHANGELOG.md`. Each deliverable has
+its own SemVer version; releases are tagged `lib-vX.Y.Z`, `cli-vX.Y.Z`, `android-vX.Y.Z`.
+`wifi-analyze-cli --version` prints `<cli> (libwifianalyze <lib>)`; the Android settings
+screen shows app and library version.
 
 ## Generated sources
 
@@ -56,5 +58,6 @@ files are **not** checked in; Python 3 is a build requirement (also for the Andr
 ## License
 
 `LICENSE` at repo root, SPDX header in every source file (`SPDX-License-Identifier: MIT`).
-Third-party licenses (CLI11, nlohmann/json, Catch2, curl) are listed in the app's
-about/licenses screen and in the CLI's `--version --verbose` output.
+Third-party components: CLI11 (BSD-3-Clause), nlohmann/json (MIT), Catch2 (BSL-1.0, tests
+only), libcurl (curl license, optional) for the CLI; AndroidX/Compose/kotlinx (Apache-2.0)
+for the app (listed in its About section).
