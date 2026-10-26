@@ -2,8 +2,9 @@
 cmake_minimum_required(VERSION 3.31...4.3)
 
 # Usable standalone (e.g. add_subdirectory from the Android build) or as part of the repo.
-if(PROJECT_IS_TOP_LEVEL OR NOT DEFINED PROJECT_NAME)
-    project(wifi-analyze VERSION 0.1.0 LANGUAGES CXX)
+# The library always declares its own project (and version), also when included.
+project(wifi-analyze VERSION 0.1.0 LANGUAGES CXX)
+if(PROJECT_IS_TOP_LEVEL)
     option(WIFI_BUILD_TESTS "Build unit tests" OFF)
     option(WIFI_BUILD_FUZZERS "Build libFuzzer targets (Clang only)" OFF)
     option(WIFI_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
