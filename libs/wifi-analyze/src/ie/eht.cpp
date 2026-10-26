@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 // EHT (802.11be, Wi-Fi 7) extension elements. Reference: IEEE Std 802.11be-2024, EHT Operation
 // (ext 106), Multi-Link (ext 107), EHT Capabilities (ext 108).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <array>
 #include <string>

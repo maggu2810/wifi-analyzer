@@ -14,7 +14,7 @@ namespace {
 
 using core::table_name;
 
-/// QoS Info field, AP form (802.11-2020 §9.4.1.17).
+/// QoS Info field, AP form (IEEE 802.11-2020 §9.4.1, QoS Info field).
 void qos_info_ap(Decoder& d, TreeNode& parent) {
     if (auto q = d.bits(WA_TR(qos_info, "QoS Info"), 1)) {
         q->number(0, 4, WA_TR(qos_edca_update_count, "EDCA Parameter Set Update Count"));
@@ -89,7 +89,7 @@ Text twt_setup_command_name(std::uint64_t v) {
     return table_name(names, v);
 }
 
-/// TWT wake interval = mantissa * 2^exponent µs (802.11ax-2021 §9.4.2.199).
+/// TWT wake interval = mantissa * 2^exponent µs (802.11ax-2021 §9.4.2).
 void twt_wake_interval(Decoder& d, TreeNode& parent, std::uint64_t exponent) {
     const auto start = d.offset();
     const auto mantissa = d.reader().u16le();
@@ -314,7 +314,7 @@ Text phy_type_name(std::uint64_t v) {
 
 } // namespace
 
-// FH Parameter Set, 802.11-2020 §9.4.2.3 (obsolete PHY). Wireshark: ieee80211_tag_fh_parameter.
+// FH Parameter Set, 802.11-2020 §9.4.2 (obsolete PHY). Wireshark: ieee80211_tag_fh_parameter.
 ElementValue decode_fh_parameter_set(Decoder& d) {
     d.u16(d.root(), WA_TR(fh_dwell_time, "Dwell Time"), Unit::tu);
     d.u8(d.root(), WA_TR(fh_hop_set, "Hop Set"));
@@ -323,7 +323,7 @@ ElementValue decode_fh_parameter_set(Decoder& d) {
     return {};
 }
 
-// CF Parameter Set, 802.11-2020 §9.4.2.5. Wireshark: ieee80211_tag_cf_parameter.
+// CF Parameter Set, 802.11-2020 §9.4.2. Wireshark: ieee80211_tag_cf_parameter.
 ElementValue decode_cf_parameter_set(Decoder& d) {
     d.u8(d.root(), WA_TR(cf_count, "CFP Count"));
     d.u8(d.root(), WA_TR(cf_period, "CFP Period"));
@@ -332,7 +332,7 @@ ElementValue decode_cf_parameter_set(Decoder& d) {
     return {};
 }
 
-// EDCA Parameter Set, 802.11-2020 §9.4.2.28. Wireshark: ieee80211_tag_edca_param_set.
+// EDCA Parameter Set, 802.11-2020 §9.4.2. Wireshark: ieee80211_tag_edca_param_set.
 // The AC parameter records have the same format as in the WMM Parameter element.
 ElementValue decode_edca_parameter_set(Decoder& d) {
     qos_info_ap(d, d.root());
@@ -341,7 +341,7 @@ ElementValue decode_edca_parameter_set(Decoder& d) {
     return {};
 }
 
-// IBSS DFS, 802.11-2020 §9.4.2.21. Wireshark: ieee80211_tag_ibss_dfs.
+// IBSS DFS, 802.11-2020 §9.4.2. Wireshark: ieee80211_tag_ibss_dfs.
 ElementValue decode_ibss_dfs(Decoder& d) {
     d.mac(d.root(), WA_TR(ibss_dfs_owner, "DFS Owner"));
     d.u8(d.root(), WA_TR(ibss_dfs_recovery_interval, "DFS Recovery Interval"));
@@ -363,26 +363,26 @@ ElementValue decode_ibss_dfs(Decoder& d) {
     return {};
 }
 
-// QoS Capability, 802.11-2020 §9.4.2.34 (AP form). Wireshark: ieee80211_tag_qos_capability.
+// QoS Capability, 802.11-2020 §9.4.2 (AP form). Wireshark: ieee80211_tag_qos_capability.
 ElementValue decode_qos_capability(Decoder& d) {
     qos_info_ap(d, d.root());
     return {};
 }
 
-// Secondary Channel Offset, 802.11-2020 §9.4.2.19. Wireshark: dissect_secondary_channel_offset_ie.
+// Secondary Channel Offset, 802.11-2020 §9.4.2. Wireshark: dissect_secondary_channel_offset_ie.
 ElementValue decode_secondary_channel_offset(Decoder& d) {
     d.enumeration(d.root(), WA_TR(ht_secondary_channel_offset, "Secondary Channel Offset"), 1,
                   sco_name);
     return {};
 }
 
-// BSS Average Access Delay, 802.11-2020 §9.4.2.37. Wireshark: dissect_bss_avg_access_delay_ie.
+// BSS Average Access Delay, 802.11-2020 §9.4.2. Wireshark: dissect_bss_avg_access_delay_ie.
 ElementValue decode_bss_average_access_delay(Decoder& d) {
     d.u8(d.root(), WA_TR(bss_ap_avg_access_delay, "AP Average Access Delay"));
     return {};
 }
 
-// Measurement Pilot Transmission, 802.11-2020 §9.4.2.41.
+// Measurement Pilot Transmission, 802.11-2020 §9.4.2.
 // Wireshark: dissect_measurement_pilot_trans_ie.
 ElementValue decode_measurement_pilot_transmission(Decoder& d) {
     d.u8(d.root(), WA_TR(measurement_pilot_interval, "Measurement Pilot Interval"), Unit::tu);
@@ -390,7 +390,7 @@ ElementValue decode_measurement_pilot_transmission(Decoder& d) {
     return {};
 }
 
-// BSS Available Admission Capacity, 802.11-2020 §9.4.2.42.
+// BSS Available Admission Capacity, 802.11-2020 §9.4.2.
 // Wireshark: dissect_bss_available_admission_capacity_ie.
 ElementValue decode_bss_available_admission_capacity(Decoder& d) {
     auto mask =
@@ -424,7 +424,7 @@ ElementValue decode_bss_available_admission_capacity(Decoder& d) {
     return {};
 }
 
-// Time Advertisement, 802.11-2020 §9.4.2.60. Wireshark: dissect_time_adv.
+// Time Advertisement, 802.11-2020 §9.4.2. Wireshark: dissect_time_adv.
 ElementValue decode_time_advertisement(Decoder& d) {
     const auto caps =
         d.enumeration(d.root(), WA_TR(time_adv_timing_capabilities, "Timing Capabilities"), 1,
@@ -446,7 +446,7 @@ ElementValue decode_time_advertisement(Decoder& d) {
     return {};
 }
 
-// 20/40 BSS Intolerant Channel Report, 802.11-2020 §9.4.2.58.
+// 20/40 BSS Intolerant Channel Report, 802.11-2020 §9.4.2.
 // Wireshark: dissect_20_40_bss_intolerant.
 ElementValue decode_bss_intolerant_channel_report(Decoder& d) {
     d.u8(d.root(), WA_TR(common_operating_class, "Operating Class"));
@@ -460,7 +460,7 @@ ElementValue decode_bss_intolerant_channel_report(Decoder& d) {
     return {};
 }
 
-// BSS Max Idle Period, 802.11-2020 §9.4.2.78. Wireshark: dissect_bss_max_idle_period.
+// BSS Max Idle Period, 802.11-2020 §9.4.2. Wireshark: dissect_bss_max_idle_period.
 ElementValue decode_bss_max_idle_period(Decoder& d) {
     d.u16(d.root(), WA_TR(bss_max_idle_period, "Max Idle Period (1000 TU)"));
     if (auto o = d.bits(WA_TR(bss_max_idle_options, "Idle Options"), 1)) {
@@ -470,13 +470,13 @@ ElementValue decode_bss_max_idle_period(Decoder& d) {
     return {};
 }
 
-// Time Zone, 802.11-2020 §9.4.2.88 (POSIX TZ string). Wireshark: dissect_time_zone.
+// Time Zone, 802.11-2020 §9.4.2 (POSIX TZ string). Wireshark: dissect_time_zone.
 ElementValue decode_time_zone(Decoder& d) {
     d.text(d.root(), WA_TR(time_zone, "Time Zone"), d.remaining());
     return {};
 }
 
-// QoS Map, 802.11-2020 §9.4.2.93. Wireshark: dissect_qos_map_set.
+// QoS Map, 802.11-2020 §9.4.2. Wireshark: dissect_qos_map_set.
 ElementValue decode_qos_map(Decoder& d) {
     const auto size = d.content().size();
     if (size < 16 || size % 2 != 0) {
@@ -519,7 +519,7 @@ ElementValue decode_qos_map(Decoder& d) {
     return {};
 }
 
-// Extended BSS Load, 802.11-2020 §9.4.2.157. Wireshark: dissect_ext_bss_load.
+// Extended BSS Load, 802.11-2020 §9.4.2. Wireshark: dissect_ext_bss_load.
 ElementValue decode_extended_bss_load(Decoder& d) {
     d.u16(d.root(), WA_TR(ext_bss_load_mu_mimo_count, "MU-MIMO Capable STA Count"));
     d.u8(d.root(),
@@ -530,7 +530,7 @@ ElementValue decode_extended_bss_load(Decoder& d) {
     return {};
 }
 
-// Wide Bandwidth Channel Switch, 802.11-2020 §9.4.2.159 (also the Neighbor Report Wide
+// Wide Bandwidth Channel Switch, 802.11-2020 §9.4.2 (also the Neighbor Report Wide
 // Bandwidth Channel subelement). Wireshark: dissect_wide_bw_channel_switch.
 ElementValue decode_wide_bandwidth_channel_switch(Decoder& d) {
     d.enumeration(d.root(), WA_TR(wide_bw_new_width, "New Channel Width"), 1, wide_bw_name);
@@ -539,7 +539,7 @@ ElementValue decode_wide_bandwidth_channel_switch(Decoder& d) {
     return {};
 }
 
-// Channel Switch Wrapper, 802.11-2020 §9.4.2.161: nested elements.
+// Channel Switch Wrapper, 802.11-2020 §9.4.2: nested elements.
 // Wireshark: dissect_channel_switch_wrapper.
 ElementValue decode_channel_switch_wrapper(Decoder& d) {
     const auto start = d.offset();
@@ -548,7 +548,7 @@ ElementValue decode_channel_switch_wrapper(Decoder& d) {
     return {};
 }
 
-// Neighbor Report, 802.11-2020 §9.4.2.36 with 802.11ax/be BSSID Information bits.
+// Neighbor Report, 802.11-2020 §9.4.2 with 802.11ax/be BSSID Information bits.
 // Wireshark: dissect_neighbor_report.
 ElementValue decode_neighbor_report(Decoder& d) {
     d.mac(d.root(), WA_TR(nr_bssid, "BSSID"));
@@ -619,7 +619,7 @@ ElementValue decode_neighbor_report(Decoder& d) {
     return {};
 }
 
-// Target Wake Time, 802.11ax-2021 §9.4.2.199 (+ 802.11be link bitmaps). Wireshark:
+// Target Wake Time, 802.11ax-2021 §9.4.2 (+ 802.11be link bitmaps). Wireshark:
 // ieee80211_tag_twt.
 ElementValue decode_twt(Decoder& d) {
     auto ctrl = d.bits(WA_TR(twt_control, "Control"), 1);
@@ -657,7 +657,7 @@ ElementValue decode_twt(Decoder& d) {
     return {};
 }
 
-// FILS Indication, 802.11-2020 §9.4.2.172. Wireshark: ieee80211_tag_fils_indication.
+// FILS Indication, 802.11-2020 §9.4.2. Wireshark: ieee80211_tag_fils_indication.
 ElementValue decode_fils_indication(Decoder& d) {
     auto info = d.bits(WA_TR(fils_information, "FILS Information"), 2);
     if (!info) {
@@ -697,7 +697,7 @@ ElementValue decode_fils_indication(Decoder& d) {
     return {};
 }
 
-// UORA Parameter Set, 802.11ax-2021 §9.4.2.245. Wireshark: dissect_uora_parameter_set.
+// UORA Parameter Set, 802.11ax-2021 §9.4.2. Wireshark: dissect_uora_parameter_set.
 ElementValue decode_uora_parameter_set(Decoder& d) {
     if (auto o = d.bits(WA_TR(uora_ocw_range, "OCW Range"), 1)) {
         o->number(0, 3, WA_TR(uora_eocw_min, "EOCWmin"));
@@ -707,7 +707,7 @@ ElementValue decode_uora_parameter_set(Decoder& d) {
     return {};
 }
 
-// NDP Feedback Report Parameter Set, 802.11ax-2021 §9.4.2.250.
+// NDP Feedback Report Parameter Set, 802.11ax-2021 §9.4.2.
 // Wireshark: dissect_ndp_feedback_report_set.
 ElementValue decode_ndp_feedback_report_parameter_set(Decoder& d) {
     d.u8(d.root(),
@@ -715,7 +715,7 @@ ElementValue decode_ndp_feedback_report_parameter_set(Decoder& d) {
     return {};
 }
 
-// ESS Report, 802.11ax-2021 §9.4.2.254. Wireshark: dissect_ess_report.
+// ESS Report, 802.11ax-2021 §9.4.2. Wireshark: dissect_ess_report.
 ElementValue decode_ess_report(Decoder& d) {
     auto e = d.bits(WA_TR(ess_information, "ESS Information"), 1);
     if (!e) {
@@ -737,13 +737,13 @@ ElementValue decode_ess_report(Decoder& d) {
     return {};
 }
 
-// OPS, 802.11ax-2021 §9.4.2.255. Wireshark: dissect_ops.
+// OPS, 802.11ax-2021 §9.4.2. Wireshark: dissect_ops.
 ElementValue decode_ops(Decoder& d) {
     d.u8(d.root(), WA_TR(ops_duration, "OPS Duration"), Unit::milliseconds);
     return {};
 }
 
-// HE BSS Load, 802.11ax-2021 §9.4.2.256. Wireshark 4.6.9 names the element only.
+// HE BSS Load, 802.11ax-2021 §9.4.2. Wireshark 4.6.9 names the element only.
 ElementValue decode_he_bss_load(Decoder& d) {
     d.u16(d.root(), WA_TR(he_bss_load_sta_count, "HE STA Count"));
     d.u8(d.root(), WA_TR(he_bss_load_utilization, "Utilization (x/255)"));
@@ -753,7 +753,7 @@ ElementValue decode_he_bss_load(Decoder& d) {
     return {};
 }
 
-// Max Channel Switch Time, 802.11ax-2021 §9.4.2.264. Wireshark: dissect_max_channel_switch_time.
+// Max Channel Switch Time, 802.11ax-2021 §9.4.2. Wireshark: dissect_max_channel_switch_time.
 ElementValue decode_max_channel_switch_time(Decoder& d) {
     const auto start = d.offset();
     if (const auto v = d.reader().u24le()) {
@@ -765,7 +765,7 @@ ElementValue decode_max_channel_switch_time(Decoder& d) {
     return {};
 }
 
-// TID-to-Link Mapping, 802.11be-2024 §9.4.2.314. Wireshark: dissect_tid_to_link_mapping.
+// TID-to-Link Mapping, 802.11be-2024 §9.4.2. Wireshark: dissect_tid_to_link_mapping.
 // Direction values and the absence of the presence indicator with Default Link Mapping follow
 // the standard and Linux include/linux/ieee80211.h (Wireshark 4.6.9 names 0/1 the other way).
 ElementValue decode_tid_to_link_mapping(Decoder& d) {
@@ -825,7 +825,7 @@ ElementValue decode_tid_to_link_mapping(Decoder& d) {
     return {};
 }
 
-// Bandwidth Indication, 802.11be-2024 §9.4.2.318. Wireshark: dissect_bandwidth_indication.
+// Bandwidth Indication, 802.11be-2024 §9.4.2. Wireshark: dissect_bandwidth_indication.
 ElementValue decode_bandwidth_indication(Decoder& d) {
     auto params = d.bits(WA_TR(bwi_parameters, "Bandwidth Indication Parameters"), 1);
     if (!params) {

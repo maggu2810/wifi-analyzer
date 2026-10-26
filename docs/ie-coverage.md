@@ -6,13 +6,14 @@ Priority tiers:
 - **P2** – M1/M2 stretch, commonly seen in beacons and interesting to show.
 - **P3** – later; rare or very complex. Until decoded they appear as raw + named.
 
-**Status (lib 0.2.0):** every standard / extension element that can appear in a beacon or
+**Status (lib 0.3.0):** every standard / extension element that can appear in a beacon or
 probe response is decoded; `wifi-analyze-cli elements` prints the authoritative list (decoded
 vs. named-only). Named-only on purpose: elements that only occur in other frames (TSPEC,
 TCLAS, measurement request/report, FTE, timeout interval, power capability, supported
 channels, SSID list, known BSSID, UL MU power, password identifier, …), element 68 (ID
 conflict BSS AC Access Delay / WAPI) and DMG/S1G elements. The source of every decoder is
-listed in `docs/decoder-sources.md`.
+listed in `docs/decoder-sources.md`. Vendor elements are decoded where a Wi-Fi Alliance
+specification or a Wireshark 4.6.9 dissector exists.
 
 Every element that is not decoded is still **named** (from the full Element ID table)
 and kept raw. The "Spec" column is filled in during implementation with the exact
@@ -116,11 +117,16 @@ clause of IEEE 802.11-2024 (or the amendment / vendor spec).
 | 50:6F:9A | 0x10 | Hotspot 2.0 Indication | P2 |
 | 50:6F:9A | 0x16 | MBO-OCE | P2 |
 | 50:6F:9A | 0x1C | OWE Transition Mode | P1 |
-| 00:40:96 (Cisco) | various | Cisco CCX / AP name | P3 |
-| 00:0C:42 (MikroTik) | – | Router/identity name | P3 |
-| 00:10:18 (Broadcom), 00:03:7F (Qualcomm), 00:0C:E7 (MediaTek), 00:17:F2 (Apple), 00:0B:86 (Aruba), … | – | Named via OUI table, raw payload | P2 (naming only) |
+| 50:6F:9A | 0x0A / 0x13 / 0x14 | Wi-Fi Display / Wi-Fi Aware (NAN) / OSEN | P3 |
+| 50:6F:9A | 0x1A / 0x1B / 0x22 | DPP (raw) / Multi-AP (EasyMesh) / QoS Management | P3 |
+| 50:6F:9A | 0x29 / 0x2A / 0x2B | RSN Element Override (2) / RSNX Override (WPA3 v3.4) | P2 |
+| 00:40:96 (Cisco) | various | Aironet / CCX: DTPC, CCX version, QoS, QBSS v2, client MFP, AP name v2 (+ element 133 CCX1 device name) | P3 |
+| 00:0B:86 (Aruba), 00:13:92 (Ruckus), 5C:5B:35 (Mist), DC:08:56 (Alcatel-Lucent), 00:19:77 (Aerohive), 00:11:74 (Arista), 00:09:0F (Fortinet), 00:A0:F8 (Extreme/Zebra, + element 173), 00:0C:42 (MikroTik) | – | AP name / identity and further Wireshark-known fields | P3 |
+| 00:0C:E6 (Meru), 00:05:12 (Extreme mesh), 00:03:7F (Atheros), 00:50:43 (Marvell), 00:1F:32 (Nintendo), 00:17:F2 (Apple), 00:90:4C (Broadcom pre-11n HT), 6A:5C:35 (French drone ID) | – | As far as Wireshark 4.6.9 decodes them | P3 |
+| others (e.g. Qualcomm 8C:FD:F0, Ubiquiti 00:15:6D, MediaTek, Realtek) | – | Named via OUI table, raw payload (no public or Wireshark description) | – |
 
-Vendor decoders live in `src/vendor/<vendor>.cpp`, one file per OUI.
+Vendor decoders live in `src/ie/vendor_microsoft.cpp`, `vendor_wfa.cpp` and `vendor_misc.cpp`
+(proprietary formats); sources per decoder in `docs/decoder-sources.md`.
 
 ## Derived information (summary)
 

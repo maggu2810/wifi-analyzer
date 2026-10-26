@@ -2,6 +2,8 @@
 // Extended Capabilities element (127). Reference: IEEE Std 802.11-2020, Extended Capabilities
 // field (Table 9-153), plus later amendments as used by hostapd / Linux (TWT, beacon protection,
 // SAE password identifiers, EMA, MSCS).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <algorithm>
 #include <array>

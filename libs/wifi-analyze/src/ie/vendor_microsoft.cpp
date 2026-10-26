@@ -2,6 +2,8 @@
 // Vendor-specific elements with Microsoft OUI 00:50:F2. References: Wi-Fi Alliance WPA
 // specification (type 1), WMM specification 1.2 (type 2), Wi-Fi Simple Configuration
 // Technical Specification 2.0 (type 4, attributes big-endian TLV).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c / packet-wps.c; the dissector per element
+// is listed in docs/decoder-sources.md.
 
 #include <array>
 #include <string>
@@ -34,25 +36,36 @@ struct WpsAttribute {
     MessageId label;
 };
 
+// Attribute names: Wi-Fi Simple Configuration Technical Specification 2.0 (attributes seen in
+// beacons, probe requests and probe responses); cross-checked with Wireshark 4.6.9 packet-wps.c.
 constexpr std::array wps_names{
+    WpsAttribute{0x1001, WA_TR(wps_ap_channel, "AP Channel")},
+    WpsAttribute{0x1002, WA_TR(wps_association_state, "Association State")},
     WpsAttribute{0x1008, WA_TR(wps_config_methods, "Config Methods")},
+    WpsAttribute{0x1009, WA_TR(wps_configuration_error, "Configuration Error")},
     WpsAttribute{0x1011, WA_TR(wps_device_name, "Device Name")},
     WpsAttribute{0x1012, WA_TR(wps_device_password_id, "Device Password ID")},
     WpsAttribute{0x1021, WA_TR(wps_manufacturer, "Manufacturer")},
     WpsAttribute{0x1023, WA_TR(wps_model_name, "Model Name")},
     WpsAttribute{0x1024, WA_TR(wps_model_number, "Model Number")},
+    WpsAttribute{0x103a, WA_TR(wps_request_type, "Request Type")},
     WpsAttribute{0x103b, WA_TR(wps_response_type, "Response Type")},
     WpsAttribute{0x103c, WA_TR(wps_rf_bands, "RF Bands")},
     WpsAttribute{0x1041, WA_TR(wps_selected_registrar, "Selected Registrar")},
     WpsAttribute{0x1042, WA_TR(wps_serial_number, "Serial Number")},
     WpsAttribute{0x1044, WA_TR(wps_state, "Wi-Fi Protected Setup State")},
+    WpsAttribute{0x1045, WA_TR(ssid_name, "SSID")},
     WpsAttribute{0x1047, WA_TR(wps_uuid_e, "UUID-E")},
+    WpsAttribute{0x1048, WA_TR(wps_uuid_r, "UUID-R")},
     WpsAttribute{0x1049, WA_TR(wps_vendor_extension, "Vendor Extension")},
     WpsAttribute{0x104a, msg::version},
     WpsAttribute{0x1053,
                  WA_TR(wps_selected_registrar_config_methods, "Selected Registrar Config Methods")},
     WpsAttribute{0x1054, WA_TR(wps_primary_device_type, "Primary Device Type")},
+    WpsAttribute{0x1055, WA_TR(wps_secondary_device_types, "Secondary Device Type List")},
     WpsAttribute{0x1057, WA_TR(wps_ap_setup_locked, "AP Setup Locked")},
+    WpsAttribute{0x1058, WA_TR(wps_application_extension, "Application Extension")},
+    WpsAttribute{0x106a, WA_TR(wps_requested_device_type, "Requested Device Type")},
 };
 
 MessageId wps_label(std::uint16_t type) {
@@ -155,6 +168,8 @@ void wps_vendor_extension(TreeNode& node, std::span<const std::uint8_t> v, std::
         } else if (id == 0x04 && len == 1) {
             node.children.push_back(Decoder::node(WA_TR(wps_settings_delay, "Settings Delay Time"),
                                                   std::uint64_t{data[0]}, range));
+        } else if (multi_ap_subelement(node, id, data, start + pos)) {
+            // Registrar Configuration Methods / Multi-AP subelements (vendor_wfa.cpp)
         } else {
             node.children.push_back(
                 Decoder::node(WA_TR(wps_unknown_attribute, "Unknown Attribute"),

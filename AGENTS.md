@@ -55,9 +55,12 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
 5. **No user-visible domain strings in the library without `WA_TR(key, "English text")`.**
    Labels, enum names and diagnostics are messages (see `docs/i18n.md`); technical names
    (CCMP-128, 802.11ax) are `Text` literals. Reuse an existing key only with identical text.
-6. Every decoder cites its spec source (e.g. `IEEE 802.11-2024 §9.4.2.x`, or the vendor
-   document) in a comment and has unit tests with real captured bytes where available.
-   Cross-check against Wireshark dissectors / Linux `include/linux/ieee80211.h` when in doubt.
+6. Every decoder cites its source in a comment and in `docs/decoder-sources.md`: the standard
+   (`IEEE 802.11-2020 9.4.2`, amendment, or Wi-Fi Alliance specification) and the Wireshark
+   dissector it was cross-checked with (reference: Wireshark 4.6.9, read only – GPL, never copy
+   code). Proprietary vendor elements use the Wireshark dissector as only source. Unit tests use
+   real captured bytes where available. Cross-check with Linux `include/linux/ieee80211.h`
+   when in doubt; where sources disagree, the standard wins and the difference is documented.
 7. Do not copy tables or code from `old/` without verifying them: the old reference
    tables contain known errors (see `docs/ie-coverage.md`). Do not modify `old/`.
 8. Keep the JSON output schema versioned (`docs/data-formats.md`). A breaking change bumps

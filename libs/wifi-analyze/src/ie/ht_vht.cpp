@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: MIT
 // HT (802.11n) and VHT (802.11ac) elements. Reference: IEEE Std 802.11-2020, HT Capabilities,
 // HT Operation, VHT Capabilities and VHT Operation elements.
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <algorithm>
 #include <array>

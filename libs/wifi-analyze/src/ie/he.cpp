@@ -3,6 +3,8 @@
 // HE Operation (36), MU EDCA Parameter Set (38), Spatial Reuse Parameter Set (39), BSS Color
 // Change Announcement (42), HE 6 GHz Band Capabilities (59); IEEE Std 802.11-2020 Multiple BSSID
 // Configuration (55), Non-Inheritance (56), Short SSID List (58).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <array>
 #include <string>

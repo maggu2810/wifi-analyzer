@@ -104,7 +104,8 @@ src/channel/ channel math     src/capture/ anonymization    src/i18n/  catalog l
 
 A decoder is **one function** `ElementValue decode_x(Decoder& d)`: it reads fields through
 the `Decoder` helpers (`u8/u16/…`, `bits()` + `BitField::flag/number/enumeration`,
-`enumeration()`, `mac()`, `oui()`, `text()`, `rest()`, `nested_elements()`), which append tree
+`enumeration()`, `mac()`, `oui()`, `text()`, `rest()`, `nested_elements()`, `sub_decode()` for
+subelements in element format), which append tree
 nodes with exact byte/bit ranges, and fills the typed value where one exists. Too-short content
 marks the element malformed and keeps the partial result; unread octets after the decoder
 become an "Unparsed Data" node plus a warning.
@@ -115,7 +116,8 @@ become an "Unparsed Data" node plus a warning.
 2. Declare it in `src/ie/decoders.hpp`, add one line to the table in `src/ie/registry.cpp`.
 3. If the summary needs it: typed struct in `elements.hpp` + `ElementValue`.
 4. Tests (real bytes where possible), regenerate golden files if output changed
-   (`WIFI_UPDATE_GOLDEN=1 ctest -R golden`), update `ie-coverage.md`.
+   (`WIFI_UPDATE_GOLDEN=1 ctest -R golden`), update `ie-coverage.md` and add the source row to
+   `decoder-sources.md` (standard / vendor spec + cross-checked Wireshark dissector).
 
 No changes in the CLI or Android are needed.
 

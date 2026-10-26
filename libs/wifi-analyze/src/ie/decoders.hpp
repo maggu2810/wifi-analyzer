@@ -112,6 +112,38 @@ ElementValue decode_vendor_p2p(Decoder& d);
 ElementValue decode_vendor_hs20(Decoder& d);
 ElementValue decode_vendor_mbo_oce(Decoder& d);
 ElementValue decode_vendor_owe_transition(Decoder& d);
+ElementValue decode_vendor_osen(Decoder& d);
+ElementValue decode_vendor_wfd(Decoder& d);
+ElementValue decode_vendor_nan(Decoder& d);
+ElementValue decode_vendor_dpp(Decoder& d);
+ElementValue decode_vendor_multi_ap(Decoder& d);
+ElementValue decode_vendor_qos_mgmt(Decoder& d);
+ElementValue decode_vendor_rsn_override(Decoder& d);
+ElementValue decode_vendor_rsnx_override(Decoder& d);
+/// Adds a WFA vendor-extension / Multi-AP subelement (ids 0x05-0x08) to `parent`; `start` is
+/// the content offset of the subelement header. Returns false for other ids / lengths.
+bool multi_ap_subelement(TreeNode& parent, std::uint8_t id, std::span<const std::uint8_t> v,
+                         std::size_t start);
+
+// vendor_misc.cpp (proprietary; reader positioned after the OUI unless noted)
+ElementValue decode_vendor_cisco(Decoder& d);
+ElementValue decode_cisco_ccx1(Decoder& d);         // element 133
+ElementValue decode_symbol_proprietary(Decoder& d); // element 173, starts with the OUI
+ElementValue decode_vendor_aruba(Decoder& d);
+ElementValue decode_vendor_ap_name_type(Decoder& d);
+ElementValue decode_vendor_aerohive(Decoder& d);
+ElementValue decode_vendor_arista(Decoder& d);
+ElementValue decode_vendor_fortinet(Decoder& d);
+ElementValue decode_vendor_meru(Decoder& d);
+ElementValue decode_vendor_extreme(Decoder& d);
+ElementValue decode_vendor_extreme_mesh(Decoder& d);
+ElementValue decode_vendor_mikrotik(Decoder& d);
+ElementValue decode_vendor_atheros(Decoder& d);
+ElementValue decode_vendor_marvell(Decoder& d);
+ElementValue decode_vendor_nintendo(Decoder& d);
+ElementValue decode_vendor_apple(Decoder& d);
+ElementValue decode_vendor_broadcom_ht(Decoder& d);
+ElementValue decode_vendor_drone_id_fr(Decoder& d);
 
 // Shared helpers (rsn.cpp): cipher and AKM suite names.
 Text cipher_suite_name(const Suite& suite);

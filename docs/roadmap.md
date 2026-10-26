@@ -50,7 +50,10 @@ Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postpone
   octet), now decoded with a warning.
 
 ## Later
-- P3 elements, more vendor decoders, Wi-Fi RTT on Android, pcap input for the CLI.
+- Done (lib 0.2.0 / 0.3.0): all beacon/probe-response elements and every vendor element known
+  to Wireshark 4.6.9 are decoded (`docs/decoder-sources.md`).
+- Summary use of RSN Element Override (WPA3 v3.4 "RSN overriding"), German translations of the
+  new labels, Wi-Fi RTT on Android, pcap input for the CLI.
 - `wifi-scan-linux` (wpa_supplicant ctrl/D-Bus, nl80211) + CLI `scan` command.
 - Qt desktop app.
 - CI.

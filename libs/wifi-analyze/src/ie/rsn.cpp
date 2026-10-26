@@ -2,6 +2,8 @@
 // RSN element (48) and RSN Extension element (244). Reference: IEEE Std 802.11-2020, RSNE
 // (cipher suite selectors Table 9-149, AKM suite selectors Table 9-151) and RSNXE; AKM 24/25
 // (SAE-EXT-KEY) from IEEE Std 802.11-2024; WFA vendor AKMs (OSEN, DPP).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <array>
 #include <string>

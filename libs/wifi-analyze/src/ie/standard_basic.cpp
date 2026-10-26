@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 // Basic standard elements. Reference: IEEE Std 802.11-2020, clause 9.4.2 (element formats).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <algorithm>
 #include <array>

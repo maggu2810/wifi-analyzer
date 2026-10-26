@@ -2,6 +2,8 @@
 // Multiple BSSID (71), Nontransmitted BSSID Capability (83), Multiple BSSID-Index (85) and
 // Reduced Neighbor Report (201). Reference: IEEE Std 802.11-2020 and IEEE Std 802.11ax-2021
 // (RNR TBTT Information field formats), IEEE Std 802.11be-2024 (MLD Parameters).
+// Cross-checked with Wireshark 4.6.9 packet-ieee80211.c; the dissector per element is listed in
+// docs/decoder-sources.md.
 
 #include <array>
 #include <string>
