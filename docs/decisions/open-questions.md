@@ -8,7 +8,7 @@
 | CLI input | User provides IE string / `wpa_cli BSS` text / capture file; acquisition out of scope |
 | Library name | `libwifianalyze` in `libs/wifi-analyze` (ADR-0001) |
 | CLI binary name | `wifi-analyze-cli` |
-| Android applicationId / display name | `de.maggu2810.android.wifianalyzer` / "Wifi Analyzer" |
+| Android applicationId / display name | `de.maggu2810.android.wifianalyzer` / "Wi-Fi Analyzer" |
 | Android distribution | Self-distributed (sideload) for now |
 | CI | None for now |
 | i18n | Domain text in the library (gettext catalogs compiled to tables), app chrome per frontend (ADR-0005) |

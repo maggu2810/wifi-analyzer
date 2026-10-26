@@ -22,7 +22,7 @@
     <string name="age_hours">%1$d h</string>
     <string name="age_minutes">%1$d min</string>
     <string name="age_seconds">%1$d s</string>
-    <string name="app_name" translatable="false">Wifi Analyzer</string>
+    <string name="app_name" translatable="false">Wi-Fi Analyzer</string>
     <string name="band_ghz">%1$s GHz</string>
     <string name="banner_imported">Showing imported capture %1$s</string>
     <string name="banner_location_off">Location services are off. Android only delivers scan results while location is enabled.</string>
@@ -103,7 +103,7 @@
     <string name="not_available">not available</string>
     <string name="permission_grant">Grant permission</string>
     <string name="permission_open_settings">Open app settings</string>
-    <string name="permission_text">Android delivers Wi-Fi scan results only to apps with the location permission (and, on Android 13+, the nearby devices permission). Wifi Analyzer uses them only to show and decode nearby networks; no location is stored or sent anywhere.</string>
+    <string name="permission_text">Android delivers Wi-Fi scan results only to apps with the location permission (and, on Android 13+, the nearby devices permission). Wi-Fi Analyzer uses them only to show and decode nearby networks; no location is stored or sent anywhere.</string>
     <string name="permission_title">Permission needed</string>
     <string name="platform_80211az">802.11az responder</string>
     <string name="platform_80211mc">802.11mc (RTT) responder</string>

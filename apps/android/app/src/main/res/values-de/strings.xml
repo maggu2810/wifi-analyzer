@@ -102,7 +102,7 @@
     <string name="not_available">nicht verfügbar</string>
     <string name="permission_grant">Berechtigung erteilen</string>
     <string name="permission_open_settings">App-Einstellungen öffnen</string>
-    <string name="permission_text">Android liefert WLAN-Scan-Ergebnisse nur an Apps mit Standortberechtigung (ab Android 13 zusätzlich „Geräte in der Nähe“). Wifi Analyzer nutzt sie nur, um Netzwerke in der Nähe anzuzeigen und zu dekodieren; es wird kein Standort gespeichert oder versendet.</string>
+    <string name="permission_text">Android liefert WLAN-Scan-Ergebnisse nur an Apps mit Standortberechtigung (ab Android 13 zusätzlich „Geräte in der Nähe“). Wi-Fi Analyzer nutzt sie nur, um Netzwerke in der Nähe anzuzeigen und zu dekodieren; es wird kein Standort gespeichert oder versendet.</string>
     <string name="permission_title">Berechtigung erforderlich</string>
     <string name="platform_80211az">802.11az-Responder</string>
     <string name="platform_80211mc">802.11mc-(RTT)-Responder</string>

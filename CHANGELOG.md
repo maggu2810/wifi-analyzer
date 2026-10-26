@@ -59,6 +59,9 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## Android app (de.maggu2810.android.wifianalyzer)
 
+### 0.2.1 (versionCode 5) – 2026-10-26
+- Display name spelled "Wi-Fi Analyzer" (official Wi-Fi spelling).
+
 ### 0.2.0 (versionCode 4) – 2026-10-26
 - Embeds libwifianalyze 0.4.0; network list chips show the security display label (incl. RSN
   overriding), the overview lists the RSN overriding configurations.

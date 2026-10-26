@@ -1,6 +1,6 @@
 # Android app
 
-Display name: **Wifi Analyzer**, applicationId `de.maggu2810.android.wifianalyzer`. Distributed by the maintainer (sideload), no Play Store for now.
+Display name: **Wi-Fi Analyzer**, applicationId `de.maggu2810.android.wifianalyzer`. Distributed by the maintainer (sideload), no Play Store for now.
 
 ## Platform baseline
 
