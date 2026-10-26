@@ -5,7 +5,7 @@ Guidance for AI coding agents (and humans) working in this repository.
 ## Project status
 
 **Implementation phase** (go given 2026-10-26). Library (M1) and CLI (M2) are implemented;
-Android app (M3/M4) is in progress. See `docs/roadmap.md`.
+Android app (M3/M4) is implemented. See `docs/roadmap.md` for open items.
 
 ## What this project is
 
@@ -15,7 +15,7 @@ A WiFi analysis toolset built around one shared library:
 |---|---|---|---|
 | `libwifianalyze` – IE decoding, BSS summary, channel math, OUI, i18n, capture helpers | `libs/wifi-analyze/` | C++23 | implemented (M1) |
 | `wifi-analyze-cli` – decodes IE data given as input | `apps/cli/` | C++23 | implemented (M2) |
-| Android app `de.maggu2810.android.wifianalyzer` | `apps/android/` | Kotlin + Compose, JNI to the C++ lib | planned (M3–M4) |
+| Android app `de.maggu2810.android.wifianalyzer` | `apps/android/` | Kotlin + Compose, JNI to the C++ lib | implemented (M3–M4) |
 | Linux scan acquisition (`wifi-scan-linux`) | – | – | **postponed, do not create** |
 | Qt desktop app | – | – | **postponed, do not create** |
 
@@ -101,8 +101,10 @@ tools/run_fuzzers.sh 60                                                       # 
 build/dev/apps/cli/wifi-analyze-cli decode testdata/captures/wpa/bss-dump.txt  # try the CLI
 WIFI_UPDATE_GOLDEN=1 ctest --preset dev -R golden                            # after intended output changes
 ANDROID_NDK_HOME=~/Android/Sdk/ndk/<ver> cmake --preset ndk-arm64 && cmake --build --preset ndk-arm64
+ANDROID_NDK_HOME=~/Android/Sdk/ndk/<ver> cmake --preset ndk-armv7 && cmake --build --preset ndk-armv7  # 32 bit
 clang-format -i <changed C++ files>
-cd apps/android && ./gradlew assembleDebug testDebugUnitTest                  # from M3
+cd apps/android && JAVA_HOME=/usr/lib/jvm/java-25-openjdk ./gradlew assembleDebug testDebugUnitTest lintDebug
+cd apps/android && ./gradlew connectedDebugAndroidTest                       # needs device/emulator
 ```
 
 Toolchain in use: GCC 16, Clang 23, CMake 4.3 (minimum 3.31), NDK 30 (Clang 21). GCC's

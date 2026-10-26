@@ -26,6 +26,22 @@ UI hides or marks the corresponding fields as "not available on this Android ver
 The price is a few version branches and a test on an API 30 emulator. If such a branch
 would ever force a worse behaviour on new devices, the minSdk is raised instead.
 
+## Building
+
+```bash
+cd apps/android
+# local.properties (not committed):
+#   sdk.dir=/home/<user>/Android/Sdk
+#   cmake.dir=/usr          # system CMake >= 3.31 + ninja (or install CMake via the SDK manager)
+JAVA_HOME=/usr/lib/jvm/java-25-openjdk ./gradlew assembleDebug testDebugUnitTest lintDebug
+./gradlew connectedDebugAndroidTest      # instrumented JNI test on a device/emulator
+./gradlew assembleRelease                # unsigned, R8-shrunk, stripped native libs (~7 MB)
+```
+
+Toolchain as built: Gradle 9.6.0, AGP 9.4.1 (built-in Kotlin), Kotlin 2.4.21, Compose BOM
+2026.09.00 (Material3 1.4), compileSdk/targetSdk 37, minSdk 30, NDK 30.0.16248370, ABIs
+arm64-v8a, armeabi-v7a, x86_64. Python 3 must be on the PATH (library code generators).
+
 ## Gradle modules
 
 ```
@@ -38,13 +54,13 @@ apps/android/
 │   └── src/main/kotlin/…/wifianalyze/  WifiAnalyze API (decode, locale, OUI DB load) + @Serializable model
 └── app/
     └── src/main/kotlin/de/maggu2810/android/wifianalyzer/
-        ├── data/scan/          WifiManager scan results → Flow<ScanSnapshot>
-        ├── data/connection/    ConnectivityManager NetworkCallback → current link info
-        ├── data/device/        device WiFi capabilities
-        ├── data/export/        capture export (SAF), anonymization toggle
-        ├── data/oui/           optional full OUI database: download / import, stored in app files
-        ├── domain/             BssObservation (merge + history per BSSID), sorting/filtering
-        └── ui/                 screens, components, theme, navigation
+        ├── data/               WifiScanner, ScanRepository (merge, history, batch decode cache,
+        │                       imported captures), ConnectionMonitor, DeviceCapabilities,
+        │                       SettingsRepository (DataStore), OuiRepository, CaptureCodec
+        ├── domain/             Network model, sorting / filtering / grouping (JVM-tested)
+        └── ui/                 AppViewModel, navigation, permission gate, screens
+                                (networks, detail, channels, signal, connection, settings),
+                                components (tree view, hex view, charts), theme
 ```
 
 ## Data acquisition – "everything Android exposes"

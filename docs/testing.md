@@ -36,7 +36,10 @@ anonymized or own-network data is committed. The old prototype's sample hex (fro
 
 ## Android
 
-- JVM unit tests: JSON → model mapping, sorting/filtering/grouping, history merging.
-- Instrumented test: JNI bridge loads and decodes a known capture on emulator (x86_64).
+- JVM unit tests: `wifi-analyze-native` parses the C++ golden JSON files (`ModelTest`); app:
+  sorting/filtering/grouping/history (`NetworkListTest`), capture round trip, CLI capture
+  compatibility and IE stream rebuild (`CaptureCodecTest`).
+- Instrumented test `NativeDecoderTest`: real JNI library on device/emulator (decode, batch,
+  locales, anonymization, OUI database).
 - Compose UI tests for list sort/filter and navigation to detail.
 - Manual test matrix: at least one device on API 30, one on latest; 2.4/5/6 GHz networks.

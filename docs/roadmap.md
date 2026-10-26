@@ -29,17 +29,20 @@ Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postpone
 - **Exit:** decodes real `wpa_cli BSS` dumps from the maintainer's environment correctly
   (spot-checked against Wireshark). *Open: verification with real dumps by the maintainer.*
 
-## M3 – Android MVP
+## M3 – Android MVP ✅ (2026-10-26)
 - Gradle project, `wifi-analyze-native` module with JNI bridge, permissions/onboarding.
 - Scan list (sort/filter/group), BSS detail with Overview + Elements + Raw, copy/share hex,
   capture export.
 - **Exit:** a capture exported by the app decodes identically in the CLI (golden test on
   emulator + CLI test).
 
-## M4 – Android complete
+## M4 – Android complete ✅ (2026-10-26, except items marked open)
 - Signal history + timeline, channel graph, connection & device screens, capture import,
   anonymization, vendor database download/import, settings, polish.
 - German catalog (library) + German `strings.xml`.
+- Result: all features implemented; German UI complete, library catalog 216/1024 messages
+  (most visible ones). *Open:* full German library catalog, Room-based saved sessions,
+  tablet-specific layouts, verification on the maintainer's Android 16/17 phones.
 
 ## Later
 - P3 elements, more vendor decoders, Wi-Fi RTT on Android, pcap input for the CLI.
