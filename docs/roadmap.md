@@ -4,8 +4,7 @@ Implementation starts only after an explicit go from the maintainer.
 Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postponed.
 
 ## M0 – Skeleton
-- Top-level CMake + presets, `.clang-format`, `.clang-tidy`, `.editorconfig`, `.gitignore`,
-  `LICENSE`.
+- Top-level CMake + presets, `.clang-format`, `.clang-tidy`, `.editorconfig`, `.gitignore`.
 - `libwifianalyze` skeleton: byte reader, TLV walker, registry, i18n catalog generator
   (English only), test framework wired.
 - **Exit:** `cmake --preset dev && ctest` green; TLV walker fuzzed.

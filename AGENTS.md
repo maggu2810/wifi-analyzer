@@ -62,7 +62,8 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
    tables contain known errors (see `docs/ie-coverage.md`). Do not modify `old/`.
 8. Keep the JSON output schema versioned (`docs/data-formats.md`). A breaking change bumps
    the schema version and updates the golden files under `testdata/`.
-9. Every source file starts with an SPDX license header (license: see open questions).
+9. License is **MIT**. Every source file starts with
+   `// SPDX-License-Identifier: MIT` (or the comment syntax of the file type).
 10. Python 3 is a build requirement: generated sources (OUI subset, i18n catalogs) are
     produced at build time into the build tree and are never checked in.
 
@@ -84,6 +85,9 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
   (`gradle/libs.versions.toml`).
 - Unidirectional data flow: ViewModel exposes `StateFlow<UiState>`; composables are
   stateless where practical.
+- minSdk 30, compile/targetSdk latest. Every API newer than 30 is used behind an
+  `SDK_INT` check with graceful fallback – never drop a feature on new devices to
+  support old ones.
 - No domain logic in Kotlin; Kotlin maps the library's JSON into model classes
   (kotlinx.serialization) and renders it. UI chrome strings in `strings.xml`.
 

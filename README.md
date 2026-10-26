@@ -11,4 +11,4 @@ Tools to inspect WiFi networks and fully decode IEEE 802.11 Information Elements
   library (JNI), and presents networks sortable/filterable with rich detail views.
 - Postponed: Linux scan acquisition library, Qt desktop app.
 
-Status: **planning**. See [`docs/`](docs/README.md) and [`AGENTS.md`](AGENTS.md).
+License: MIT. Status: **planning**. See [`docs/`](docs/README.md) and [`AGENTS.md`](AGENTS.md).

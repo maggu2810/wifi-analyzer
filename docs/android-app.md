@@ -6,13 +6,25 @@ Display name: **Wifi Analyzer**, applicationId `de.maggu2810.android.wifianalyze
 
 | Item | Choice | Reason |
 |---|---|---|
-| minSdk | **30** (Android 11) | `ScanResult.getInformationElements()`, `wifiStandard`, `registerScanResultsCallback` all need API 30; without IEs the app loses its point |
-| target/compileSdk | latest stable at implementation time | current platform behaviour |
+| minSdk | **30** (Android 11) | Floor: `ScanResult.getInformationElements()`, `wifiStandard`, `registerScanResultsCallback` need API 30; below that the core feature (IE decoding) is impossible |
+| target/compileSdk | latest stable (Android 17 at implementation time) | all new APIs available to the code |
+| Primary test devices | Android 16 and 17 (maintainer's phones) | |
 | UI | Kotlin 2.x, Jetpack Compose, Material 3 (dynamic color, dark mode) | |
 | Native | NDK + CMake, ABIs `arm64-v8a`, `x86_64` (emulator); `armeabi-v7a` optional | |
 | Serialization | kotlinx.serialization (decoder JSON → Kotlin model) | |
 | DI | manual (small app); revisit if it grows | fewer moving parts |
 | Charts | custom Compose `Canvas` | full control for channel graph; no chart dependency |
+
+### minSdk policy
+
+The lower minSdk costs **no features** on Android 16/17: `minSdk` only defines the oldest
+device the APK installs on, while `compileSdk`/`targetSdk` stay at the latest level, so
+every new API is available. APIs newer than 30 (e.g. `getWifiSsid()`, `securityTypes`,
+MLO getters, `FLAG_INCLUDE_LOCATION_INFO`, newer `WifiManager` capability queries) are
+called behind `Build.VERSION.SDK_INT` checks in the `data/` layer; on older devices the
+UI hides or marks the corresponding fields as "not available on this Android version".
+The price is a few version branches and a test on an API 30 emulator. If such a branch
+would ever force a worse behaviour on new devices, the minSdk is raised instead.
 
 ## Gradle modules
 

@@ -52,4 +52,6 @@ files are **not** checked in; Python 3 is a build requirement (also for the Andr
 
 ## License
 
-`LICENSE` at repo root, SPDX header in every source file (license: MIT or Apache-2.0, see open questions).
+`LICENSE` at repo root, SPDX header in every source file (`SPDX-License-Identifier: MIT`).
+Third-party licenses (CLI11, nlohmann/json, Catch2, curl) are listed in the app's
+about/licenses screen and in the CLI's `--version --verbose` output.

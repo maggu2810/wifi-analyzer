@@ -18,10 +18,9 @@
 | Generated tables | Generated at build time, not checked in; Python 3 is a build requirement |
 | `old/` | Removed once the work is finished |
 | Commits | Agent commits each functional part itself (no push) |
+| License | MIT |
+| Android SDK levels | minSdk 30 (floor for IE access), compile/targetSdk latest; newer APIs behind `SDK_INT` checks, no feature loss on Android 16/17 |
 
 ## Open
 
-| # | Question | Proposed default |
-|---|---|---|
-| 1 | License: MIT or Apache-2.0 | MIT (see discussion in chat; decide before M0 so SPDX headers are right) |
-| 2 | Android minSdk: 30 (Android 11, first API with IEs) or 36 (Android 16 only, fewer `SDK_INT` branches) | 30 |
+None at the moment.
