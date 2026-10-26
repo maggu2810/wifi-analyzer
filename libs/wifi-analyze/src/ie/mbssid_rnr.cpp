@@ -151,8 +151,8 @@ ElementValue decode_reduced_neighbor_report(Decoder& d) {
         const auto count =
             header->number(4, 4, WA_TR(rnr_tbtt_count, "TBTT Information Count"), Unit::none, 1) +
             1;
-        const auto length =
-            header->number(8, 8, WA_TR(rnr_tbtt_length, "TBTT Information Length"), Unit::octets);
+        const auto length = static_cast<std::size_t>(
+            header->number(8, 8, WA_TR(rnr_tbtt_length, "TBTT Information Length"), Unit::octets));
         ap.children.push_back(header->take());
 
         RnrNeighbor neighbor;

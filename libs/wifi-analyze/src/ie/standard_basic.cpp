@@ -433,9 +433,9 @@ ElementValue decode_roaming_consortium(Decoder& d) {
     const auto len1 = lengths->number(0, 4, WA_TR(roaming_oi1_length, "OI #1 Length"));
     const auto len2 = lengths->number(4, 4, WA_TR(roaming_oi2_length, "OI #2 Length"));
     d.add(lengths->take());
-    d.bytes(d.root(), WA_TR(roaming_oi1, "OI #1"), len1);
+    d.bytes(d.root(), WA_TR(roaming_oi1, "OI #1"), static_cast<std::size_t>(len1));
     if (len2 > 0) {
-        d.bytes(d.root(), WA_TR(roaming_oi2, "OI #2"), len2);
+        d.bytes(d.root(), WA_TR(roaming_oi2, "OI #2"), static_cast<std::size_t>(len2));
     }
     d.rest(d.root(), WA_TR(roaming_oi3, "OI #3"));
     return {};
@@ -508,7 +508,8 @@ ElementValue decode_transmit_power_envelope(Decoder& d) {
 
     // EIRP: count + 1 values (20, 40, 80, 160 MHz). PSD: 1 value for count 0, else 2^(count-1).
     const bool psd = interpretation == 1 || interpretation == 3;
-    const std::size_t values = psd ? (count == 0 ? 1 : (std::size_t{1} << (count - 1))) : count + 1;
+    const auto n = static_cast<std::size_t>(count);
+    const std::size_t values = psd ? (n == 0 ? 1 : (std::size_t{1} << (n - 1))) : n + 1;
     auto list = d.group(WA_TR(tpe_values, "Maximum Transmit Power"));
     const auto start = d.offset();
     for (std::size_t i = 0; i < values && !d.reader().empty(); ++i) {

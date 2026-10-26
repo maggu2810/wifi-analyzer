@@ -22,8 +22,8 @@ using NameFn = Text (*)(std::uint64_t);
 /// Looks up a name in a dense table; out-of-range values are "Reserved".
 template <std::size_t N>
 constexpr Text table_name(const std::array<Text, N>& table, std::uint64_t value) noexcept {
-    if (value < N && !table[value].empty()) {
-        return table[value];
+    if (value < N && !table[static_cast<std::size_t>(value)].empty()) {
+        return table[static_cast<std::size_t>(value)];
     }
     return msg::reserved;
 }

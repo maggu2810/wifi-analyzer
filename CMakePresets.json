@@ -75,6 +75,14 @@
       }
     },
     {
+      "name": "ndk-armv7",
+      "displayName": "Android NDK cross build of the library (armeabi-v7a, 32 bit), build check only",
+      "inherits": "ndk-arm64",
+      "cacheVariables": {
+        "ANDROID_ABI": "armeabi-v7a"
+      }
+    },
+    {
       "name": "ndk-arm64",
       "displayName": "Android NDK cross build of the library (arm64-v8a), build check only",
       "inherits": "base",
@@ -96,7 +104,8 @@
     { "name": "fuzz", "configurePreset": "fuzz" },
     { "name": "tidy", "configurePreset": "tidy" },
     { "name": "release", "configurePreset": "release" },
-    { "name": "ndk-arm64", "configurePreset": "ndk-arm64" }
+    { "name": "ndk-arm64", "configurePreset": "ndk-arm64" },
+    { "name": "ndk-armv7", "configurePreset": "ndk-armv7" }
   ],
   "testPresets": [
     {
