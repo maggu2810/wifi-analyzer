@@ -3,7 +3,9 @@ include(Catch)
 
 add_executable(wifi_analyze_tests
     test_byte_reader.cpp
+    test_hex.cpp
     test_i18n.cpp
+    test_tlv.cpp
     test_version.cpp
 )
 target_link_libraries(wifi_analyze_tests PRIVATE wifi_analyze::wifi_analyze Catch2::Catch2WithMain)

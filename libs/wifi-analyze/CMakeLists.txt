@@ -40,6 +40,8 @@ add_custom_command(
     VERBATIM)
 
 add_library(wifi_analyze
+    src/core/tlv.cpp
+    src/hex.cpp
     src/i18n/catalog.cpp
     src/version.cpp
     ${WIFI_ANALYZE_I18N_OUTPUTS}
