@@ -1,6 +1,6 @@
 # ADR-0004: Monorepo with `libs/`, `apps/`, shared `testdata/`
 
-Status: proposed · Date: 2026-10-26
+Status: accepted · Date: 2026-10-26
 
 ## Decision
 One repository; layout as in `docs/architecture.md`. CMake is the primary build at the

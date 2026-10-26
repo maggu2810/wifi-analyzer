@@ -4,9 +4,8 @@ Guidance for AI coding agents (and humans) working in this repository.
 
 ## Project status
 
-**Planning phase.** The repository currently contains only planning documents.
-Do **not** start implementing code (library, CLI, Android app) until the
-maintainer gives an explicit "go". Changes to the docs are welcome when asked.
+**Implementation phase** (go given 2026-10-26). Library (M1) and CLI (M2) are implemented;
+Android app (M3/M4) is in progress. See `docs/roadmap.md`.
 
 ## What this project is
 
@@ -14,8 +13,8 @@ A WiFi analysis toolset built around one shared library:
 
 | Component | Path | Language | Status |
 |---|---|---|---|
-| `libwifianalyze` – IE decoding, BSS summary, channel math, OUI, i18n, capture helpers | `libs/wifi-analyze/` | C++23 | planned (M1) |
-| `wifi-analyze-cli` – decodes IE data given as input | `apps/cli/` | C++23 | planned (M2) |
+| `libwifianalyze` – IE decoding, BSS summary, channel math, OUI, i18n, capture helpers | `libs/wifi-analyze/` | C++23 | implemented (M1) |
+| `wifi-analyze-cli` – decodes IE data given as input | `apps/cli/` | C++23 | implemented (M2) |
 | Android app `de.maggu2810.android.wifianalyzer` | `apps/android/` | Kotlin + Compose, JNI to the C++ lib | planned (M3–M4) |
 | Linux scan acquisition (`wifi-scan-linux`) | – | – | **postponed, do not create** |
 | Qt desktop app | – | – | **postponed, do not create** |
@@ -53,8 +52,9 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
 4. The library is platform-independent: C++23 standard library only, no I/O (callers
    pass bytes/text in), no OS headers, no JNI, no third-party runtime deps. It must
    build with the Android NDK and with GCC/Clang on Linux.
-5. **No user-visible domain strings hard-coded outside the i18n catalog.** Labels, enum
-   names and diagnostics use message keys with English source text (see `docs/i18n.md`).
+5. **No user-visible domain strings in the library without `WA_TR(key, "English text")`.**
+   Labels, enum names and diagnostics are messages (see `docs/i18n.md`); technical names
+   (CCMP-128, 802.11ax) are `Text` literals. Reuse an existing key only with identical text.
 6. Every decoder cites its spec source (e.g. `IEEE 802.11-2024 §9.4.2.x`, or the vendor
    document) in a comment and has unit tests with real captured bytes where available.
    Cross-check against Wireshark dissectors / Linux `include/linux/ieee80211.h` when in doubt.
@@ -98,6 +98,8 @@ cmake --preset dev   && cmake --build --preset dev   && ctest --preset dev    # 
 cmake --preset asan  && cmake --build --preset asan  && ctest --preset asan   # Clang + ASan/UBSan
 cmake --preset tidy  && cmake --build --preset tidy                           # clang-tidy, must be clean
 tools/run_fuzzers.sh 60                                                       # libFuzzer, s/target
+build/dev/apps/cli/wifi-analyze-cli decode testdata/captures/wpa/bss-dump.txt  # try the CLI
+WIFI_UPDATE_GOLDEN=1 ctest --preset dev -R golden                            # after intended output changes
 ANDROID_NDK_HOME=~/Android/Sdk/ndk/<ver> cmake --preset ndk-arm64 && cmake --build --preset ndk-arm64
 clang-format -i <changed C++ files>
 cd apps/android && ./gradlew assembleDebug testDebugUnitTest                  # from M3

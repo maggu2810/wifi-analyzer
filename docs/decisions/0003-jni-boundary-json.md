@@ -1,6 +1,6 @@
 # ADR-0003: JNI boundary passes bytes in, versioned JSON out
 
-Status: proposed · Date: 2026-10-26
+Status: accepted · Date: 2026-10-26
 
 ## Options
 1. **JSON string** (same output as CLI `--format json`), parsed by kotlinx.serialization.

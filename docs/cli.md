@@ -12,23 +12,24 @@ Use cases:
 3. Inspect a capture file exported by the Android app (list, sort, show one BSS).
 4. Emit JSON for scripting, bug reports and test data.
 
-## Commands (draft)
+## Commands
 
 ```
-wifi-analyze-cli decode [INPUT]         decode one input; INPUT = hex string, file path, or '-' / omitted = stdin
-        [--input-format auto|hex|wpa-bss|capture]
-        [--freq MHZ]                    context when input has no frequency (raw hex)
-        [--bss BSSID]                   pick one BSS from multi-BSS input
-wifi-analyze-cli list [INPUT]           table of all BSSs in a multi-BSS input (wpa-bss-multi / capture)
+wifi-analyze-cli [GLOBAL] decode [INPUT]   decode; INPUT = hex string, file path, '-' or omitted = stdin
+        [--input-format auto|hex|wpa-bss|capture] [--freq MHZ] [--bss BSSID]
+        [--format text|json|capture] [--anonymize [--anonymize-salt N]]
+wifi-analyze-cli [GLOBAL] list [INPUT]     table of all BSSs (same input options)
         [--sort signal|ssid|bssid|channel|band|security|generation] [--reverse]
-        [--filter band=5,security=open,ssid~=guest]
-wifi-analyze-cli interactive            paste-and-decode loop (like the old prototype)
-wifi-analyze-cli elements               list all known/decoded element types
-wifi-analyze-cli oui status|update|import FILE|clear
-                                        manage the optional full OUI database cache
+        [--filter band=2.4|5|6,security=<part of type>,ssid=<name>,ssid~=<substring>,
+                  gen=4..7,channel=<n>,min-signal=<dBm>]
+        [--format text|json|capture]
+wifi-analyze-cli [GLOBAL] interactive      paste-and-decode loop (hex line, or wpa_cli block + empty line)
+wifi-analyze-cli [GLOBAL] elements [--format text|json]
+wifi-analyze-cli [GLOBAL] oui status | update [--url URL] | import FILE | clear
 
-Global: --format text|json  --lang LANG  --color auto|always|never
-        --raw  --hexdump  --verbose (detail-level nodes, diagnostics)  --anonymize
+GLOBAL: --lang LANG  --color auto|always|never  --no-oui-database
+        -v/--verbose (detail fields, info diagnostics, byte/bit ranges)
+        --raw (payload hex)  --hexdump  --summary (summary only)  --version  --help
 ```
 
 Exit codes: `0` ok, `1` usage error, `3` input could not be parsed, `4` OUI download/import failed.

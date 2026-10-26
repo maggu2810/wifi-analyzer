@@ -6,6 +6,11 @@ Priority tiers:
 - **P2** – M1/M2 stretch, commonly seen in beacons and interesting to show.
 - **P3** – later; rare or very complex. Until decoded they appear as raw + named.
 
+**Status (M1):** all P1 elements and most P2 elements are decoded; `wifi-analyze-cli elements`
+prints the authoritative list (decoded vs. named-only). Not yet decoded: TWT (216), FILS
+Indication (240), UORA, NDP Feedback, ESS Report, HE BSS Load, TID-to-Link Mapping, Neighbor
+Report, Time Advertisement, QoS Map, vendor elements other than Microsoft/WFA.
+
 Every element that is not decoded is still **named** (from the full Element ID table)
 and kept raw. The "Spec" column is filled in during implementation with the exact
 clause of IEEE 802.11-2024 (or the amendment / vendor spec).

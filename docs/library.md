@@ -1,7 +1,7 @@
 # `libwifianalyze` – shared library
 
 Directory `libs/wifi-analyze/`, CMake target `wifi_analyze::wifi_analyze`, namespace
-`wifi_analyze`.
+`wifi_analyze`. Status: M1 implemented.
 
 ## Scope
 
@@ -10,203 +10,132 @@ Input: a raw IE byte stream (sequence of `id | length | payload` TLVs) – from
 `ScanResult.InformationElement`s – plus optional context.
 
 Output: a fully decoded, loss-free model, a derived per-BSS summary, localized labels,
-JSON.
+JSON. `key=value` input such as `ie=…` is handled by the frontends' input parsers.
 
-`key=value` input such as `ie=…` is handled by the frontends' input parsers, not by the
-library.
+Constraints: C++23, standard library only, **no I/O**, no exceptions escape the public API,
+no mutable global state (registries and catalogs are static read-only tables; a loaded OUI
+database is an object owned by the caller), thread-safe.
 
-Constraints: C++23, standard library only, **no I/O** (callers pass bytes/text), no
-exceptions escape the public API, no mutable global state (registries and catalogs are
-static read-only tables; a loaded OUI database is an object the caller owns), thread-safe.
+## Public headers
 
-## Modules
-
-| Module | Content |
+| Header | Content |
 |---|---|
-| `core` | bounds-checked byte reader, TLV walker (incl. fragment reassembly), decoder registry |
-| `ie` | element decoders (standard / extension / vendor), `DecodedIes`, decoded tree |
-| `summary` | `BssSummary` derivation, PHY rate calculation |
-| `channel` | frequency ↔ channel/band, operating class tables, channel width geometry |
-| `oui` | built-in subset table, `OuiDatabase` parsed from IEEE CSV text |
-| `i18n` | message keys, compiled catalogs, locale selection |
-| `json` | JSON writer for decoded data and summary |
-| `capture` | IE anonymization (`anonymize_ies`), capture format constants/version |
+| `ie.hpp` | `DecodeContext`, `ElementKey`, `DecodedElement`, `DecodedIes`, `decode()`, `known_elements()` |
+| `elements.hpp` | typed values (`Rsn`, `HtCapabilities`, `HeOperation`, `Wps`, …) and `ElementValue` |
+| `tree.hpp` | `TreeNode`, `Value`, `EnumValue`, `Text`, `Unit`, `Display`, `Significance`, `format_value()` |
+| `summary.hpp` | `BssSummary` (+ security/PHY/…), `summarize()`, `describe()`, naming helpers, `phy_rate_mbps()` |
+| `json.hpp` | `to_json()` (schema `wifi-analyze.decoded` v1) |
+| `i18n.hpp` | `Localizer`, `localizer()`, `available_locales()`, `message_key()`, `format_message()` |
+| `channel.hpp` | `Band`, frequency ↔ channel, operating class → band |
+| `oui.hpp` | `OuiDatabase::parse_ieee_csv()`, `builtin_oui_name()`, `oui_name()`, `oui_of_mac()` |
+| `capture.hpp` | capture format id/version, `anonymize_ies()`, `anonymize_mac()`, `anonymize_ssid()` |
+| `tlv.hpp`, `hex.hpp` | raw TLV layer `split_elements()`, `parse_hex()` / `to_hex()` |
+| `message_id.hpp` | generated `enum class MessageId` (build tree) |
 
-## Public API (draft)
+Typical use:
 
 ```cpp
-namespace wifi_analyze {
-
-struct DecodeContext {
-    std::optional<std::uint32_t> frequency_mhz;   // enables band-dependent decoding
-    FrameSource source = FrameSource::unknown;     // beacon / probe_response / unknown
-    const OuiDatabase* oui = nullptr;              // nullptr → built-in subset only
-    DecodeOptions options{};                       // include_raw, max_depth, …
-};
-
-// Decoding
-DecodedIes  decode(std::span<const std::uint8_t> ies, const DecodeContext& = {});
-std::expected<std::vector<std::uint8_t>, Diagnostic> parse_hex(std::string_view); // tolerant: "0x", whitespace, ':' '-'
-ElementStream split_elements(std::span<const std::uint8_t> ies);  // raw TLV layer, used by decode()
-BssSummary  summarize(const DecodedIes&, const DecodeContext& = {});
-
-// Localization (see i18n.md)
-std::span<const std::string_view> available_locales();   // "en", "de", …
-Localizer   localizer(std::string_view locale);          // falls back to "en"
-
-// Serialization
-std::string to_json(const DecodedIes&, const BssSummary&, const Localizer&, const JsonOptions& = {});
-
-// OUI
-std::optional<std::string_view> builtin_oui_name(Oui);
-std::expected<OuiDatabase, Error> OuiDatabase::parse_ieee_csv(std::string_view csv_text);
-
-// Channel utilities
-std::optional<ChannelInfo>   channel_from_frequency(std::uint32_t mhz);
-std::optional<std::uint32_t> frequency_from_channel(std::uint8_t op_class, std::uint8_t chan);
-
-// Capture
-std::vector<std::uint8_t> anonymize_ies(std::span<const std::uint8_t>, const AnonymizeOptions&);
-
-// Introspection
-std::span<const ElementInfo> supported_elements();
-
-}
+wifi_analyze::DecodeContext ctx{.frequency_mhz = 5180};
+const auto ies = wifi_analyze::decode(bytes, ctx);
+const auto summary = wifi_analyze::summarize(ies, ctx);
+const auto json = wifi_analyze::to_json(ies, summary, wifi_analyze::localizer("de"));
 ```
-
-An optional **C API** (`wifi_analyze_c.h`: `wa_decode_json(bytes, len, ctx, &out)` /
-`wa_free`) exists for FFI consumers needing a stable ABI. The JNI bridge uses the C++ API
-directly since it is compiled together.
 
 ## Data model
 
-### Element identity
-
-```cpp
-struct ElementKey {
-    std::uint8_t id;                      // 0..255
-    std::optional<std::uint8_t> ext_id;   // when id == 255
-    std::optional<Oui> oui;               // when id == 221
-    std::optional<std::uint8_t> vendor_type;
-};
-```
-
-Each decoder has a stable string **type key** (`"rsn"`, `"he_operation"`,
-`"vendor.microsoft.wmm"`, `"vendor.wfa.mbo_oce"` …) used in JSON and by frontends.
-
 ### Decoded element
 
-```cpp
-struct DecodedElement {
-    ElementKey key;
-    std::string_view type_key;
-    MessageId name;                       // localized at render/serialize time
-    std::size_t offset;                   // of the id byte within the stream
-    std::span<const std::uint8_t> raw;    // payload (always kept)
-    Status status;                        // ok | truncated | malformed | unknown | partially_decoded
-    std::vector<Diagnostic> diagnostics;  // MessageId + arguments
-    ElementValue value;                   // std::variant of typed structs (+ Unknown)
-    TreeNode tree;
-};
-
-struct DecodedIes {
-    std::vector<DecodedElement> elements;
-    std::vector<Diagnostic> stream_diagnostics;   // trailing bytes, overrun, …
-    template<class T> const T* first() const;
-    template<class T> std::vector<const T*> all() const;
-};
-```
+`DecodedElement` = `RawElement` (id, ext id, stream range, payload, fragments) + `ElementKey`
+(id / ext id / OUI / vendor type) + stable `type` key (`"rsn"`, `"he_operation"`,
+`"vendor.microsoft.wmm"`, `"unknown"`) + `name` (MessageId) + `DecodeStatus`
+(`ok | unknown | malformed | truncated`) + diagnostics + typed `value` + `tree`.
 
 ### Typed values (layer 1)
 
-Plain structs per element (`Rsn`, `HtCapabilities`, `HeOperation`, `WpsInfo`, …), numbers
-and enums only. Used by the summary logic and tests.
+Plain structs for the elements that the summary or frontends use programmatically; other
+elements have only a tree (`std::monostate` value).
 
 ### Decoded tree (layer 2)
 
-Generic, nested description – the single thing every UI renders:
-
 ```cpp
 struct TreeNode {
-    std::string_view key;          // stable snake_case: "group_cipher"
-    MessageId        label;        // i18n key, e.g. "rsn.group_cipher"
-    Value            value;        // none | bool | int | uint | double | string | bytes |
-                                   // enum{raw, MessageId} | flags{raw, set MessageIds}
-    Unit             unit;         // dBm, MHz, Mbit/s, TU, %, …
-    ByteRange        bytes;        // offset+length within the element payload
-    std::optional<BitRange> bits;
-    Significance     significance; // normal | detail | warning
+    MessageId label;                 // message_key(label) = stable machine key
+    Value value;                     // none | bool | int | uint | double | string | bytes | EnumValue
+    Unit unit;                       // dBm, MHz, Mbit/s, TU, µs, %, octets, …
+    Display display;                 // decimal | hex | suite ("00-0f-ac:4") | name_only
+    std::optional<ByteRange> bytes;  // relative to the element content
+    std::optional<BitRange> bits;    // LSB-first ("B0") within `bytes`
+    Significance significance;       // normal | detail | warning
     std::vector<TreeNode> children;
 };
 ```
 
-Each decoder implements **one** `describe(const T&) -> TreeNode`. Frontends need no
-per-element code; they may special-case a `type_key` for richer widgets.
+- `format_value(node, localizer)` produces the display text ("CCMP-128 (00-0f-ac:4)",
+  "-49 dBm", "yes", "0x000c") so every frontend shows identical strings.
+- Nodes labelled `common_item` are list entries (render as bullets).
+- `Text` is either a `MessageId` (translated) or a technical literal (never translated).
+- Byte ranges are relative to `DecodedElement::content()` (the payload without the extension
+  ID octet). Nested elements (Multiple BSSID profiles) are shifted into the outer content.
+  Diagnostics carry **stream**-relative ranges.
 
 ### BSS summary
 
-| Field | Source |
-|---|---|
-| `ssid`, `hidden` | SSID element |
-| `security` label + ciphers, AKMs, PMF, transition modes | RSN, RSNX, WPA vendor IE, OWE transition |
-| Wi-Fi generation, PHY standards, band | HT/VHT/HE/EHT presence + frequency |
-| primary channel, width, center freq(s), puncturing | DS, HT/VHT/HE/EHT Operation, HE 6 GHz op info |
-| max NSS, max PHY rate estimate | HT/VHT/HE/EHT capabilities + width |
-| BSS load | BSS Load |
-| country, regulatory info | Country, Power Constraint, TPE |
-| 802.11k / v / r | RM Enabled Caps, Ext Caps, Mobility Domain |
-| WMM, U-APSD, TWT, BSS color | WMM, HE caps/op |
-| MLO, multiple BSSID, co-located APs (RNR) | Multi-Link, Multiple BSSID, RNR |
-| device hints (manufacturer, model, device/AP name) | WPS, vendor IEs |
-| Passpoint / interworking | Interworking, HS2.0 indication, roaming consortium |
+`summarize()` derives: SSID/hidden; security type (open, WEP, OWE, WPA/WPA2/WPA3 personal
+and enterprise variants incl. transition modes, Suite-B 192), PMF, ciphers, AKMs, SAE-H2E/PK,
+`weak` flag; Wi-Fi generation, standards, band, primary channel/frequency, operating width
+(HT → VHT → HE 6 GHz → EHT, 80+80, ext. NSS BW via HT CCFS2), center frequencies, EHT
+puncturing, max NSS, estimated max PHY rate (`N_SD × bits × R / T_sym`); BSS load, country,
+802.11k/v/r, WMM/U-APSD, BSS color, TWT, MLO, RNR neighbors, nontransmitted BSSIDs, WPS
+device info, Interworking/Hotspot 2.0, vendor OUIs, problem count.
+
+`describe(summary)` renders the summary as a tree (the "overview" every frontend shows).
 
 ## Internal structure
 
-- `core/byte_reader` – cursor with `u8/u16le/u32le/bytes(n)/remaining`, all fallible;
-  decoders never touch raw pointers.
-- `core/tlv` – walks the stream, reports overrun/trailing bytes, reassembles Fragment
-  elements (id 242).
-- `core/registry` – static tables mapping `ElementKey` →
-  `{type_key, name MessageId, spec_ref, decode_fn, describe_fn}`; separate tables for
-  standard, extension and vendor (OUI + type) decoders.
-- Sub-element decoding (Multi-Link per-STA profiles, RNR TBTT info, WPS attributes,
-  Multiple BSSID profiles) reuses the machinery recursively with a depth limit.
+```
+src/core/    byte_reader.hpp (bounds-checked), tlv.cpp (split + fragment reassembly),
+             decoder.hpp/.cpp (Decoder helper, BitField, decode driver, nested decoding),
+             registry.hpp, tr.hpp (WA_TR macro + common messages)
+src/ie/      registry.cpp (tables), one file per element family / vendor
+src/summary/ summary + PHY rate model
+src/json/    JSON writer      src/tree/  format_value      src/oui/  OUI lookup + CSV parser
+src/channel/ channel math     src/capture/ anonymization    src/i18n/  catalog lookup
+```
+
+A decoder is **one function** `ElementValue decode_x(Decoder& d)`: it reads fields through
+the `Decoder` helpers (`u8/u16/…`, `bits()` + `BitField::flag/number/enumeration`,
+`enumeration()`, `mac()`, `oui()`, `text()`, `rest()`, `nested_elements()`), which append tree
+nodes with exact byte/bit ranges, and fills the typed value where one exists. Too-short content
+marks the element malformed and keeps the partial result; unread octets after the decoder
+become an "Unparsed Data" node plus a warning.
 
 ### Adding an element
 
-1. Struct in `include/wifi_analyze/elements/…`.
-2. `decode_x(ByteReader&, const DecodeContext&) -> std::expected<X, DecodeError>` and `describe(const X&)`
-   in one `.cpp`.
-3. One registry line (with spec reference).
-4. New message keys in `i18n/messages.pot` (English source text).
-5. Unit test with real bytes, golden JSON update, `ie-coverage.md` update.
+1. Write `decode_x()` in the fitting `src/ie/*.cpp` (labels via `WA_TR(key, "Text")`).
+2. Declare it in `src/ie/decoders.hpp`, add one line to the table in `src/ie/registry.cpp`.
+3. If the summary needs it: typed struct in `elements.hpp` + `ElementValue`.
+4. Tests (real bytes where possible), regenerate golden files if output changed
+   (`WIFI_UPDATE_GOLDEN=1 ctest -R golden`), update `ie-coverage.md`.
 
-No changes in CLI or Android needed.
+No changes in the CLI or Android are needed.
 
 ## OUI vendor names
 
-Facts (approximate, to re-check when implementing): the IEEE MA-L registry has ~38 k
-entries and grows by roughly 1–2 k per year; `oui.csv` is ~3.5 MB, OUI + organization name
-alone ~1.3 MB, ~0.5 MB compressed. Registry changes rarely matter in practice – APs in the
-field come from long-established vendors, and randomized/locally administered BSSIDs
-never match anyway.
+Facts (approximate): the IEEE MA-L registry has ~38 k entries and grows by roughly 1–2 k per
+year; `oui.csv` is ~3.5 MB. Registry changes rarely matter in practice; randomized/locally
+administered BSSIDs never match anyway (`oui_of_mac()` returns nullopt for them).
 
-Design (ADR-0006):
+- **Built-in subset**: `data/oui-builtin.csv` (OUIs with vendor decoders + common AP/chipset
+  vendors), compiled into a table at build time by `tools/gen_oui_table.py`.
+- **Full database** (optional): the frontend obtains IEEE `oui.csv` (download or import), the
+  library parses it (`OuiDatabase::parse_ieee_csv`), the caller passes it in
+  `DecodeContext::oui_database`. Lookup: full database → built-in subset.
+- Caches: CLI `$XDG_CACHE_HOME/wifi-analyze/oui.csv`; Android app files dir.
 
-- **Built-in subset** (`data/oui-builtin.csv`, a few hundred entries: every OUI we have a
-  vendor decoder for + common AP/chipset vendors) compiled into the library. Always available.
-- **Full database** optional, supplied at runtime: frontend obtains IEEE `oui.csv`
-  (download or import), library parses it via `OuiDatabase::parse_ieee_csv`, caller passes
-  it in `DecodeContext`. Lookup order: full DB → built-in subset.
-- Frontends cache the file: CLI in `$XDG_CACHE_HOME/wifi-analyze/oui.csv`
-  (`~/.cache/…` fallback); Android in the app's `filesDir/oui/`.
-- Optionally MA-M / MA-S registries later (28/36-bit prefixes).
+## Robustness
 
-## Robustness rules
-
-- Any byte sequence is accepted: shorter-than-minimum → `truncated` with what could be
-  read; extra bytes → diagnostic, kept raw.
-- Unknown enum values shown as "reserved (n)", never dropped.
-- Recursion depth and output size bounded.
-- libFuzzer target over `decode` + `summarize` + `to_json` + `parse_ieee_csv`;
-  test suite under ASan/UBSan.
+- Any byte sequence is accepted; problems are reported, never thrown.
+- Unknown enum values are shown as "Reserved"; unknown capability bits as numbered entries.
+- Nesting depth is bounded (`DecodeContext::max_depth`, default 4).
+- Fuzz targets: `decode` (full pipeline incl. JSON), `split_elements`, `parse_hex`,
+  `format_message`; the test suite runs under ASan/UBSan.

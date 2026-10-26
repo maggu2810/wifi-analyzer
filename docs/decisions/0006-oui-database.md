@@ -1,6 +1,6 @@
 # ADR-0006: OUI vendor names – built-in subset + optional runtime database
 
-Status: proposed · Date: 2026-10-26
+Status: accepted · Date: 2026-10-26
 
 ## Context
 Vendor names for BSSIDs and vendor-specific IEs come from the IEEE OUI registry: ~38 k MA-L

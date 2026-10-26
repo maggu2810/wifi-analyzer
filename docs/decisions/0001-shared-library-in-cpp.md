@@ -1,6 +1,6 @@
 # ADR-0001: Shared library `libwifianalyze` in C++23
 
-Status: proposed · Date: 2026-10-26
+Status: accepted · Date: 2026-10-26
 
 ## Context
 IE decoding is needed by the CLI, the Android app and a future Qt app. The previous
