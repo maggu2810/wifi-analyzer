@@ -50,11 +50,11 @@ class NativeDecoderTest {
         assertTrue(doc.summary.ssid.startsWith("ssid-"))
         assertEquals("Microsoft", WifiAnalyze.vendorOf(byteArrayOf(0x00, 0x50, 0xf2.toByte(), 1, 2, 3)))
         val entries = WifiAnalyze.loadOuiDatabase(
-            "Registry,Assignment,Organization Name,Organization Address\nMA-L,AABBCC,Test Vendor,x\n".toByteArray(),
+            "Registry,Assignment,Organization Name,Organization Address\nMA-L,A4BBCC,Test Vendor,x\n".toByteArray(),
         )
         assertEquals(1, entries)
-        assertEquals("Test Vendor", WifiAnalyze.vendorOf(byteArrayOf(0xaa.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0, 0, 0)))
+        assertEquals("Test Vendor", WifiAnalyze.vendorOf(byteArrayOf(0xa4.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0, 0, 0)))
         WifiAnalyze.clearOuiDatabase()
-        assertEquals(null, WifiAnalyze.vendorOf(byteArrayOf(0xaa.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0, 0, 0)))
+        assertEquals(null, WifiAnalyze.vendorOf(byteArrayOf(0xa4.toByte(), 0xbb.toByte(), 0xcc.toByte(), 0, 0, 0)))
     }
 }

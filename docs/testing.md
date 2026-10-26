@@ -21,7 +21,7 @@
 testdata/captures/
   wpa/        wpa_cli BSS dumps, recorded ctrl-socket replies
   dbus/       recorded D-Bus property dumps
-  android/    capture JSON exported from the app (anonymized)
+  android/    real IE streams / captures from Android (emulator AP so far)
   synthetic/  hand-crafted edge cases (malformed, fragmented, max-length)
 ```
 

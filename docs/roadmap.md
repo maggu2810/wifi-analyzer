@@ -43,6 +43,11 @@ Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postpone
 - Result: all features implemented; German UI complete, library catalog 216/1024 messages
   (most visible ones). *Open:* full German library catalog, Room-based saved sessions,
   tablet-specific layouts, verification on the maintainer's Android 16/17 phones.
+- Verified 2026-10-26 on the Android 17 emulator (API 37, x86_64): instrumented JNI tests pass;
+  debug and R8 release builds run (networks, detail/elements, channels, connection) against the
+  emulator AP "AndroidWifi", whose IEs are stored as the first real capture
+  (`testdata/captures/android/`). It revealed a non-conformant Country element (no environment
+  octet), now decoded with a warning.
 
 ## Later
 - P3 elements, more vendor decoders, Wi-Fi RTT on Android, pcap input for the CLI.

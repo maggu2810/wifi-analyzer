@@ -870,3 +870,7 @@ msgstr "Seriennummer"
 msgctxt "wps_state"
 msgid "Wi-Fi Protected Setup State"
 msgstr "WPS-Status"
+
+msgctxt "country_missing_environment"
+msgid "Country string has no environment octet (non-conformant)"
+msgstr "Ländercode ohne Umgebungs-Oktett (nicht standardkonform)"

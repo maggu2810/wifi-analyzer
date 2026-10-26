@@ -125,31 +125,41 @@ ElementValue decode_country(Decoder& d) {
     }
     country.code = core::display_text(*code);
     d.add(Decoder::node(WA_TR(country_code, "Country Code"), country.code, d.range_from(start)));
-    const auto env = d.enumeration(
-        d.root(), WA_TR(country_environment, "Environment"), 1, [](std::uint64_t v) -> Text {
-            switch (v) {
-            case ' ':
-                return WA_TR(country_env_any, "All environments");
-            case 'O':
-                return WA_TR(country_env_outdoor, "Outdoor");
-            case 'I':
-                return WA_TR(country_env_indoor, "Indoor");
-            case 'X':
-                return WA_TR(country_env_noncountry, "Non-country entity");
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                return WA_TR(country_env_table, "Operating classes of Annex E table");
-            default:
-                return msg::reserved;
-            }
-        });
-    if (!env) {
-        return country;
+    // Conformant lengths are 3 + 3n (+ 1 padding octet). A length of 2 + 3n means the
+    // environment octet is missing (seen e.g. on the Android emulator's AP); the triplets are
+    // still decoded.
+    if (d.content().size() % 3 == 2) {
+        d.diagnostic(Severity::warning,
+                     WA_TR(country_missing_environment,
+                           "Country string has no environment octet (non-conformant)"),
+                     {}, ByteRange{.offset = 0, .length = 2});
+    } else {
+        const auto env = d.enumeration(
+            d.root(), WA_TR(country_environment, "Environment"), 1, [](std::uint64_t v) -> Text {
+                switch (v) {
+                case ' ':
+                    return WA_TR(country_env_any, "All environments");
+                case 'O':
+                    return WA_TR(country_env_outdoor, "Outdoor");
+                case 'I':
+                    return WA_TR(country_env_indoor, "Indoor");
+                case 'X':
+                    return WA_TR(country_env_noncountry, "Non-country entity");
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                    return WA_TR(country_env_table, "Operating classes of Annex E table");
+                default:
+                    return msg::reserved;
+                }
+            });
+        if (!env) {
+            return country;
+        }
+        country.environment = static_cast<std::uint8_t>(*env);
     }
-    country.environment = static_cast<std::uint8_t>(*env);
 
     while (d.remaining() >= 3) {
         const auto triplet_start = d.offset();

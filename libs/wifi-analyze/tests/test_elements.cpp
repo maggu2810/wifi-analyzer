@@ -100,6 +100,18 @@ TEST_CASE("country with operating triplet", "[elements]") {
     CHECK(test_support::node(e.tree, MessageId::country_operating_triplet) != nullptr);
 }
 
+TEST_CASE("country without environment octet (Android emulator AP)", "[elements]") {
+    const auto e = single("0705 5553 010d14");
+    CHECK(e.status == DecodeStatus::ok);
+    CHECK(std::get<Country>(e.value).code == "US");
+    CHECK(test_support::has_diagnostic(e.diagnostics, MessageId::country_missing_environment));
+    const auto* triplet = test_support::node(e.tree, MessageId::country_subband_triplet);
+    REQUIRE(triplet != nullptr);
+    REQUIRE(triplet->children.size() == 3);
+    CHECK(std::get<std::uint64_t>(triplet->children[1].value) == 13);
+    CHECK(std::get<std::int64_t>(triplet->children[2].value) == 20);
+}
+
 TEST_CASE("extended capabilities with unknown bits", "[elements]") {
     const auto e = single("7f0c 0000080000000000000000 80"); // bit 19 and bit 95
     const auto& caps = std::get<ExtendedCapabilities>(e.value);

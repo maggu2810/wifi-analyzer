@@ -203,3 +203,26 @@ TEST_CASE("summary overview renders in every locale", "[summary]") {
         CHECK_FALSE(format_value(*security, localizer(locale)).empty());
     }
 }
+
+TEST_CASE("real capture: Android emulator AP", "[summary][real]") {
+    const auto bytes = parse_hex(test_support::read_file(test_support::testdata(
+                                     "captures/android/emulator-androidwifi.hex")))
+                           .value();
+    DecodeContext ctx;
+    ctx.frequency_mhz = 2437;
+    ctx.privacy = false;
+    const auto ies = decode(bytes, ctx);
+    REQUIRE(ies.elements.size() == 7);
+    for (const auto& e : ies.elements) {
+        INFO(e.type);
+        CHECK(e.status == DecodeStatus::ok);
+    }
+    const auto s = summarize(ies, ctx);
+    CHECK(s.ssid == "AndroidWifi");
+    CHECK(s.security.type == SecurityType::open);
+    CHECK(s.phy.generation == 0);
+    CHECK(s.phy.standards == std::vector{PhyStandard::b, PhyStandard::g});
+    CHECK(s.phy.primary_channel == 6);
+    CHECK(s.country == "US");
+    CHECK(s.wmm);
+}
