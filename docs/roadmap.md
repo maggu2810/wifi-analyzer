@@ -3,13 +3,18 @@
 Implementation starts only after an explicit go from the maintainer.
 Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postponed.
 
-## M0 – Skeleton
+## M0 – Skeleton ✅ (2026-10-26)
 - Top-level CMake + presets, `.clang-format`, `.clang-tidy`, `.editorconfig`, `.gitignore`.
-- `libwifianalyze` skeleton: byte reader, TLV walker, registry, i18n catalog generator
-  (English only), test framework wired.
-- **Exit:** `cmake --preset dev && ctest` green; TLV walker fuzzed.
+- `libwifianalyze` skeleton: byte reader, hex parser, TLV walker (fragment reassembly),
+  i18n catalog generator + Localizer (English, plus German for the existing messages),
+  Catch2 wired, libFuzzer targets + `tools/run_fuzzers.sh`, NDK cross-build preset.
+- The decoder **registry moved to M1**: its entry shape depends on the decode/describe
+  signatures, which are designed together with the first decoders.
+- **Exit:** met – GCC, Clang and ASan/UBSan test runs green, clang-tidy clean, NDK arm64
+  build OK, each fuzzer ran 60 s without findings.
 
 ## M1 – Library core
+- Decoder registry, decoded tree model, `decode()` entry point.
 - All **P1** elements (`ie-coverage.md`), decoded tree, `BssSummary`, channel utilities,
   JSON writer + JSON schema v1, built-in OUI subset + IEEE CSV parser.
 - Golden tests from first captures (old sample + own APs).

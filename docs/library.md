@@ -12,6 +12,9 @@ Input: a raw IE byte stream (sequence of `id | length | payload` TLVs) – from
 Output: a fully decoded, loss-free model, a derived per-BSS summary, localized labels,
 JSON.
 
+`key=value` input such as `ie=…` is handled by the frontends' input parsers, not by the
+library.
+
 Constraints: C++23, standard library only, **no I/O** (callers pass bytes/text), no
 exceptions escape the public API, no mutable global state (registries and catalogs are
 static read-only tables; a loaded OUI database is an object the caller owns), thread-safe.
@@ -43,7 +46,8 @@ struct DecodeContext {
 
 // Decoding
 DecodedIes  decode(std::span<const std::uint8_t> ies, const DecodeContext& = {});
-std::expected<std::vector<std::uint8_t>, Error> parse_hex(std::string_view); // tolerant: spaces, ':', "ie=" prefix
+std::expected<std::vector<std::uint8_t>, Diagnostic> parse_hex(std::string_view); // tolerant: "0x", whitespace, ':' '-'
+ElementStream split_elements(std::span<const std::uint8_t> ies);  // raw TLV layer, used by decode()
 BssSummary  summarize(const DecodedIes&, const DecodeContext& = {});
 
 // Localization (see i18n.md)

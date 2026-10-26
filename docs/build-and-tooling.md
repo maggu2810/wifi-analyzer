@@ -3,10 +3,13 @@
 ## C++ (library + CLI)
 
 - CMake (recent; minimum pinned in M0 to what Fedora 45 and the Android SDK CMake provide), Ninja, `CMakePresets.json`:
-  - `dev` – Debug, warnings as errors, tests on
-  - `asan` – Debug + AddressSanitizer + UndefinedBehaviorSanitizer
-  - `fuzz` – Clang + libFuzzer targets
-  - `release` – RelWithDebInfo / Release
+  - `dev` – Debug (GCC), warnings as errors, tests on
+  - `dev-clang` – same with Clang
+  - `asan` – Debug (Clang) + AddressSanitizer + UndefinedBehaviorSanitizer
+  - `fuzz` – Clang + libFuzzer targets (run with `tools/run_fuzzers.sh [seconds]`)
+  - `tidy` – Clang build with clang-tidy (config: `.clang-tidy`, relaxed in `tests/.clang-tidy`)
+  - `release` – Release, no tests
+  - `ndk-arm64` – cross build of the library with the Android NDK (`$ANDROID_NDK_HOME`)
 - Compilers: GCC and Clang as shipped with Fedora 45; current NDK Clang for Android 16. Language level C++23.
 - Top-level options:
   - `WIFI_BUILD_CLI` (ON), `WIFI_BUILD_TESTS` (ON when top level), `WIFI_BUILD_FUZZERS` (OFF)

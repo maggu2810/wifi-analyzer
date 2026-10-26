@@ -8,7 +8,8 @@
 | Golden | Real captures → `to_json` compared with `testdata/golden/*.json` (update script for intentional changes) | `libs/wifi-analyze/tests/golden/` |
 | Schema | Golden JSON validated against `docs/schema/decoded.v1.json` | test |
 | Property / round-trip | Random TLV streams never crash; every byte is covered by exactly one element; `raw` re-concatenation == input | unit |
-| Fuzz | libFuzzer on `decode` + `summarize` + `to_json`; corpus seeded from `testdata/captures` | `libs/wifi-analyze/fuzz/` |
+| Fuzz | libFuzzer targets (today: `split_elements`, `parse_hex`, `format_message`; later `decode` + `summarize` + `to_json`); seeds in `fuzz/corpus/`, later also from `testdata/captures`; `tools/run_fuzzers.sh [seconds]` | `libs/wifi-analyze/fuzz/` |
+| Tools | Python unit tests of the generators (`tools/tests/`), run by ctest | `tools/tests/` |
 | Sanitizers | Whole test suite under ASan + UBSan (run locally before finishing library work) | `asan` preset |
 | Cross-check | Selected captures compared manually against Wireshark dissection; noted in capture README | `testdata/captures/*/README.md` |
 

@@ -94,13 +94,21 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
 ## Build & test (target state, once implemented)
 
 ```bash
-cmake --preset dev  && cmake --build --preset dev  && ctest --preset dev
-cmake --preset asan && cmake --build --preset asan && ctest --preset asan
-cd apps/android && ./gradlew assembleDebug testDebugUnitTest
+cmake --preset dev   && cmake --build --preset dev   && ctest --preset dev    # GCC
+cmake --preset asan  && cmake --build --preset asan  && ctest --preset asan   # Clang + ASan/UBSan
+cmake --preset tidy  && cmake --build --preset tidy                           # clang-tidy, must be clean
+tools/run_fuzzers.sh 60                                                       # libFuzzer, s/target
+ANDROID_NDK_HOME=~/Android/Sdk/ndk/<ver> cmake --preset ndk-arm64 && cmake --build --preset ndk-arm64
+clang-format -i <changed C++ files>
+cd apps/android && ./gradlew assembleDebug testDebugUnitTest                  # from M3
 ```
 
-There is no CI for now. Before declaring work done: build, run tests (including the
-sanitizer preset for library changes), and update the relevant doc if behaviour changed.
+Toolchain in use: GCC 16, Clang 23, CMake 4.3 (minimum 3.31), NDK 30 (Clang 21). GCC's
+ASan runtime is not installed on the dev machine, hence sanitizer/fuzz presets use Clang.
+
+There is no CI for now. Before declaring work done: build, run tests (dev + asan), keep
+clang-tidy clean, check the NDK build for library changes, and update the relevant doc if
+behaviour changed.
 
 ## Working agreements
 
