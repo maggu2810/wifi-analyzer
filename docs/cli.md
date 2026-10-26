@@ -34,6 +34,24 @@ GLOBAL: --lang LANG  --color auto|always|never  --no-oui-database
 
 Exit codes: `0` ok, `1` usage error, `3` input could not be parsed, `4` OUI download/import failed.
 
+## Getting input on Linux
+
+NetworkManager does not expose raw IEs (neither `nmcli` nor its D-Bus API). Options:
+
+| Source | Root needed | Notes |
+|---|---|---|
+| `tools/nl80211-scan-dump.py` | no | Reads the kernel scan cache (nl80211 `GET_SCAN` dump, Python stdlib only) and prints `wpa_cli`-style blocks incl. `ie=` / `beacon_ie=`. Runs in parallel to NetworkManager (read-only). |
+| `nmcli device wifi rescan` | no (polkit) | Refreshes the kernel scan cache via NetworkManager. |
+| wpa_supplicant D-Bus `fi.w1.wpa_supplicant1.BSS` property `IEs` | yes (default policy) | NetworkManager's backend; no control socket (`-u`), so `wpa_cli` does not work there. |
+| `wpa_cli BSS <n>` | socket group | Only with a wpa_supplicant control interface (embedded/manual setups). |
+| Android app → export capture | – | Decode/list the JSON file directly. |
+
+```bash
+nmcli device wifi rescan; sleep 3
+tools/nl80211-scan-dump.py | wifi-analyze-cli list
+tools/nl80211-scan-dump.py | wifi-analyze-cli decode --bss aa:bb:cc:dd:ee:ff
+```
+
 ## Inputs
 
 See `data-formats.md` §1. Auto-detection: capture JSON → `wpa_cli BSS` key/value text →
