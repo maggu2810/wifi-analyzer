@@ -24,7 +24,7 @@ TEST_CASE("every message has a key and an English text", "[i18n]") {
         CHECK(message_id_from_key(message_key(id)) == id);
     }
     CHECK_FALSE(message_id_from_key("does.not.exist").has_value());
-    CHECK(message_key(MessageId::tlv_truncated) == "tlv.truncated");
+    CHECK(message_key(MessageId::tlv_truncated) == "tlv_truncated");
 }
 
 TEST_CASE("locale selection normalizes and falls back", "[i18n]") {
@@ -42,9 +42,9 @@ TEST_CASE("locale selection normalizes and falls back", "[i18n]") {
 TEST_CASE("translated and formatted messages", "[i18n]") {
     const std::array<std::string, 4> args{"48", "12", "20", "3"};
     CHECK(Localizer{}.format(MessageId::tlv_truncated, args) ==
-          "Element 48 at offset 12 declares 20 bytes but only 3 remain");
+          "Element 48 at offset 12 declares 20 octets but only 3 remain");
     CHECK(localizer("de").format(MessageId::tlv_truncated, args) ==
-          "Element 48 an Offset 12 gibt 20 Bytes an, aber nur 3 sind vorhanden");
+          "Element 48 an Offset 12 gibt 20 Oktette an, aber nur 3 sind vorhanden");
 }
 
 TEST_CASE("format_message placeholder handling", "[i18n]") {

@@ -1,0 +1,1439 @@
+{
+  "schema": "wifi-analyze.decoded",
+  "schema_version": 1,
+  "locale": "en",
+  "summary": {
+    "ssid": "CityFree",
+    "ssid_hex": "4369747946726565",
+    "ssid_present": true,
+    "hidden": false,
+    "security": {
+      "type": "enhanced_open_transition",
+      "label": "Open (OWE transition)",
+      "pmf": "unknown",
+      "pmf_label": "Unknown",
+      "rsn": false,
+      "wpa1": false,
+      "weak": false,
+      "sae_h2e": false,
+      "sae_pk": false,
+      "akms": [],
+      "pairwise_ciphers": [],
+      "group_cipher": null,
+      "group_management_cipher": null
+    },
+    "phy": {
+      "generation": 0,
+      "generation_label": "802.11g",
+      "standards": [
+        "802.11g"
+      ],
+      "band": "2.4",
+      "band_label": "2.4 GHz",
+      "primary_channel": 11,
+      "primary_frequency_mhz": 2462,
+      "channel_width_mhz": 20,
+      "eighty_plus_eighty": false,
+      "center_frequencies_mhz": [
+        2462
+      ],
+      "punctured_subchannels": null,
+      "max_spatial_streams": 0,
+      "max_rate_mbps": 54,
+      "max_legacy_rate_mbps": 54
+    },
+    "bss_load": null,
+    "country": "",
+    "roaming": {
+      "k": false,
+      "v": false,
+      "r": false,
+      "ft_over_ds": false
+    },
+    "wmm": false,
+    "uapsd": false,
+    "bss_color": null,
+    "twt_responder": false,
+    "mlo": null,
+    "neighbors": [],
+    "nontransmitted_bssids": 1,
+    "device": {
+      "manufacturer": "",
+      "model_name": "",
+      "model_number": "",
+      "device_name": "",
+      "serial_number": ""
+    },
+    "access_network_type": 3,
+    "internet": true,
+    "hotspot20_release": 3,
+    "vendors": [
+      {
+        "oui": "50:6f:9a",
+        "name": "Wi-Fi Alliance"
+      }
+    ],
+    "element_count": 9,
+    "problem_count": 0
+  },
+  "overview": [
+    {
+      "key": "ssid_name",
+      "label": "SSID",
+      "text": "CityFree",
+      "value": "CityFree"
+    },
+    {
+      "key": "summary_security",
+      "label": "Security",
+      "text": "Open (OWE transition)",
+      "value": 5,
+      "value_name": "Open (OWE transition)"
+    },
+    {
+      "key": "summary_phy",
+      "label": "PHY",
+      "text": "802.11g",
+      "value": "802.11g",
+      "children": [
+        {
+          "key": "summary_standards",
+          "label": "Standards",
+          "text": "802.11g",
+          "value": "802.11g"
+        },
+        {
+          "key": "summary_band",
+          "label": "Band",
+          "text": "2.4 GHz",
+          "value": "2.4 GHz"
+        },
+        {
+          "key": "summary_primary_channel",
+          "label": "Primary Channel",
+          "text": "11",
+          "value": 11
+        },
+        {
+          "key": "summary_frequency",
+          "label": "Frequency",
+          "text": "2462 MHz",
+          "value": 2462,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_channel_width",
+          "label": "Channel Width",
+          "text": "20 MHz",
+          "value": "20 MHz"
+        },
+        {
+          "key": "summary_center_frequency",
+          "label": "Center Frequency",
+          "text": "2462 MHz",
+          "value": 2462,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_max_rate",
+          "label": "Max PHY Rate (estimate)",
+          "text": "54 Mbit/s",
+          "value": 54,
+          "unit": "Mbit/s"
+        }
+      ]
+    },
+    {
+      "key": "summary_features",
+      "label": "Features",
+      "children": [
+        {
+          "key": "summary_11k",
+          "label": "802.11k (Radio Measurement)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_11v",
+          "label": "802.11v (BSS Transition)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_11r",
+          "label": "802.11r (Fast Transition)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "element_wmm",
+          "label": "WMM",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_twt",
+          "label": "Target Wake Time",
+          "text": "no",
+          "value": false
+        }
+      ]
+    },
+    {
+      "key": "summary_nontransmitted",
+      "label": "Nontransmitted BSSIDs",
+      "text": "1",
+      "value": 1
+    },
+    {
+      "key": "summary_interworking",
+      "label": "Interworking / Passpoint",
+      "children": [
+        {
+          "key": "interworking_access_network_type",
+          "label": "Access Network Type",
+          "text": "Free public network",
+          "value": 3,
+          "value_name": "Free public network"
+        },
+        {
+          "key": "interworking_internet",
+          "label": "Internet",
+          "text": "yes",
+          "value": true
+        },
+        {
+          "key": "summary_hs20_release",
+          "label": "Hotspot 2.0 Release",
+          "text": "3",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "key": "summary_vendors",
+      "label": "Vendor Elements",
+      "children": [
+        {
+          "key": "common_item",
+          "label": "Item",
+          "text": "50:6f:9a (Wi-Fi Alliance)",
+          "value": "50:6f:9a (Wi-Fi Alliance)"
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "index": 0,
+      "id": 0,
+      "type": "ssid",
+      "name": "SSID",
+      "offset": 0,
+      "stream_length": 10,
+      "length": 8,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "4369747946726565",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ssid_name",
+          "label": "SSID",
+          "text": "CityFree",
+          "value": "CityFree",
+          "bytes": [
+            0,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "id": 1,
+      "type": "supported_rates",
+      "name": "Supported Rates",
+      "offset": 10,
+      "stream_length": 10,
+      "length": 8,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "8c129824b048606c",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "6 Mbit/s",
+          "value": 6,
+          "unit": "Mbit/s",
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "9 Mbit/s",
+          "value": 9,
+          "unit": "Mbit/s",
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "12 Mbit/s",
+          "value": 12,
+          "unit": "Mbit/s",
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "18 Mbit/s",
+          "value": 18,
+          "unit": "Mbit/s",
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "24 Mbit/s",
+          "value": 24,
+          "unit": "Mbit/s",
+          "bytes": [
+            4,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "36 Mbit/s",
+          "value": 36,
+          "unit": "Mbit/s",
+          "bytes": [
+            5,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "48 Mbit/s",
+          "value": 48,
+          "unit": "Mbit/s",
+          "bytes": [
+            6,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "54 Mbit/s",
+          "value": 54,
+          "unit": "Mbit/s",
+          "bytes": [
+            7,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": 3,
+      "type": "ds_parameter_set",
+      "name": "DSSS Parameter Set",
+      "offset": 20,
+      "stream_length": 3,
+      "length": 1,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0b",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ds_current_channel",
+          "label": "Current Channel",
+          "text": "11",
+          "value": 11,
+          "bytes": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": 107,
+      "type": "interworking",
+      "name": "Interworking",
+      "offset": 23,
+      "stream_length": 5,
+      "length": 3,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "130204",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "interworking_access_network_options",
+          "label": "Access Network Options",
+          "text": "0x13",
+          "value": 19,
+          "bytes": [
+            0,
+            1
+          ],
+          "children": [
+            {
+              "key": "interworking_access_network_type",
+              "label": "Access Network Type",
+              "text": "Free public network (3)",
+              "value": 3,
+              "value_name": "Free public network",
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                0,
+                4
+              ]
+            },
+            {
+              "key": "interworking_internet",
+              "label": "Internet",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "interworking_asra",
+              "label": "ASRA (Additional Step Required for Access)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "interworking_esr",
+              "label": "ESR (Emergency Services Reachable)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "interworking_uesa",
+              "label": "UESA (Unauthenticated Emergency Service Accessible)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "interworking_venue_group",
+          "label": "Venue Group",
+          "text": "2",
+          "value": 2,
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "interworking_venue_type",
+          "label": "Venue Type",
+          "text": "4",
+          "value": 4,
+          "bytes": [
+            2,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": 108,
+      "type": "advertisement_protocol",
+      "name": "Advertisement Protocol",
+      "offset": 28,
+      "stream_length": 4,
+      "length": 2,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "7f00",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "adv_protocol_tuple",
+          "label": "Advertisement Protocol Tuple",
+          "bytes": [
+            0,
+            2
+          ],
+          "children": [
+            {
+              "key": "adv_query_response_info",
+              "label": "Query Response Info",
+              "text": "0x7f",
+              "value": 127,
+              "bytes": [
+                0,
+                1
+              ],
+              "children": [
+                {
+                  "key": "adv_query_response_limit",
+                  "label": "Query Response Length Limit",
+                  "text": "127",
+                  "value": 127,
+                  "bytes": [
+                    0,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    7
+                  ]
+                },
+                {
+                  "key": "adv_pame_bi",
+                  "label": "PAME-BI",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    0,
+                    1
+                  ],
+                  "bits": [
+                    7,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "adv_protocol_id",
+              "label": "Advertisement Protocol ID",
+              "text": "ANQP (0)",
+              "value": 0,
+              "value_name": "ANQP",
+              "bytes": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": 111,
+      "type": "roaming_consortium",
+      "name": "Roaming Consortium",
+      "offset": 32,
+      "stream_length": 12,
+      "length": 10,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0053506f9a001bc504bd",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "roaming_anqp_ois",
+          "label": "Number of ANQP OIs",
+          "text": "0",
+          "value": 0,
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "roaming_oi_lengths",
+          "label": "OI #1 and #2 Lengths",
+          "text": "0x53",
+          "value": 83,
+          "bytes": [
+            1,
+            1
+          ],
+          "children": [
+            {
+              "key": "roaming_oi1_length",
+              "label": "OI #1 Length",
+              "text": "3",
+              "value": 3,
+              "bytes": [
+                1,
+                1
+              ],
+              "bits": [
+                0,
+                4
+              ]
+            },
+            {
+              "key": "roaming_oi2_length",
+              "label": "OI #2 Length",
+              "text": "5",
+              "value": 5,
+              "bytes": [
+                1,
+                1
+              ],
+              "bits": [
+                4,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "key": "roaming_oi1",
+          "label": "OI #1",
+          "text": "506f9a",
+          "value": "506f9a",
+          "bytes": [
+            2,
+            3
+          ]
+        },
+        {
+          "key": "roaming_oi2",
+          "label": "OI #2",
+          "text": "001bc504bd",
+          "value": "001bc504bd",
+          "bytes": [
+            5,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": 71,
+      "type": "multiple_bssid",
+      "name": "Multiple BSSID",
+      "offset": 44,
+      "stream_length": 44,
+      "length": 42,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "020027530211040006477565737432550301020030140100000fac040100000fac040100000fac020000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "mbssid_max_indicator",
+          "label": "MaxBSSID Indicator",
+          "text": "2",
+          "value": 2,
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "mbssid_max_bssids",
+          "label": "Maximum Number of BSSIDs",
+          "text": "4",
+          "value": 4
+        },
+        {
+          "key": "mbssid_profile",
+          "label": "Nontransmitted BSSID Profile",
+          "bytes": [
+            1,
+            41
+          ],
+          "children": [
+            {
+              "key": "element_nontx_capability",
+              "label": "Nontransmitted BSSID Capability",
+              "bytes": [
+                5,
+                2
+              ],
+              "children": [
+                {
+                  "key": "nontx_capability",
+                  "label": "Nontransmitted BSSID Capability",
+                  "text": "0x0411",
+                  "value": 1041,
+                  "bytes": [
+                    5,
+                    2
+                  ],
+                  "children": [
+                    {
+                      "key": "capinfo_ess",
+                      "label": "ESS",
+                      "text": "yes",
+                      "value": true,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        0,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_ibss",
+                      "label": "IBSS",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        1,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_privacy",
+                      "label": "Privacy",
+                      "text": "yes",
+                      "value": true,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        4,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_short_preamble",
+                      "label": "Short Preamble",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        5,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_spectrum_mgmt",
+                      "label": "Spectrum Management",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        8,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_qos",
+                      "label": "QoS",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        9,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_short_slot",
+                      "label": "Short Slot Time",
+                      "text": "yes",
+                      "value": true,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        10,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_apsd",
+                      "label": "APSD",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        11,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_radio_measurement",
+                      "label": "Radio Measurement",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        12,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "capinfo_epd",
+                      "label": "EPD",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        5,
+                        2
+                      ],
+                      "bits": [
+                        13,
+                        1
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "element_ssid",
+              "label": "SSID",
+              "bytes": [
+                9,
+                6
+              ],
+              "children": [
+                {
+                  "key": "ssid_name",
+                  "label": "SSID",
+                  "text": "Guest2",
+                  "value": "Guest2",
+                  "bytes": [
+                    9,
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "element_multiple_bssid_index",
+              "label": "Multiple BSSID-Index",
+              "bytes": [
+                17,
+                3
+              ],
+              "children": [
+                {
+                  "key": "mbssid_index",
+                  "label": "BSSID Index",
+                  "text": "1",
+                  "value": 1,
+                  "bytes": [
+                    17,
+                    1
+                  ]
+                },
+                {
+                  "key": "tim_dtim_period",
+                  "label": "DTIM Period",
+                  "text": "2",
+                  "value": 2,
+                  "bytes": [
+                    18,
+                    1
+                  ]
+                },
+                {
+                  "key": "tim_dtim_count",
+                  "label": "DTIM Count",
+                  "text": "0",
+                  "value": 0,
+                  "bytes": [
+                    19,
+                    1
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "element_rsn",
+              "label": "RSN",
+              "bytes": [
+                22,
+                20
+              ],
+              "children": [
+                {
+                  "key": "common_version",
+                  "label": "Version",
+                  "text": "1",
+                  "value": 1,
+                  "bytes": [
+                    22,
+                    2
+                  ]
+                },
+                {
+                  "key": "rsn_group_cipher",
+                  "label": "Group Data Cipher Suite",
+                  "text": "CCMP-128 (00-0f-ac:4)",
+                  "value": 1027076,
+                  "value_name": "CCMP-128",
+                  "bytes": [
+                    24,
+                    4
+                  ]
+                },
+                {
+                  "key": "rsn_pairwise_list",
+                  "label": "Pairwise Cipher Suites",
+                  "bytes": [
+                    28,
+                    6
+                  ],
+                  "children": [
+                    {
+                      "key": "common_count",
+                      "label": "Count",
+                      "text": "1",
+                      "value": 1,
+                      "bytes": [
+                        28,
+                        2
+                      ]
+                    },
+                    {
+                      "key": "rsn_pairwise",
+                      "label": "Pairwise Cipher Suite",
+                      "text": "CCMP-128 (00-0f-ac:4)",
+                      "value": 1027076,
+                      "value_name": "CCMP-128",
+                      "bytes": [
+                        30,
+                        4
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "key": "rsn_akm_list",
+                  "label": "AKM Suites",
+                  "bytes": [
+                    34,
+                    6
+                  ],
+                  "children": [
+                    {
+                      "key": "common_count",
+                      "label": "Count",
+                      "text": "1",
+                      "value": 1,
+                      "bytes": [
+                        34,
+                        2
+                      ]
+                    },
+                    {
+                      "key": "rsn_akm",
+                      "label": "AKM Suite",
+                      "text": "PSK (00-0f-ac:2)",
+                      "value": 1027074,
+                      "value_name": "PSK",
+                      "bytes": [
+                        36,
+                        4
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "key": "rsn_capabilities",
+                  "label": "RSN Capabilities",
+                  "text": "0x0000",
+                  "value": 0,
+                  "bytes": [
+                    40,
+                    2
+                  ],
+                  "children": [
+                    {
+                      "key": "rsn_preauth",
+                      "label": "Preauthentication",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        0,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_no_pairwise",
+                      "label": "No Pairwise",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        1,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_ptksa_replay",
+                      "label": "PTKSA Replay Counter",
+                      "text": "1 (0)",
+                      "value": 0,
+                      "value_name": "1",
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        2,
+                        2
+                      ]
+                    },
+                    {
+                      "key": "rsn_gtksa_replay",
+                      "label": "GTKSA Replay Counter",
+                      "text": "1 (0)",
+                      "value": 0,
+                      "value_name": "1",
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        4,
+                        2
+                      ]
+                    },
+                    {
+                      "key": "rsn_mfpr",
+                      "label": "Management Frame Protection Required",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        6,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_mfpc",
+                      "label": "Management Frame Protection Capable",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        7,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_joint_multiband",
+                      "label": "Joint Multi-band RSNA",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        8,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_peerkey",
+                      "label": "PeerKey Enabled",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        9,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_spp_amsdu_capable",
+                      "label": "SPP A-MSDU Capable",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        10,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_spp_amsdu_required",
+                      "label": "SPP A-MSDU Required",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        11,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_pbac",
+                      "label": "PBAC",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        12,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_extended_key_id",
+                      "label": "Extended Key ID for Individually Addressed Frames",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        13,
+                        1
+                      ]
+                    },
+                    {
+                      "key": "rsn_ocvc",
+                      "label": "OCVC (Operating Channel Validation)",
+                      "text": "no",
+                      "value": false,
+                      "bytes": [
+                        40,
+                        2
+                      ],
+                      "bits": [
+                        14,
+                        1
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": 221,
+      "oui": "50:6f:9a",
+      "vendor_type": 16,
+      "type": "vendor.wfa.hs20",
+      "name": "Hotspot 2.0 Indication",
+      "offset": 88,
+      "stream_length": 7,
+      "length": 5,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "506f9a1020",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vendor_oui",
+          "label": "OUI",
+          "text": "50:6f:9a",
+          "value": "50:6f:9a",
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "vendor_name",
+              "label": "Vendor",
+              "text": "Wi-Fi Alliance",
+              "value": "Wi-Fi Alliance",
+              "bytes": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vendor_type",
+          "label": "Vendor Type",
+          "text": "16",
+          "value": 16,
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "hs20_indication",
+          "label": "Hotspot 2.0 Indication",
+          "text": "0x20",
+          "value": 32,
+          "bytes": [
+            4,
+            1
+          ],
+          "children": [
+            {
+              "key": "hs20_dgaf_disabled",
+              "label": "DGAF Disabled",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                4,
+                1
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "hs20_pps_mo_present",
+              "label": "PPS MO ID Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                4,
+                1
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "hs20_anqp_domain_present",
+              "label": "ANQP Domain ID Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                4,
+                1
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "hs20_release",
+              "label": "Release Number",
+              "text": "Release 3 (2)",
+              "value": 2,
+              "value_name": "Release 3",
+              "bytes": [
+                4,
+                1
+              ],
+              "bits": [
+                4,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": 221,
+      "oui": "50:6f:9a",
+      "vendor_type": 28,
+      "type": "vendor.wfa.owe_transition",
+      "name": "OWE Transition Mode",
+      "offset": 95,
+      "stream_length": 23,
+      "length": 21,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "506f9a1c00112233446608436974794f574531510b",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vendor_oui",
+          "label": "OUI",
+          "text": "50:6f:9a",
+          "value": "50:6f:9a",
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "vendor_name",
+              "label": "Vendor",
+              "text": "Wi-Fi Alliance",
+              "value": "Wi-Fi Alliance",
+              "bytes": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vendor_type",
+          "label": "Vendor Type",
+          "text": "28",
+          "value": 28,
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "common_bssid",
+          "label": "BSSID",
+          "text": "00:11:22:33:44:66",
+          "value": "00:11:22:33:44:66",
+          "bytes": [
+            4,
+            6
+          ]
+        },
+        {
+          "key": "owe_ssid_length",
+          "label": "SSID Length",
+          "text": "8",
+          "value": 8,
+          "bytes": [
+            10,
+            1
+          ]
+        },
+        {
+          "key": "ssid_name",
+          "label": "SSID",
+          "text": "CityOWE1",
+          "value": "CityOWE1",
+          "bytes": [
+            11,
+            8
+          ]
+        },
+        {
+          "key": "common_operating_class",
+          "label": "Operating Class",
+          "text": "81",
+          "value": 81,
+          "bytes": [
+            19,
+            1
+          ]
+        },
+        {
+          "key": "common_channel",
+          "label": "Channel",
+          "text": "11",
+          "value": 11,
+          "bytes": [
+            20,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostics": []
+}

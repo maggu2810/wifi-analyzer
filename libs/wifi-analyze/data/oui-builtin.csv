@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MIT
+# Curated built-in vendor subset (see docs/library.md "OUI vendor names").
+# OUIs with vendor decoders and common AP / chipset vendors. Source: IEEE MA-L registry.
+# Format: OUI (6 hex digits),Name
+000FAC,IEEE 802.11
+0050F2,Microsoft
+506F9A,Wi-Fi Alliance
+001018,Broadcom
+00904C,Epigram (Broadcom)
+00037F,Atheros Communications
+001374,Atheros Communications
+00A0C6,Qualcomm
+8CFDF0,Qualcomm
+000AF5,Airgo Networks (Qualcomm)
+000CE7,MediaTek
+00E04C,Realtek
+002686,Quantenna Communications
+0017F2,Apple
+00A040,Apple
+004096,Cisco Systems
+000B86,Aruba Networks
+000C42,MikroTik
+001392,Ruckus Wireless
+00156D,Ubiquiti Networks
+002722,Ubiquiti Networks
+00040E,AVM
+00E0FC,Huawei Technologies
+00095B,Netgear
+00146C,Netgear
+001A11,Google
+0000F0,Samsung Electronics
+001D0F,TP-Link

@@ -1,0 +1,266 @@
+// SPDX-License-Identifier: MIT
+// Element registry: one line per known element. Entries without a decoder are only named.
+// Element IDs: IEEE Std 802.11-2020 Table 9-92 (Element IDs) and amendments
+// (802.11ax-2021, 802.11be-2024). Keep each table sorted by id.
+
+#include "core/registry.hpp"
+
+#include <algorithm>
+#include <array>
+
+#include "core/tr.hpp"
+#include "ie/decoders.hpp"
+
+namespace wifi_analyze::core {
+namespace {
+
+using namespace wifi_analyze::ie;
+
+constexpr std::string_view std2020 = "IEEE 802.11-2020";
+constexpr std::string_view std_ax = "IEEE 802.11ax-2021";
+constexpr std::string_view std_be = "IEEE 802.11be-2024";
+
+constexpr std::array standard{
+    ElementEntry{0, "ssid", WA_TR(element_ssid, "SSID"), std2020, decode_ssid},
+    ElementEntry{1, "supported_rates", WA_TR(element_supported_rates, "Supported Rates"), std2020,
+                 decode_supported_rates},
+    ElementEntry{3, "ds_parameter_set", WA_TR(element_ds_parameter_set, "DSSS Parameter Set"),
+                 std2020, decode_ds_parameter_set},
+    ElementEntry{5, "tim", WA_TR(element_tim, "Traffic Indication Map (TIM)"), std2020, decode_tim},
+    ElementEntry{6, "ibss_parameter_set", WA_TR(element_ibss_parameter_set, "IBSS Parameter Set"),
+                 std2020, decode_ibss_parameter_set},
+    ElementEntry{7, "country", WA_TR(element_country, "Country"), std2020, decode_country},
+    ElementEntry{10, "request", WA_TR(element_request, "Request"), std2020, nullptr},
+    ElementEntry{11, "bss_load", WA_TR(element_bss_load, "BSS Load"), std2020, decode_bss_load},
+    ElementEntry{12, "edca_parameter_set", WA_TR(element_edca, "EDCA Parameter Set"), std2020,
+                 nullptr},
+    ElementEntry{32, "power_constraint", WA_TR(element_power_constraint, "Power Constraint"),
+                 std2020, decode_power_constraint},
+    ElementEntry{33, "power_capability", WA_TR(element_power_capability, "Power Capability"),
+                 std2020, nullptr},
+    ElementEntry{35, "tpc_report", WA_TR(element_tpc_report, "TPC Report"), std2020,
+                 decode_tpc_report},
+    ElementEntry{36, "supported_channels", WA_TR(element_supported_channels, "Supported Channels"),
+                 std2020, nullptr},
+    ElementEntry{37, "channel_switch_announcement",
+                 WA_TR(element_csa, "Channel Switch Announcement"), std2020,
+                 decode_channel_switch_announcement},
+    ElementEntry{40, "quiet", WA_TR(element_quiet, "Quiet"), std2020, decode_quiet},
+    ElementEntry{41, "ibss_dfs", WA_TR(element_ibss_dfs, "IBSS DFS"), std2020, nullptr},
+    ElementEntry{42, "erp", WA_TR(element_erp, "ERP Information"), std2020, decode_erp},
+    ElementEntry{45, "ht_capabilities", WA_TR(element_ht_capabilities, "HT Capabilities"), std2020,
+                 decode_ht_capabilities},
+    ElementEntry{46, "qos_capability", WA_TR(element_qos_capability, "QoS Capability"), std2020,
+                 nullptr},
+    ElementEntry{48, "rsn", WA_TR(element_rsn, "RSN"), std2020, decode_rsn},
+    ElementEntry{50, "extended_supported_rates",
+                 WA_TR(element_extended_rates, "Extended Supported Rates"), std2020,
+                 decode_supported_rates},
+    ElementEntry{51, "ap_channel_report", WA_TR(element_ap_channel_report, "AP Channel Report"),
+                 std2020, decode_ap_channel_report},
+    ElementEntry{52, "neighbor_report", WA_TR(element_neighbor_report, "Neighbor Report"), std2020,
+                 nullptr},
+    ElementEntry{54, "mobility_domain", WA_TR(element_mobility_domain, "Mobility Domain"), std2020,
+                 decode_mobility_domain},
+    ElementEntry{55, "fast_bss_transition", WA_TR(element_fte, "Fast BSS Transition"), std2020,
+                 nullptr},
+    ElementEntry{56, "timeout_interval", WA_TR(element_timeout_interval, "Timeout Interval"),
+                 std2020, nullptr},
+    ElementEntry{59, "supported_operating_classes",
+                 WA_TR(element_supported_op_classes, "Supported Operating Classes"), std2020,
+                 decode_supported_operating_classes},
+    ElementEntry{60, "extended_channel_switch_announcement",
+                 WA_TR(element_ecsa, "Extended Channel Switch Announcement"), std2020,
+                 decode_extended_channel_switch_announcement},
+    ElementEntry{61, "ht_operation", WA_TR(element_ht_operation, "HT Operation"), std2020,
+                 decode_ht_operation},
+    ElementEntry{62, "secondary_channel_offset",
+                 WA_TR(element_secondary_channel_offset, "Secondary Channel Offset"), std2020,
+                 nullptr},
+    ElementEntry{66, "measurement_pilot_transmission",
+                 WA_TR(element_measurement_pilot, "Measurement Pilot Transmission"), std2020,
+                 nullptr},
+    ElementEntry{67, "bss_available_admission_capacity",
+                 WA_TR(element_bss_admission_capacity, "BSS Available Admission Capacity"), std2020,
+                 nullptr},
+    ElementEntry{68, "bss_ac_access_delay",
+                 WA_TR(element_bss_ac_access_delay, "BSS AC Access Delay"), std2020, nullptr},
+    ElementEntry{69, "time_advertisement", WA_TR(element_time_advertisement, "Time Advertisement"),
+                 std2020, nullptr},
+    ElementEntry{70, "rm_enabled_capabilities",
+                 WA_TR(element_rm_capabilities, "RM Enabled Capabilities"), std2020,
+                 decode_rm_enabled_capabilities},
+    ElementEntry{71, "multiple_bssid", WA_TR(element_multiple_bssid, "Multiple BSSID"), std2020,
+                 decode_multiple_bssid},
+    ElementEntry{72, "bss_coexistence", WA_TR(element_coexistence, "20/40 BSS Coexistence"),
+                 std2020, decode_bss_coexistence},
+    ElementEntry{73, "bss_intolerant_channel_report",
+                 WA_TR(element_intolerant_report, "20/40 BSS Intolerant Channel Report"), std2020,
+                 nullptr},
+    ElementEntry{74, "obss_scan_parameters",
+                 WA_TR(element_obss_scan, "Overlapping BSS Scan Parameters"), std2020,
+                 decode_obss_scan_parameters},
+    ElementEntry{83, "nontransmitted_bssid_capability",
+                 WA_TR(element_nontx_capability, "Nontransmitted BSSID Capability"), std2020,
+                 decode_nontransmitted_bssid_capability},
+    ElementEntry{84, "ssid_list", WA_TR(element_ssid_list, "SSID List"), std2020, nullptr},
+    ElementEntry{85, "multiple_bssid_index",
+                 WA_TR(element_multiple_bssid_index, "Multiple BSSID-Index"), std2020,
+                 decode_multiple_bssid_index},
+    ElementEntry{90, "bss_max_idle_period", WA_TR(element_bss_max_idle, "BSS Max Idle Period"),
+                 std2020, nullptr},
+    ElementEntry{107, "interworking", WA_TR(element_interworking, "Interworking"), std2020,
+                 decode_interworking},
+    ElementEntry{108, "advertisement_protocol",
+                 WA_TR(element_advertisement_protocol, "Advertisement Protocol"), std2020,
+                 decode_advertisement_protocol},
+    ElementEntry{110, "qos_map", WA_TR(element_qos_map, "QoS Map"), std2020, nullptr},
+    ElementEntry{111, "roaming_consortium", WA_TR(element_roaming_consortium, "Roaming Consortium"),
+                 std2020, decode_roaming_consortium},
+    ElementEntry{113, "mesh_configuration", WA_TR(element_mesh_configuration, "Mesh Configuration"),
+                 std2020, decode_mesh_configuration},
+    ElementEntry{114, "mesh_id", WA_TR(element_mesh_id, "Mesh ID"), std2020, decode_mesh_id},
+    ElementEntry{127, "extended_capabilities",
+                 WA_TR(element_extended_capabilities, "Extended Capabilities"), std2020,
+                 decode_extended_capabilities},
+    ElementEntry{191, "vht_capabilities", WA_TR(element_vht_capabilities, "VHT Capabilities"),
+                 std2020, decode_vht_capabilities},
+    ElementEntry{192, "vht_operation", WA_TR(element_vht_operation, "VHT Operation"), std2020,
+                 decode_vht_operation},
+    ElementEntry{193, "extended_bss_load", WA_TR(element_extended_bss_load, "Extended BSS Load"),
+                 std2020, nullptr},
+    ElementEntry{194, "wide_bandwidth_channel_switch",
+                 WA_TR(element_wide_bw_cs, "Wide Bandwidth Channel Switch"), std2020, nullptr},
+    ElementEntry{195, "transmit_power_envelope", WA_TR(element_tpe, "Transmit Power Envelope"),
+                 std2020, decode_transmit_power_envelope},
+    ElementEntry{196, "channel_switch_wrapper", WA_TR(element_cs_wrapper, "Channel Switch Wrapper"),
+                 std2020, nullptr},
+    ElementEntry{199, "operating_mode_notification",
+                 WA_TR(element_omn, "Operating Mode Notification"), std2020,
+                 decode_operating_mode_notification},
+    ElementEntry{201, "reduced_neighbor_report", WA_TR(element_rnr, "Reduced Neighbor Report"),
+                 std2020, decode_reduced_neighbor_report},
+    ElementEntry{206, "ftm_parameters",
+                 WA_TR(element_ftm_parameters, "Fine Timing Measurement Parameters"), std2020,
+                 nullptr},
+    ElementEntry{216, "twt", WA_TR(element_twt, "Target Wake Time"), std2020, nullptr},
+    ElementEntry{240, "fils_indication", WA_TR(element_fils_indication, "FILS Indication"), std2020,
+                 nullptr},
+    ElementEntry{242, "fragment", WA_TR(element_fragment, "Fragment"), std2020, nullptr},
+    ElementEntry{244, "rsn_extension", WA_TR(element_rsnx, "RSN Extension"), std2020,
+                 decode_rsn_extension},
+};
+
+constexpr std::array extension{
+    ElementEntry{32, "password_identifier", WA_TR(element_ext_password_id, "Password Identifier"),
+                 std2020, nullptr},
+    ElementEntry{35, "he_capabilities", WA_TR(element_he_capabilities, "HE Capabilities"), std_ax,
+                 decode_he_capabilities},
+    ElementEntry{36, "he_operation", WA_TR(element_he_operation, "HE Operation"), std_ax,
+                 decode_he_operation},
+    ElementEntry{37, "uora_parameter_set", WA_TR(element_uora, "UORA Parameter Set"), std_ax,
+                 nullptr},
+    ElementEntry{38, "mu_edca_parameter_set", WA_TR(element_mu_edca, "MU EDCA Parameter Set"),
+                 std_ax, decode_mu_edca_parameter_set},
+    ElementEntry{39, "spatial_reuse_parameter_set",
+                 WA_TR(element_spatial_reuse, "Spatial Reuse Parameter Set"), std_ax,
+                 decode_spatial_reuse},
+    ElementEntry{41, "ndp_feedback_report_parameter_set",
+                 WA_TR(element_ndp_feedback, "NDP Feedback Report Parameter Set"), std_ax, nullptr},
+    ElementEntry{42, "bss_color_change_announcement",
+                 WA_TR(element_bss_color_change, "BSS Color Change Announcement"), std_ax,
+                 decode_bss_color_change},
+    ElementEntry{43, "quiet_time_period_setup",
+                 WA_TR(element_quiet_time_period, "Quiet Time Period Setup"), std_ax, nullptr},
+    ElementEntry{45, "ess_report", WA_TR(element_ess_report, "ESS Report"), std_ax, nullptr},
+    ElementEntry{46, "ops", WA_TR(element_ops, "OPS"), std_ax, nullptr},
+    ElementEntry{47, "he_bss_load", WA_TR(element_he_bss_load, "HE BSS Load"), std_ax, nullptr},
+    ElementEntry{52, "max_channel_switch_time",
+                 WA_TR(element_max_cs_time, "Max Channel Switch Time"), std_ax, nullptr},
+    ElementEntry{55, "multiple_bssid_configuration",
+                 WA_TR(element_mbssid_config, "Multiple BSSID Configuration"), std2020,
+                 decode_multiple_bssid_configuration},
+    ElementEntry{56, "non_inheritance", WA_TR(element_non_inheritance, "Non-Inheritance"), std2020,
+                 decode_non_inheritance},
+    ElementEntry{57, "known_bssid", WA_TR(element_known_bssid, "Known BSSID"), std2020, nullptr},
+    ElementEntry{58, "short_ssid_list", WA_TR(element_short_ssid_list, "Short SSID List"), std2020,
+                 decode_short_ssid_list},
+    ElementEntry{59, "he_6ghz_band_capabilities",
+                 WA_TR(element_he_6ghz_caps, "HE 6 GHz Band Capabilities"), std_ax,
+                 decode_he_6ghz_band_capabilities},
+    ElementEntry{60, "ul_mu_power_capabilities",
+                 WA_TR(element_ul_mu_power, "UL MU Power Capabilities"), std_ax, nullptr},
+    ElementEntry{106, "eht_operation", WA_TR(element_eht_operation, "EHT Operation"), std_be,
+                 decode_eht_operation},
+    ElementEntry{107, "multi_link", WA_TR(element_multi_link, "Multi-Link"), std_be,
+                 decode_multi_link},
+    ElementEntry{108, "eht_capabilities", WA_TR(element_eht_capabilities, "EHT Capabilities"),
+                 std_be, decode_eht_capabilities},
+    ElementEntry{109, "tid_to_link_mapping", WA_TR(element_t2lm, "TID-to-Link Mapping"), std_be,
+                 nullptr},
+};
+
+constexpr std::array vendor{
+    VendorEntry{oui_microsoft, 1, "vendor.microsoft.wpa", WA_TR(element_wpa, "WPA"),
+                "Wi-Fi Alliance WPA", decode_vendor_wpa},
+    VendorEntry{oui_microsoft, 2, "vendor.microsoft.wmm", WA_TR(element_wmm, "WMM"),
+                "Wi-Fi Alliance WMM 1.2", decode_vendor_wmm},
+    VendorEntry{oui_microsoft, 4, "vendor.microsoft.wps",
+                WA_TR(element_wps, "Wi-Fi Protected Setup"), "Wi-Fi Simple Configuration 2.0",
+                decode_vendor_wps},
+    VendorEntry{oui_wfa, 0x09, "vendor.wfa.p2p", WA_TR(element_p2p, "Wi-Fi Direct (P2P)"),
+                "Wi-Fi P2P Technical Specification", decode_vendor_p2p},
+    VendorEntry{oui_wfa, 0x10, "vendor.wfa.hs20", WA_TR(element_hs20, "Hotspot 2.0 Indication"),
+                "Wi-Fi Alliance Hotspot 2.0", decode_vendor_hs20},
+    VendorEntry{oui_wfa, 0x16, "vendor.wfa.mbo_oce", WA_TR(element_mbo_oce, "MBO-OCE"),
+                "Wi-Fi Alliance MBO / OCE", decode_vendor_mbo_oce},
+    VendorEntry{oui_wfa, 0x1c, "vendor.wfa.owe_transition",
+                WA_TR(element_owe_transition, "OWE Transition Mode"),
+                "Wi-Fi Alliance Enhanced Open", decode_vendor_owe_transition},
+};
+
+template <class Table>
+const ElementEntry* find_in(const Table& table, std::uint8_t id) noexcept {
+    const auto* const it = std::ranges::lower_bound(table, id, {}, &ElementEntry::id);
+    return it != table.end() && it->id == id ? &*it : nullptr;
+}
+
+constexpr bool sorted_by_id(const auto& table) {
+    return std::ranges::is_sorted(table, {}, &ElementEntry::id) &&
+           std::ranges::adjacent_find(table, {}, &ElementEntry::id) == table.end();
+}
+static_assert(sorted_by_id(standard), "standard element table must be sorted and unique");
+static_assert(sorted_by_id(extension), "extension element table must be sorted and unique");
+
+} // namespace
+
+const ElementEntry* find_standard(std::uint8_t id) noexcept {
+    return find_in(standard, id);
+}
+
+const ElementEntry* find_extension(std::uint8_t ext_id) noexcept {
+    return find_in(extension, ext_id);
+}
+
+const VendorEntry* find_vendor(const Oui& oui, std::optional<std::uint8_t> vendor_type) noexcept {
+    for (const auto& entry : vendor) {
+        if (entry.oui == oui && (!entry.vendor_type || entry.vendor_type == vendor_type)) {
+            return &entry;
+        }
+    }
+    return nullptr;
+}
+
+std::span<const ElementEntry> standard_entries() noexcept {
+    return standard;
+}
+
+std::span<const ElementEntry> extension_entries() noexcept {
+    return extension;
+}
+
+std::span<const VendorEntry> vendor_entries() noexcept {
+    return vendor;
+}
+
+} // namespace wifi_analyze::core

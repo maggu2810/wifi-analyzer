@@ -4,7 +4,7 @@ if(NOT CMAKE_CXX_COMPILER_ID MATCHES "Clang")
     message(FATAL_ERROR "WIFI_BUILD_FUZZERS requires Clang (libFuzzer)")
 endif()
 
-foreach(name IN ITEMS split_elements parse_hex format_message)
+foreach(name IN ITEMS decode split_elements parse_hex format_message)
     add_executable(fuzz_${name} fuzz_${name}.cpp)
     target_link_libraries(fuzz_${name} PRIVATE wifi_analyze::wifi_analyze)
     target_link_options(fuzz_${name} PRIVATE -fsanitize=fuzzer)

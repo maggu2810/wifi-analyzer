@@ -1,0 +1,6535 @@
+{
+  "schema": "wifi-analyze.decoded",
+  "schema_version": 1,
+  "locale": "en",
+  "summary": {
+    "ssid": "HomeNet",
+    "ssid_hex": "486f6d654e6574",
+    "ssid_present": true,
+    "hidden": false,
+    "security": {
+      "type": "wpa2_wpa3_personal",
+      "label": "WPA2/WPA3-Personal",
+      "pmf": "capable",
+      "pmf_label": "Capable",
+      "rsn": true,
+      "wpa1": false,
+      "weak": false,
+      "sae_h2e": true,
+      "sae_pk": false,
+      "akms": [
+        {
+          "suite": "00:0f:ac:2",
+          "name": "PSK"
+        },
+        {
+          "suite": "00:0f:ac:8",
+          "name": "SAE"
+        }
+      ],
+      "pairwise_ciphers": [
+        {
+          "suite": "00:0f:ac:4",
+          "name": "CCMP-128"
+        }
+      ],
+      "group_cipher": {
+        "suite": "00:0f:ac:4",
+        "name": "CCMP-128"
+      },
+      "group_management_cipher": null
+    },
+    "phy": {
+      "generation": 6,
+      "generation_label": "Wi-Fi 6",
+      "standards": [
+        "802.11a",
+        "802.11n",
+        "802.11ac",
+        "802.11ax"
+      ],
+      "band": "5",
+      "band_label": "5 GHz",
+      "primary_channel": 36,
+      "primary_frequency_mhz": 5180,
+      "channel_width_mhz": 80,
+      "eighty_plus_eighty": false,
+      "center_frequencies_mhz": [
+        5210
+      ],
+      "punctured_subchannels": null,
+      "max_spatial_streams": 2,
+      "max_rate_mbps": 1201,
+      "max_legacy_rate_mbps": 54
+    },
+    "bss_load": {
+      "station_count": 3,
+      "channel_utilization": 32,
+      "channel_utilization_percent": 12.54901961,
+      "available_admission_capacity": 0
+    },
+    "country": "DE",
+    "roaming": {
+      "k": true,
+      "v": true,
+      "r": false,
+      "ft_over_ds": false
+    },
+    "wmm": true,
+    "uapsd": true,
+    "bss_color": 42,
+    "twt_responder": false,
+    "mlo": null,
+    "neighbors": [],
+    "nontransmitted_bssids": 0,
+    "device": {
+      "manufacturer": "",
+      "model_name": "",
+      "model_number": "",
+      "device_name": "",
+      "serial_number": ""
+    },
+    "access_network_type": null,
+    "internet": null,
+    "hotspot20_release": null,
+    "vendors": [
+      {
+        "oui": "00:50:f2",
+        "name": "Microsoft"
+      }
+    ],
+    "element_count": 17,
+    "problem_count": 0
+  },
+  "overview": [
+    {
+      "key": "ssid_name",
+      "label": "SSID",
+      "text": "HomeNet",
+      "value": "HomeNet"
+    },
+    {
+      "key": "summary_security",
+      "label": "Security",
+      "text": "WPA2/WPA3-Personal",
+      "value": 11,
+      "value_name": "WPA2/WPA3-Personal",
+      "children": [
+        {
+          "key": "summary_pmf",
+          "label": "Management Frame Protection",
+          "text": "Capable",
+          "value": 2,
+          "value_name": "Capable"
+        },
+        {
+          "key": "summary_akms",
+          "label": "Authentication",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "PSK (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "PSK"
+            },
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "SAE (00-0f-ac:8)",
+              "value": 1027080,
+              "value_name": "SAE"
+            }
+          ]
+        },
+        {
+          "key": "summary_pairwise",
+          "label": "Pairwise Ciphers",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "CCMP-128 (00-0f-ac:4)",
+              "value": 1027076,
+              "value_name": "CCMP-128"
+            }
+          ]
+        },
+        {
+          "key": "summary_group_cipher",
+          "label": "Group Cipher",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "CCMP-128 (00-0f-ac:4)",
+              "value": 1027076,
+              "value_name": "CCMP-128"
+            }
+          ]
+        },
+        {
+          "key": "rsnx_sae_h2e",
+          "label": "SAE Hash-to-Element",
+          "text": "yes",
+          "value": true
+        }
+      ]
+    },
+    {
+      "key": "summary_phy",
+      "label": "PHY",
+      "text": "Wi-Fi 6",
+      "value": "Wi-Fi 6",
+      "children": [
+        {
+          "key": "summary_standards",
+          "label": "Standards",
+          "text": "802.11a, 802.11n, 802.11ac, 802.11ax",
+          "value": "802.11a, 802.11n, 802.11ac, 802.11ax"
+        },
+        {
+          "key": "summary_band",
+          "label": "Band",
+          "text": "5 GHz",
+          "value": "5 GHz"
+        },
+        {
+          "key": "summary_primary_channel",
+          "label": "Primary Channel",
+          "text": "36",
+          "value": 36
+        },
+        {
+          "key": "summary_frequency",
+          "label": "Frequency",
+          "text": "5180 MHz",
+          "value": 5180,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_channel_width",
+          "label": "Channel Width",
+          "text": "80 MHz",
+          "value": "80 MHz"
+        },
+        {
+          "key": "summary_center_frequency",
+          "label": "Center Frequency",
+          "text": "5210 MHz",
+          "value": 5210,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_nss",
+          "label": "Spatial Streams",
+          "text": "2",
+          "value": 2
+        },
+        {
+          "key": "summary_max_rate",
+          "label": "Max PHY Rate (estimate)",
+          "text": "1201 Mbit/s",
+          "value": 1201,
+          "unit": "Mbit/s"
+        }
+      ]
+    },
+    {
+      "key": "summary_load",
+      "label": "Load",
+      "children": [
+        {
+          "key": "bss_load_stations",
+          "label": "Station Count",
+          "text": "3",
+          "value": 3
+        },
+        {
+          "key": "bss_load_utilization",
+          "label": "Channel Utilization",
+          "text": "12.5%",
+          "value": 12.54901961,
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "key": "country_code",
+      "label": "Country Code",
+      "text": "DE",
+      "value": "DE"
+    },
+    {
+      "key": "summary_features",
+      "label": "Features",
+      "children": [
+        {
+          "key": "summary_11k",
+          "label": "802.11k (Radio Measurement)",
+          "text": "yes",
+          "value": true
+        },
+        {
+          "key": "summary_11v",
+          "label": "802.11v (BSS Transition)",
+          "text": "yes",
+          "value": true
+        },
+        {
+          "key": "summary_11r",
+          "label": "802.11r (Fast Transition)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "element_wmm",
+          "label": "WMM",
+          "text": "yes",
+          "value": true
+        },
+        {
+          "key": "wmm_uapsd",
+          "label": "U-APSD",
+          "text": "yes",
+          "value": true
+        },
+        {
+          "key": "summary_twt",
+          "label": "Target Wake Time",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "he_bss_color",
+          "label": "BSS Color",
+          "text": "42",
+          "value": 42
+        }
+      ]
+    },
+    {
+      "key": "summary_vendors",
+      "label": "Vendor Elements",
+      "children": [
+        {
+          "key": "common_item",
+          "label": "Item",
+          "text": "00:50:f2 (Microsoft)",
+          "value": "00:50:f2 (Microsoft)"
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "index": 0,
+      "id": 0,
+      "type": "ssid",
+      "name": "SSID",
+      "offset": 0,
+      "stream_length": 9,
+      "length": 7,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "486f6d654e6574",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ssid_name",
+          "label": "SSID",
+          "text": "HomeNet",
+          "value": "HomeNet",
+          "bytes": [
+            0,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "id": 1,
+      "type": "supported_rates",
+      "name": "Supported Rates",
+      "offset": 9,
+      "stream_length": 10,
+      "length": 8,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "8c129824b048606c",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "6 Mbit/s",
+          "value": 6,
+          "unit": "Mbit/s",
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "9 Mbit/s",
+          "value": 9,
+          "unit": "Mbit/s",
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "12 Mbit/s",
+          "value": 12,
+          "unit": "Mbit/s",
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "18 Mbit/s",
+          "value": 18,
+          "unit": "Mbit/s",
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "24 Mbit/s",
+          "value": 24,
+          "unit": "Mbit/s",
+          "bytes": [
+            4,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "36 Mbit/s",
+          "value": 36,
+          "unit": "Mbit/s",
+          "bytes": [
+            5,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "48 Mbit/s",
+          "value": 48,
+          "unit": "Mbit/s",
+          "bytes": [
+            6,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "54 Mbit/s",
+          "value": 54,
+          "unit": "Mbit/s",
+          "bytes": [
+            7,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": 3,
+      "type": "ds_parameter_set",
+      "name": "DSSS Parameter Set",
+      "offset": 19,
+      "stream_length": 3,
+      "length": 1,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "24",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ds_current_channel",
+          "label": "Current Channel",
+          "text": "36",
+          "value": 36,
+          "bytes": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": 5,
+      "type": "tim",
+      "name": "Traffic Indication Map (TIM)",
+      "offset": 22,
+      "stream_length": 6,
+      "length": 4,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "00010000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "tim_dtim_count",
+          "label": "DTIM Count",
+          "text": "0",
+          "value": 0,
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "tim_dtim_period",
+          "label": "DTIM Period",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "tim_bitmap_control",
+          "label": "Bitmap Control",
+          "text": "0x00",
+          "value": 0,
+          "bytes": [
+            2,
+            1
+          ],
+          "children": [
+            {
+              "key": "tim_group_traffic",
+              "label": "Group Addressed Traffic Buffered",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "tim_bitmap_offset",
+              "label": "Bitmap Offset",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                1,
+                7
+              ]
+            }
+          ]
+        },
+        {
+          "key": "tim_partial_bitmap",
+          "label": "Partial Virtual Bitmap",
+          "text": "00",
+          "value": "00",
+          "bytes": [
+            3,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": 7,
+      "type": "country",
+      "name": "Country",
+      "offset": 28,
+      "stream_length": 12,
+      "length": 10,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "444520240417640b1e00",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "country_code",
+          "label": "Country Code",
+          "text": "DE",
+          "value": "DE",
+          "bytes": [
+            0,
+            2
+          ]
+        },
+        {
+          "key": "country_environment",
+          "label": "Environment",
+          "text": "All environments (32)",
+          "value": 32,
+          "value_name": "All environments",
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "country_subband_triplet",
+          "label": "Subband Triplet",
+          "bytes": [
+            3,
+            3
+          ],
+          "children": [
+            {
+              "key": "country_first_channel",
+              "label": "First Channel",
+              "text": "36",
+              "value": 36,
+              "bytes": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "country_channel_count",
+              "label": "Number of Channels",
+              "text": "4",
+              "value": 4,
+              "bytes": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "country_max_power",
+              "label": "Maximum Transmit Power",
+              "text": "23 dBm",
+              "value": 23,
+              "unit": "dBm",
+              "bytes": [
+                5,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "country_subband_triplet",
+          "label": "Subband Triplet",
+          "bytes": [
+            6,
+            3
+          ],
+          "children": [
+            {
+              "key": "country_first_channel",
+              "label": "First Channel",
+              "text": "100",
+              "value": 100,
+              "bytes": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "country_channel_count",
+              "label": "Number of Channels",
+              "text": "11",
+              "value": 11,
+              "bytes": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "country_max_power",
+              "label": "Maximum Transmit Power",
+              "text": "30 dBm",
+              "value": 30,
+              "unit": "dBm",
+              "bytes": [
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "country_padding",
+          "label": "Padding",
+          "text": "00",
+          "value": "00",
+          "bytes": [
+            9,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": 11,
+      "type": "bss_load",
+      "name": "BSS Load",
+      "offset": 40,
+      "stream_length": 7,
+      "length": 5,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0300200000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "bss_load_stations",
+          "label": "Station Count",
+          "text": "3",
+          "value": 3,
+          "bytes": [
+            0,
+            2
+          ]
+        },
+        {
+          "key": "bss_load_utilization",
+          "label": "Channel Utilization",
+          "text": "12.5%",
+          "value": 12.54901961,
+          "unit": "%",
+          "bytes": [
+            2,
+            1
+          ],
+          "children": [
+            {
+              "key": "bss_load_utilization_raw",
+              "label": "Raw Value (x/255)",
+              "text": "32",
+              "value": 32,
+              "bytes": [
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "bss_load_admission_capacity",
+          "label": "Available Admission Capacity (32 µs/s)",
+          "text": "0",
+          "value": 0,
+          "bytes": [
+            3,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": 48,
+      "type": "rsn",
+      "name": "RSN",
+      "offset": 47,
+      "stream_length": 26,
+      "length": 24,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0100000fac040100000fac040200000fac02000fac088000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "common_version",
+          "label": "Version",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            0,
+            2
+          ]
+        },
+        {
+          "key": "rsn_group_cipher",
+          "label": "Group Data Cipher Suite",
+          "text": "CCMP-128 (00-0f-ac:4)",
+          "value": 1027076,
+          "value_name": "CCMP-128",
+          "bytes": [
+            2,
+            4
+          ]
+        },
+        {
+          "key": "rsn_pairwise_list",
+          "label": "Pairwise Cipher Suites",
+          "bytes": [
+            6,
+            6
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                6,
+                2
+              ]
+            },
+            {
+              "key": "rsn_pairwise",
+              "label": "Pairwise Cipher Suite",
+              "text": "CCMP-128 (00-0f-ac:4)",
+              "value": 1027076,
+              "value_name": "CCMP-128",
+              "bytes": [
+                8,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "key": "rsn_akm_list",
+          "label": "AKM Suites",
+          "bytes": [
+            12,
+            10
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "2",
+              "value": 2,
+              "bytes": [
+                12,
+                2
+              ]
+            },
+            {
+              "key": "rsn_akm",
+              "label": "AKM Suite",
+              "text": "PSK (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "PSK",
+              "bytes": [
+                14,
+                4
+              ]
+            },
+            {
+              "key": "rsn_akm",
+              "label": "AKM Suite",
+              "text": "SAE (00-0f-ac:8)",
+              "value": 1027080,
+              "value_name": "SAE",
+              "bytes": [
+                18,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "key": "rsn_capabilities",
+          "label": "RSN Capabilities",
+          "text": "0x0080",
+          "value": 128,
+          "bytes": [
+            22,
+            2
+          ],
+          "children": [
+            {
+              "key": "rsn_preauth",
+              "label": "Preauthentication",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "rsn_no_pairwise",
+              "label": "No Pairwise",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "rsn_ptksa_replay",
+              "label": "PTKSA Replay Counter",
+              "text": "1 (0)",
+              "value": 0,
+              "value_name": "1",
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "rsn_gtksa_replay",
+              "label": "GTKSA Replay Counter",
+              "text": "1 (0)",
+              "value": 0,
+              "value_name": "1",
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                4,
+                2
+              ]
+            },
+            {
+              "key": "rsn_mfpr",
+              "label": "Management Frame Protection Required",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "rsn_mfpc",
+              "label": "Management Frame Protection Capable",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "rsn_joint_multiband",
+              "label": "Joint Multi-band RSNA",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                8,
+                1
+              ]
+            },
+            {
+              "key": "rsn_peerkey",
+              "label": "PeerKey Enabled",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                9,
+                1
+              ]
+            },
+            {
+              "key": "rsn_spp_amsdu_capable",
+              "label": "SPP A-MSDU Capable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "rsn_spp_amsdu_required",
+              "label": "SPP A-MSDU Required",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            },
+            {
+              "key": "rsn_pbac",
+              "label": "PBAC",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "rsn_extended_key_id",
+              "label": "Extended Key ID for Individually Addressed Frames",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                13,
+                1
+              ]
+            },
+            {
+              "key": "rsn_ocvc",
+              "label": "OCVC (Operating Channel Validation)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": 45,
+      "type": "ht_capabilities",
+      "name": "HT Capabilities",
+      "offset": 73,
+      "stream_length": 28,
+      "length": 26,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "ef091bffff000000000000000000000000000000000000000000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ht_capability_info",
+          "label": "HT Capability Information",
+          "text": "0x09ef",
+          "value": 2543,
+          "bytes": [
+            0,
+            2
+          ],
+          "children": [
+            {
+              "key": "ht_ldpc",
+              "label": "LDPC Coding Capability",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "ht_channel_width_set",
+              "label": "Supported Channel Width Set",
+              "text": "20 MHz and 40 MHz (1)",
+              "value": 1,
+              "value_name": "20 MHz and 40 MHz",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "ht_sm_power_save",
+              "label": "SM Power Save",
+              "text": "Disabled (3)",
+              "value": 3,
+              "value_name": "Disabled",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "ht_greenfield",
+              "label": "HT-Greenfield",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "ht_short_gi_20",
+              "label": "Short GI for 20 MHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "ht_short_gi_40",
+              "label": "Short GI for 40 MHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_stbc",
+              "label": "Tx STBC",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "ht_rx_stbc",
+              "label": "Rx STBC",
+              "text": "One spatial stream (1)",
+              "value": 1,
+              "value_name": "One spatial stream",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_delayed_block_ack",
+              "label": "HT-Delayed Block Ack",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_max_amsdu",
+              "label": "Maximum A-MSDU Length",
+              "text": "7935 (1)",
+              "value": 1,
+              "value_name": "7935",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            },
+            {
+              "key": "ht_dsss_cck_40",
+              "label": "DSSS/CCK Mode in 40 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "ht_40_intolerant",
+              "label": "Forty MHz Intolerant",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            },
+            {
+              "key": "ht_lsig_txop",
+              "label": "L-SIG TXOP Protection Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                15,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_ampdu_parameters",
+          "label": "A-MPDU Parameters",
+          "text": "0x1b",
+          "value": 27,
+          "bytes": [
+            2,
+            1
+          ],
+          "children": [
+            {
+              "key": "ht_max_ampdu_length",
+              "label": "Maximum A-MPDU Length",
+              "text": "65535 octets",
+              "value": 65535,
+              "unit": "octets",
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "ht_min_mpdu_spacing",
+              "label": "Minimum MPDU Start Spacing",
+              "text": "8 µs (6)",
+              "value": 6,
+              "value_name": "8 µs",
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_mcs_set",
+          "label": "Supported MCS Set",
+          "text": "ffff0000000000000000000000000000",
+          "value": "ffff0000000000000000000000000000",
+          "bytes": [
+            3,
+            16
+          ],
+          "children": [
+            {
+              "key": "ht_rx_mcs",
+              "label": "Rx MCS",
+              "text": "0-15",
+              "value": "0-15",
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                0,
+                77
+              ]
+            },
+            {
+              "key": "ht_rx_highest_rate",
+              "label": "Rx Highest Supported Data Rate",
+              "text": "0 Mbit/s",
+              "value": 0,
+              "unit": "Mbit/s",
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                80,
+                10
+              ]
+            },
+            {
+              "key": "ht_tx_mcs_defined",
+              "label": "Tx MCS Set Defined",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                96,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_rx_not_equal",
+              "label": "Tx Rx MCS Set Not Equal",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                97,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_max_nss",
+              "label": "Tx Maximum Number Spatial Streams Supported",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                98,
+                2
+              ]
+            },
+            {
+              "key": "ht_tx_unequal_modulation",
+              "label": "Tx Unequal Modulation Supported",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                100,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_extended_capabilities",
+          "label": "HT Extended Capabilities",
+          "text": "0x0000",
+          "value": 0,
+          "bytes": [
+            19,
+            2
+          ],
+          "children": [
+            {
+              "key": "ht_mcs_feedback",
+              "label": "MCS Feedback",
+              "text": "No feedback (0)",
+              "value": 0,
+              "value_name": "No feedback",
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_htc",
+              "label": "+HTC Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_rd_responder",
+              "label": "RD Responder",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_txbf_capabilities",
+          "label": "Transmit Beamforming Capabilities",
+          "text": "0x00000000",
+          "value": 0,
+          "bytes": [
+            21,
+            4
+          ]
+        },
+        {
+          "key": "ht_asel_capabilities",
+          "label": "ASEL Capabilities",
+          "text": "0x00",
+          "value": 0,
+          "bytes": [
+            25,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": 61,
+      "type": "ht_operation",
+      "name": "HT Operation",
+      "offset": 101,
+      "stream_length": 24,
+      "length": 22,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "24050000000000000000000000000000000000000000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ht_primary_channel",
+          "label": "Primary Channel",
+          "text": "36",
+          "value": 36,
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "ht_operation_info",
+          "label": "HT Operation Information",
+          "text": "0x0000000005",
+          "value": 5,
+          "bytes": [
+            1,
+            5
+          ],
+          "children": [
+            {
+              "key": "ht_secondary_channel_offset",
+              "label": "Secondary Channel Offset",
+              "text": "Above (1)",
+              "value": 1,
+              "value_name": "Above",
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "ht_sta_channel_width",
+              "label": "STA Channel Width (any width allowed)",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "ht_rifs",
+              "label": "RIFS Mode",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "ht_protection",
+              "label": "HT Protection",
+              "text": "No protection (0)",
+              "value": 0,
+              "value_name": "No protection",
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_nongreenfield_present",
+              "label": "Nongreenfield HT STAs Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_obss_non_ht_present",
+              "label": "OBSS Non-HT STAs Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "ht_ccfs2",
+              "label": "Channel Center Frequency Segment 2",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                13,
+                8
+              ]
+            },
+            {
+              "key": "ht_dual_beacon",
+              "label": "Dual Beacon",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                30,
+                1
+              ]
+            },
+            {
+              "key": "ht_dual_cts",
+              "label": "Dual CTS Protection",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                31,
+                1
+              ]
+            },
+            {
+              "key": "ht_stbc_beacon",
+              "label": "STBC Beacon",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                32,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_basic_mcs_set",
+          "label": "Basic HT-MCS Set",
+          "text": "00000000000000000000000000000000",
+          "value": "00000000000000000000000000000000",
+          "bytes": [
+            6,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "id": 70,
+      "type": "rm_enabled_capabilities",
+      "name": "RM Enabled Capabilities",
+      "offset": 125,
+      "stream_length": 7,
+      "length": 5,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0200000000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rm_capabilities",
+          "label": "RM Enabled Capabilities",
+          "text": "0x0000000002",
+          "value": 2,
+          "bytes": [
+            0,
+            5
+          ],
+          "children": [
+            {
+              "key": "rm_link_measurement",
+              "label": "Link Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                0,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_neighbor_report",
+              "label": "Neighbor Report",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "rm_parallel",
+              "label": "Parallel Measurements",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                2,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_repeated",
+              "label": "Repeated Measurements",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                3,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_beacon_passive",
+              "label": "Beacon Passive Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                4,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_beacon_active",
+              "label": "Beacon Active Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                5,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_beacon_table",
+              "label": "Beacon Table Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                6,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_beacon_conditions",
+              "label": "Beacon Measurement Reporting Conditions",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                7,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_frame",
+              "label": "Frame Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                8,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_channel_load",
+              "label": "Channel Load Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                9,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_noise_histogram",
+              "label": "Noise Histogram Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                10,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_statistics",
+              "label": "Statistics Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                11,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_lci",
+              "label": "LCI Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                12,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_lci_azimuth",
+              "label": "LCI Azimuth",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                13,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_tx_stream",
+              "label": "Transmit Stream/Category Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                14,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_triggered_tx_stream",
+              "label": "Triggered Transmit Stream/Category Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                15,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_ap_channel_report",
+              "label": "AP Channel Report",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                16,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_mib",
+              "label": "RM MIB",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                17,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_op_channel_max_duration",
+              "label": "Operating Channel Max Measurement Duration",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                18,
+                3
+              ]
+            },
+            {
+              "key": "rm_nonop_channel_max_duration",
+              "label": "Nonoperating Channel Max Measurement Duration",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                21,
+                3
+              ]
+            },
+            {
+              "key": "rm_measurement_pilot",
+              "label": "Measurement Pilot Capability",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                24,
+                3
+              ]
+            },
+            {
+              "key": "rm_measurement_pilot_info",
+              "label": "Measurement Pilot Transmission Information",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                27,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_neighbor_tsf_offset",
+              "label": "Neighbor Report TSF Offset",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                28,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_rcpi",
+              "label": "RCPI Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                29,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_rsni",
+              "label": "RSNI Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                30,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_bss_avg_access_delay",
+              "label": "BSS Average Access Delay",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                31,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_bss_admission_capacity",
+              "label": "BSS Available Admission Capacity",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                32,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_antenna",
+              "label": "Antenna",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                33,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_ftm_range_report",
+              "label": "FTM Range Report",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                34,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "rm_civic_location",
+              "label": "Civic Location Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                5
+              ],
+              "bits": [
+                35,
+                1
+              ],
+              "significance": "detail"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "id": 127,
+      "type": "extended_capabilities",
+      "name": "Extended Capabilities",
+      "offset": 132,
+      "stream_length": 10,
+      "length": 8,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0400080000000040",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "extcap_field",
+          "label": "Extended Capabilities",
+          "text": "0x4000000000080004",
+          "value": 4611686018427912196,
+          "bytes": [
+            0,
+            8
+          ],
+          "children": [
+            {
+              "key": "extcap_2040_coexistence",
+              "label": "20/40 BSS Coexistence Management Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                0,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_extended_channel_switching",
+              "label": "Extended Channel Switching",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "extcap_psmp",
+              "label": "PSMP Capability",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                4,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_spsmp",
+              "label": "S-PSMP Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                6,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_event",
+              "label": "Event",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                7,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_diagnostics",
+              "label": "Diagnostics",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                8,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_multicast_diagnostics",
+              "label": "Multicast Diagnostics",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                9,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_location_tracking",
+              "label": "Location Tracking",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                10,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_fms",
+              "label": "FMS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                11,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_proxy_arp",
+              "label": "Proxy ARP Service",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                12,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_collocated_interference",
+              "label": "Collocated Interference Reporting",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                13,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_civic_location",
+              "label": "Civic Location",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                14,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_geospatial_location",
+              "label": "Geospatial Location",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                15,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tfs",
+              "label": "TFS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                16,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_wnm_sleep",
+              "label": "WNM Sleep Mode",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                17,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tim_broadcast",
+              "label": "TIM Broadcast",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                18,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_bss_transition",
+              "label": "BSS Transition (802.11v)",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                19,
+                1
+              ]
+            },
+            {
+              "key": "extcap_qos_traffic",
+              "label": "QoS Traffic Capability",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                20,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_ac_station_count",
+              "label": "AC Station Count",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                21,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_multiple_bssid",
+              "label": "Multiple BSSID",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                22,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_timing_measurement",
+              "label": "Timing Measurement",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                23,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_channel_usage",
+              "label": "Channel Usage",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                24,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_ssid_list",
+              "label": "SSID List",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                25,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_dms",
+              "label": "DMS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                26,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_utc_tsf_offset",
+              "label": "UTC TSF Offset",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                27,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tpu_buffer",
+              "label": "TPU Buffer STA Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                28,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls_psm",
+              "label": "TDLS Peer PSM Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                29,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls_channel_switching",
+              "label": "TDLS Channel Switching",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                30,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_interworking",
+              "label": "Interworking",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                31,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_qos_map",
+              "label": "QoS Map",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                32,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_ebr",
+              "label": "EBR",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                33,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_sspn",
+              "label": "SSPN Interface",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                34,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_msgcf",
+              "label": "MSGCF Capability",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                36,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls",
+              "label": "TDLS Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                37,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls_prohibited",
+              "label": "TDLS Prohibited",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                38,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls_cs_prohibited",
+              "label": "TDLS Channel Switching Prohibited",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                39,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_reject_unadmitted",
+              "label": "Reject Unadmitted Frame",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                40,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_service_interval_granularity",
+              "label": "Service Interval Granularity",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                41,
+                3
+              ]
+            },
+            {
+              "key": "extcap_identifier_location",
+              "label": "Identifier Location",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                44,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_uapsd_coexistence",
+              "label": "U-APSD Coexistence",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                45,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_wnm_notification",
+              "label": "WNM Notification",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                46,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_qab",
+              "label": "QAB Capability",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                47,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_utf8_ssid",
+              "label": "UTF-8 SSID",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                48,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_qmf_activated",
+              "label": "QMF Activated",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                49,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_qmf_reconfiguration",
+              "label": "QMF Reconfiguration Activated",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                50,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_robust_av_streaming",
+              "label": "Robust AV Streaming",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                51,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_advanced_gcr",
+              "label": "Advanced GCR",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                52,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_mesh_gcr",
+              "label": "Mesh GCR",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                53,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_scs",
+              "label": "SCS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                54,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_qload_report",
+              "label": "QLoad Report",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                55,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_alternate_edca",
+              "label": "Alternate EDCA",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                56,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_unprotected_txop",
+              "label": "Unprotected TXOP Negotiation",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                57,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_protected_txop",
+              "label": "Protected TXOP Negotiation",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                58,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_protected_qload",
+              "label": "Protected QLoad Report",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                60,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_tdls_wider_bandwidth",
+              "label": "TDLS Wider Bandwidth",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                61,
+                1
+              ],
+              "significance": "detail"
+            },
+            {
+              "key": "extcap_operating_mode_notification",
+              "label": "Operating Mode Notification",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                62,
+                1
+              ]
+            },
+            {
+              "key": "extcap_max_msdus_in_amsdu",
+              "label": "Max Number of MSDUs in A-MSDU",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                8
+              ],
+              "bits": [
+                63,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "id": 191,
+      "type": "vht_capabilities",
+      "name": "VHT Capabilities",
+      "offset": 142,
+      "stream_length": 14,
+      "length": 12,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "b1798b0ffaff0000faff0000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vht_capability_info",
+          "label": "VHT Capabilities Information",
+          "text": "0x0f8b79b1",
+          "value": 260798897,
+          "bytes": [
+            0,
+            4
+          ],
+          "children": [
+            {
+              "key": "vht_max_mpdu_length",
+              "label": "Maximum MPDU Length",
+              "text": "7991 (1)",
+              "value": 1,
+              "value_name": "7991",
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "vht_channel_width_set",
+              "label": "Supported Channel Width Set",
+              "text": "No 160 MHz or 80+80 MHz (0)",
+              "value": 0,
+              "value_name": "No 160 MHz or 80+80 MHz",
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "vht_rx_ldpc",
+              "label": "Rx LDPC",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "vht_short_gi_80",
+              "label": "Short GI for 80 MHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "vht_short_gi_160",
+              "label": "Short GI for 160 and 80+80 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "vht_tx_stbc",
+              "label": "Tx STBC",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "vht_rx_stbc",
+              "label": "Rx STBC (spatial streams)",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                8,
+                3
+              ]
+            },
+            {
+              "key": "vht_su_beamformer",
+              "label": "SU Beamformer Capable",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            },
+            {
+              "key": "vht_su_beamformee",
+              "label": "SU Beamformee Capable",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "vht_beamformee_sts",
+              "label": "Beamformee STS Capability",
+              "text": "4",
+              "value": 4,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                13,
+                3
+              ]
+            },
+            {
+              "key": "vht_sounding_dimensions",
+              "label": "Number of Sounding Dimensions",
+              "text": "4",
+              "value": 4,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                16,
+                3
+              ]
+            },
+            {
+              "key": "vht_mu_beamformer",
+              "label": "MU Beamformer Capable",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                19,
+                1
+              ]
+            },
+            {
+              "key": "vht_mu_beamformee",
+              "label": "MU Beamformee Capable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                20,
+                1
+              ]
+            },
+            {
+              "key": "vht_txop_ps",
+              "label": "TXOP PS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                21,
+                1
+              ]
+            },
+            {
+              "key": "vht_htc",
+              "label": "+HTC-VHT Capable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                22,
+                1
+              ]
+            },
+            {
+              "key": "vht_max_ampdu_length",
+              "label": "Maximum A-MPDU Length",
+              "text": "1048575 octets",
+              "value": 1048575,
+              "unit": "octets",
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                23,
+                3
+              ]
+            },
+            {
+              "key": "vht_link_adaptation",
+              "label": "VHT Link Adaptation Capable",
+              "text": "Both (3)",
+              "value": 3,
+              "value_name": "Both",
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                26,
+                2
+              ]
+            },
+            {
+              "key": "vht_rx_antenna_consistency",
+              "label": "Rx Antenna Pattern Consistency",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                28,
+                1
+              ]
+            },
+            {
+              "key": "vht_tx_antenna_consistency",
+              "label": "Tx Antenna Pattern Consistency",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                29,
+                1
+              ]
+            },
+            {
+              "key": "vht_extended_nss_bw",
+              "label": "Extended NSS BW Support",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                4
+              ],
+              "bits": [
+                30,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vht_mcs_nss_set",
+          "label": "Supported VHT-MCS and NSS Set",
+          "bytes": [
+            4,
+            8
+          ],
+          "children": [
+            {
+              "key": "vht_rx_mcs_map",
+              "label": "Rx VHT-MCS Map",
+              "text": "0xfffa",
+              "value": 65530,
+              "bytes": [
+                4,
+                2
+              ],
+              "children": [
+                {
+                  "key": "nss_1",
+                  "label": "1 Spatial Stream",
+                  "text": "MCS 0-9 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-9",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_2",
+                  "label": "2 Spatial Streams",
+                  "text": "MCS 0-9 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-9",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    2,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_3",
+                  "label": "3 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    4,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_4",
+                  "label": "4 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    6,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_5",
+                  "label": "5 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    8,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_6",
+                  "label": "6 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    10,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_7",
+                  "label": "7 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    12,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_8",
+                  "label": "8 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    4,
+                    2
+                  ],
+                  "bits": [
+                    14,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "vht_rx_highest_rate",
+              "label": "Rx Highest Supported Long GI Data Rate",
+              "text": "0x0000",
+              "value": 0,
+              "bytes": [
+                6,
+                2
+              ],
+              "children": [
+                {
+                  "key": "vht_highest_rate",
+                  "label": "Data Rate",
+                  "text": "0 Mbit/s",
+                  "value": 0,
+                  "unit": "Mbit/s",
+                  "bytes": [
+                    6,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    13
+                  ]
+                },
+                {
+                  "key": "vht_max_nsts_total",
+                  "label": "Maximum NSTS Total",
+                  "text": "0",
+                  "value": 0,
+                  "bytes": [
+                    6,
+                    2
+                  ],
+                  "bits": [
+                    13,
+                    3
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "vht_tx_mcs_map",
+              "label": "Tx VHT-MCS Map",
+              "text": "0xfffa",
+              "value": 65530,
+              "bytes": [
+                8,
+                2
+              ],
+              "children": [
+                {
+                  "key": "nss_1",
+                  "label": "1 Spatial Stream",
+                  "text": "MCS 0-9 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-9",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_2",
+                  "label": "2 Spatial Streams",
+                  "text": "MCS 0-9 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-9",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    2,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_3",
+                  "label": "3 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    4,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_4",
+                  "label": "4 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    6,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_5",
+                  "label": "5 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    8,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_6",
+                  "label": "6 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    10,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_7",
+                  "label": "7 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    12,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_8",
+                  "label": "8 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    8,
+                    2
+                  ],
+                  "bits": [
+                    14,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "vht_tx_highest_rate",
+              "label": "Tx Highest Supported Long GI Data Rate",
+              "text": "0x0000",
+              "value": 0,
+              "bytes": [
+                10,
+                2
+              ],
+              "children": [
+                {
+                  "key": "vht_highest_rate",
+                  "label": "Data Rate",
+                  "text": "0 Mbit/s",
+                  "value": 0,
+                  "unit": "Mbit/s",
+                  "bytes": [
+                    10,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    13
+                  ]
+                },
+                {
+                  "key": "vht_ext_nss_bw_capable",
+                  "label": "VHT Extended NSS BW Capable",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    10,
+                    2
+                  ],
+                  "bits": [
+                    13,
+                    1
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "id": 192,
+      "type": "vht_operation",
+      "name": "VHT Operation",
+      "offset": 156,
+      "stream_length": 7,
+      "length": 5,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "012a00fcff",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vht_operation_width",
+          "label": "Channel Width",
+          "text": "80/160/80+80 MHz (1)",
+          "value": 1,
+          "value_name": "80/160/80+80 MHz",
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "vht_ccfs0",
+          "label": "Channel Center Frequency Segment 0",
+          "text": "42",
+          "value": 42,
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "vht_ccfs1",
+          "label": "Channel Center Frequency Segment 1",
+          "text": "0",
+          "value": 0,
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "vht_basic_mcs_map",
+          "label": "Basic VHT-MCS and NSS Set",
+          "text": "0xfffc",
+          "value": 65532,
+          "bytes": [
+            3,
+            2
+          ],
+          "children": [
+            {
+              "key": "nss_1",
+              "label": "1 Spatial Stream",
+              "text": "MCS 0-7 (0)",
+              "value": 0,
+              "value_name": "MCS 0-7",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "nss_2",
+              "label": "2 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "nss_3",
+              "label": "3 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                4,
+                2
+              ]
+            },
+            {
+              "key": "nss_4",
+              "label": "4 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                6,
+                2
+              ]
+            },
+            {
+              "key": "nss_5",
+              "label": "5 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "nss_6",
+              "label": "6 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                10,
+                2
+              ]
+            },
+            {
+              "key": "nss_7",
+              "label": "7 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                12,
+                2
+              ]
+            },
+            {
+              "key": "nss_8",
+              "label": "8 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                3,
+                2
+              ],
+              "bits": [
+                14,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "id": 255,
+      "ext_id": 35,
+      "type": "he_capabilities",
+      "name": "HE Capabilities",
+      "offset": 163,
+      "stream_length": 24,
+      "length": 22,
+      "content_offset": 1,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "230178c81a40000400000000000000000000fafffaff",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "he_mac_capabilities",
+          "label": "HE MAC Capabilities Information",
+          "text": "0x00401ac87801",
+          "value": 275327252481,
+          "bytes": [
+            0,
+            6
+          ],
+          "children": [
+            {
+              "key": "he_htc",
+              "label": "+HTC HE Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "he_twt_requester",
+              "label": "TWT Requester Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "he_twt_responder",
+              "label": "TWT Responder Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "he_dynamic_fragmentation",
+              "label": "Dynamic Fragmentation Support",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                3,
+                2
+              ]
+            },
+            {
+              "key": "he_max_fragmented_msdus",
+              "label": "Maximum Number of Fragmented MSDUs/A-MSDUs Exponent",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                5,
+                3
+              ]
+            },
+            {
+              "key": "he_min_fragment_size",
+              "label": "Minimum Fragment Size",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "he_trigger_mac_padding",
+              "label": "Trigger Frame MAC Padding Duration",
+              "text": "2",
+              "value": 2,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                10,
+                2
+              ]
+            },
+            {
+              "key": "he_multi_tid_rx",
+              "label": "Multi-TID Aggregation Rx Support",
+              "text": "7",
+              "value": 7,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                12,
+                3
+              ]
+            },
+            {
+              "key": "he_link_adaptation",
+              "label": "HE Link Adaptation Support",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                15,
+                2
+              ]
+            },
+            {
+              "key": "he_all_ack",
+              "label": "All Ack Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                17,
+                1
+              ]
+            },
+            {
+              "key": "he_trs",
+              "label": "TRS Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                18,
+                1
+              ]
+            },
+            {
+              "key": "he_bsr",
+              "label": "BSR Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                19,
+                1
+              ]
+            },
+            {
+              "key": "he_broadcast_twt",
+              "label": "Broadcast TWT Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                20,
+                1
+              ]
+            },
+            {
+              "key": "he_32bit_ba",
+              "label": "32-bit BA Bitmap Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                21,
+                1
+              ]
+            },
+            {
+              "key": "he_mu_cascading",
+              "label": "MU Cascading Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                22,
+                1
+              ]
+            },
+            {
+              "key": "he_ack_enabled_aggregation",
+              "label": "Ack-Enabled Aggregation Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                23,
+                1
+              ]
+            },
+            {
+              "key": "he_om_control",
+              "label": "OM Control Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                25,
+                1
+              ]
+            },
+            {
+              "key": "he_ofdma_ra",
+              "label": "OFDMA RA Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                26,
+                1
+              ]
+            },
+            {
+              "key": "he_max_ampdu_exponent_ext",
+              "label": "Maximum A-MPDU Length Exponent Extension",
+              "text": "3",
+              "value": 3,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                27,
+                2
+              ]
+            },
+            {
+              "key": "he_amsdu_fragmentation",
+              "label": "A-MSDU Fragmentation Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                29,
+                1
+              ]
+            },
+            {
+              "key": "he_flexible_twt",
+              "label": "Flexible TWT Schedule Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                30,
+                1
+              ]
+            },
+            {
+              "key": "he_rx_control_multibss",
+              "label": "Rx Control Frame to MultiBSS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                31,
+                1
+              ]
+            },
+            {
+              "key": "he_bsrp_bqrp_ampdu",
+              "label": "BSRP BQRP A-MPDU Aggregation",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                32,
+                1
+              ]
+            },
+            {
+              "key": "he_qtp",
+              "label": "QTP Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                33,
+                1
+              ]
+            },
+            {
+              "key": "he_bqr",
+              "label": "BQR Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                34,
+                1
+              ]
+            },
+            {
+              "key": "he_psr_responder",
+              "label": "PSR Responder",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                35,
+                1
+              ]
+            },
+            {
+              "key": "he_ndp_feedback_report",
+              "label": "NDP Feedback Report Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                36,
+                1
+              ]
+            },
+            {
+              "key": "he_ops",
+              "label": "OPS Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                37,
+                1
+              ]
+            },
+            {
+              "key": "he_amsdu_not_under_ba",
+              "label": "A-MSDU Not Under BA in Ack-Enabled A-MPDU Support",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                38,
+                1
+              ]
+            },
+            {
+              "key": "he_multi_tid_tx",
+              "label": "Multi-TID Aggregation Tx Support",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                39,
+                3
+              ]
+            },
+            {
+              "key": "he_subchannel_selective",
+              "label": "HE Subchannel Selective Transmission Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                42,
+                1
+              ]
+            },
+            {
+              "key": "he_ul_2x996",
+              "label": "UL 2x996-tone RU Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                43,
+                1
+              ]
+            },
+            {
+              "key": "he_om_ul_mu_disable",
+              "label": "OM Control UL MU Data Disable Rx Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                44,
+                1
+              ]
+            },
+            {
+              "key": "he_dynamic_sm_ps",
+              "label": "HE Dynamic SM Power Save",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                45,
+                1
+              ]
+            },
+            {
+              "key": "he_punctured_sounding",
+              "label": "Punctured Sounding Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                46,
+                1
+              ]
+            },
+            {
+              "key": "he_ht_vht_trigger_rx",
+              "label": "HT and VHT Trigger Frame Rx Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                6
+              ],
+              "bits": [
+                47,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "he_phy_capabilities",
+          "label": "HE PHY Capabilities Information",
+          "text": "0400000000000000000000",
+          "value": "0400000000000000000000",
+          "bytes": [
+            6,
+            11
+          ],
+          "children": [
+            {
+              "key": "he_width_40_24",
+              "label": "40 MHz in 2.4 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "he_width_40_80_5",
+              "label": "40 and 80 MHz in 5/6 GHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "he_width_160_5",
+              "label": "160 MHz in 5/6 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "he_width_80p80_5",
+              "label": "160/80+80 MHz in 5/6 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "he_width_242_24",
+              "label": "242-tone RUs in 2.4 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "he_width_242_5",
+              "label": "242-tone RUs in 5/6 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "he_punctured_preamble_rx",
+              "label": "Punctured Preamble Rx",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                8,
+                4
+              ]
+            },
+            {
+              "key": "he_device_class",
+              "label": "Device Class A",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "he_ldpc",
+              "label": "LDPC Coding in Payload",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                13,
+                1
+              ]
+            },
+            {
+              "key": "he_su_1x_ltf",
+              "label": "HE SU PPDU with 1x HE-LTF and 0.8 µs GI",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            },
+            {
+              "key": "he_midamble_nsts",
+              "label": "Midamble Tx/Rx Max NSTS",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                15,
+                2
+              ]
+            },
+            {
+              "key": "he_ndp_4x_ltf",
+              "label": "NDP with 4x HE-LTF and 3.2 µs GI",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                17,
+                1
+              ]
+            },
+            {
+              "key": "he_stbc_tx_80",
+              "label": "STBC Tx <= 80 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                18,
+                1
+              ]
+            },
+            {
+              "key": "he_stbc_rx_80",
+              "label": "STBC Rx <= 80 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                19,
+                1
+              ]
+            },
+            {
+              "key": "he_doppler_tx",
+              "label": "Doppler Tx",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                20,
+                1
+              ]
+            },
+            {
+              "key": "he_doppler_rx",
+              "label": "Doppler Rx",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                21,
+                1
+              ]
+            },
+            {
+              "key": "he_full_bw_ul_mu_mimo",
+              "label": "Full Bandwidth UL MU-MIMO",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                22,
+                1
+              ]
+            },
+            {
+              "key": "he_partial_bw_ul_mu_mimo",
+              "label": "Partial Bandwidth UL MU-MIMO",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                23,
+                1
+              ]
+            },
+            {
+              "key": "he_dcm_tx_constellation",
+              "label": "DCM Max Constellation Tx",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                24,
+                2
+              ]
+            },
+            {
+              "key": "he_dcm_tx_nss",
+              "label": "DCM Max NSS Tx",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                26,
+                1
+              ]
+            },
+            {
+              "key": "he_dcm_rx_constellation",
+              "label": "DCM Max Constellation Rx",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                27,
+                2
+              ]
+            },
+            {
+              "key": "he_dcm_rx_nss",
+              "label": "DCM Max NSS Rx",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                29,
+                1
+              ]
+            },
+            {
+              "key": "he_rx_partial_bw_su",
+              "label": "Rx Partial BW SU in 20 MHz HE MU PPDU",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                30,
+                1
+              ]
+            },
+            {
+              "key": "he_su_beamformer",
+              "label": "SU Beamformer",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                31,
+                1
+              ]
+            },
+            {
+              "key": "he_su_beamformee",
+              "label": "SU Beamformee",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                32,
+                1
+              ]
+            },
+            {
+              "key": "he_mu_beamformer",
+              "label": "MU Beamformer",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                33,
+                1
+              ]
+            },
+            {
+              "key": "he_beamformee_sts_80",
+              "label": "Beamformee STS <= 80 MHz",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                34,
+                3
+              ]
+            },
+            {
+              "key": "he_beamformee_sts_160",
+              "label": "Beamformee STS > 80 MHz",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                37,
+                3
+              ]
+            },
+            {
+              "key": "he_sounding_dim_80",
+              "label": "Number of Sounding Dimensions <= 80 MHz",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                40,
+                3
+              ]
+            },
+            {
+              "key": "he_sounding_dim_160",
+              "label": "Number of Sounding Dimensions > 80 MHz",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                43,
+                3
+              ]
+            },
+            {
+              "key": "he_ng16_su",
+              "label": "Ng = 16 SU Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                46,
+                1
+              ]
+            },
+            {
+              "key": "he_ng16_mu",
+              "label": "Ng = 16 MU Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                47,
+                1
+              ]
+            },
+            {
+              "key": "he_codebook_42_su",
+              "label": "Codebook Size {4, 2} SU Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                48,
+                1
+              ]
+            },
+            {
+              "key": "he_codebook_75_mu",
+              "label": "Codebook Size {7, 5} MU Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                49,
+                1
+              ]
+            },
+            {
+              "key": "he_triggered_su_bf",
+              "label": "Triggered SU Beamforming Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                50,
+                1
+              ]
+            },
+            {
+              "key": "he_triggered_mu_bf",
+              "label": "Triggered MU Beamforming Partial BW Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                51,
+                1
+              ]
+            },
+            {
+              "key": "he_triggered_cqi",
+              "label": "Triggered CQI Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                52,
+                1
+              ]
+            },
+            {
+              "key": "he_partial_bw_er",
+              "label": "Partial Bandwidth Extended Range",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                53,
+                1
+              ]
+            },
+            {
+              "key": "he_partial_bw_dl_mu_mimo",
+              "label": "Partial Bandwidth DL MU-MIMO",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                54,
+                1
+              ]
+            },
+            {
+              "key": "he_ppe_present",
+              "label": "PPE Thresholds Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                55,
+                1
+              ]
+            },
+            {
+              "key": "he_psr_sr",
+              "label": "PSR-Based SR Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                56,
+                1
+              ]
+            },
+            {
+              "key": "he_power_boost",
+              "label": "Power Boost Factor Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                57,
+                1
+              ]
+            },
+            {
+              "key": "he_su_mu_4x_ltf",
+              "label": "HE SU/MU PPDU with 4x HE-LTF and 0.8 µs GI",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                58,
+                1
+              ]
+            },
+            {
+              "key": "he_max_nc",
+              "label": "Max Nc",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                59,
+                3
+              ]
+            },
+            {
+              "key": "he_stbc_tx_160",
+              "label": "STBC Tx > 80 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                62,
+                1
+              ]
+            },
+            {
+              "key": "he_stbc_rx_160",
+              "label": "STBC Rx > 80 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                63,
+                1
+              ]
+            },
+            {
+              "key": "he_er_su_4x_ltf",
+              "label": "HE ER SU PPDU with 4x HE-LTF and 0.8 µs GI",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                64,
+                1
+              ]
+            },
+            {
+              "key": "he_20_in_40_24",
+              "label": "20 MHz in 40 MHz HE PPDU in 2.4 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                65,
+                1
+              ]
+            },
+            {
+              "key": "he_20_in_160",
+              "label": "20 MHz in 160/80+80 MHz HE PPDU",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                66,
+                1
+              ]
+            },
+            {
+              "key": "he_80_in_160",
+              "label": "80 MHz in 160/80+80 MHz HE PPDU",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                67,
+                1
+              ]
+            },
+            {
+              "key": "he_er_su_1x_ltf",
+              "label": "HE ER SU PPDU with 1x HE-LTF and 0.8 µs GI",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                68,
+                1
+              ]
+            },
+            {
+              "key": "he_midamble_2x_1x",
+              "label": "Midamble Tx/Rx 2x and 1x HE-LTF",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                69,
+                1
+              ]
+            },
+            {
+              "key": "he_dcm_max_ru",
+              "label": "DCM Max RU",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                70,
+                2
+              ]
+            },
+            {
+              "key": "he_long_sigb",
+              "label": "Longer Than 16 HE SIG-B OFDM Symbols Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                72,
+                1
+              ]
+            },
+            {
+              "key": "he_non_triggered_cqi",
+              "label": "Non-Triggered CQI Feedback",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                73,
+                1
+              ]
+            },
+            {
+              "key": "he_tx_1024qam_small_ru",
+              "label": "Tx 1024-QAM Support < 242-tone RU",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                74,
+                1
+              ]
+            },
+            {
+              "key": "he_rx_1024qam_small_ru",
+              "label": "Rx 1024-QAM Support < 242-tone RU",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                75,
+                1
+              ]
+            },
+            {
+              "key": "he_rx_full_bw_compressed",
+              "label": "Rx Full BW SU Using HE MU PPDU with Compressed SIGB",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                76,
+                1
+              ]
+            },
+            {
+              "key": "he_rx_full_bw_noncompressed",
+              "label": "Rx Full BW SU Using HE MU PPDU with Non-Compressed SIGB",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                77,
+                1
+              ]
+            },
+            {
+              "key": "he_nominal_padding",
+              "label": "Nominal Packet Padding",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                78,
+                2
+              ]
+            },
+            {
+              "key": "he_mu_m1ru_max_ltf",
+              "label": "HE MU PPDU with More Than One RU Rx Max N_HE-LTF",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                6,
+                11
+              ],
+              "bits": [
+                80,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "he_mcs_nss_set",
+          "label": "Supported HE-MCS and NSS Set",
+          "bytes": [
+            17,
+            4
+          ],
+          "children": [
+            {
+              "key": "he_rx_mcs_80",
+              "label": "Rx HE-MCS Map <= 80 MHz",
+              "text": "0xfffa",
+              "value": 65530,
+              "bytes": [
+                17,
+                2
+              ],
+              "children": [
+                {
+                  "key": "nss_1",
+                  "label": "1 Spatial Stream",
+                  "text": "MCS 0-11 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-11",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_2",
+                  "label": "2 Spatial Streams",
+                  "text": "MCS 0-11 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-11",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    2,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_3",
+                  "label": "3 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    4,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_4",
+                  "label": "4 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    6,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_5",
+                  "label": "5 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    8,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_6",
+                  "label": "6 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    10,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_7",
+                  "label": "7 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    12,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_8",
+                  "label": "8 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    17,
+                    2
+                  ],
+                  "bits": [
+                    14,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "he_tx_mcs_80",
+              "label": "Tx HE-MCS Map <= 80 MHz",
+              "text": "0xfffa",
+              "value": 65530,
+              "bytes": [
+                19,
+                2
+              ],
+              "children": [
+                {
+                  "key": "nss_1",
+                  "label": "1 Spatial Stream",
+                  "text": "MCS 0-11 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-11",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    0,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_2",
+                  "label": "2 Spatial Streams",
+                  "text": "MCS 0-11 (2)",
+                  "value": 2,
+                  "value_name": "MCS 0-11",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    2,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_3",
+                  "label": "3 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    4,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_4",
+                  "label": "4 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    6,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_5",
+                  "label": "5 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    8,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_6",
+                  "label": "6 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    10,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_7",
+                  "label": "7 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    12,
+                    2
+                  ]
+                },
+                {
+                  "key": "nss_8",
+                  "label": "8 Spatial Streams",
+                  "text": "Not supported (3)",
+                  "value": 3,
+                  "value_name": "Not supported",
+                  "bytes": [
+                    19,
+                    2
+                  ],
+                  "bits": [
+                    14,
+                    2
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "id": 255,
+      "ext_id": 36,
+      "type": "he_operation",
+      "name": "HE Operation",
+      "offset": 187,
+      "stream_length": 9,
+      "length": 7,
+      "content_offset": 1,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "24f43f002afcff",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "he_operation_parameters",
+          "label": "HE Operation Parameters",
+          "text": "0x003ff4",
+          "value": 16372,
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "he_default_pe",
+              "label": "Default PE Duration",
+              "text": "4",
+              "value": 4,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                0,
+                3
+              ]
+            },
+            {
+              "key": "he_twt_required",
+              "label": "TWT Required",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "he_txop_rts_threshold",
+              "label": "TXOP Duration RTS Threshold",
+              "text": "1023",
+              "value": 1023,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                4,
+                10
+              ]
+            },
+            {
+              "key": "he_vht_info_present",
+              "label": "VHT Operation Information Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            },
+            {
+              "key": "he_cohosted_bss",
+              "label": "Co-Hosted BSS",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                15,
+                1
+              ]
+            },
+            {
+              "key": "he_er_su_disable",
+              "label": "ER SU Disable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                16,
+                1
+              ]
+            },
+            {
+              "key": "he_6ghz_info_present",
+              "label": "6 GHz Operation Information Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                3
+              ],
+              "bits": [
+                17,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "he_bss_color_info",
+          "label": "BSS Color Information",
+          "text": "0x2a",
+          "value": 42,
+          "bytes": [
+            3,
+            1
+          ],
+          "children": [
+            {
+              "key": "he_bss_color",
+              "label": "BSS Color",
+              "text": "42",
+              "value": 42,
+              "bytes": [
+                3,
+                1
+              ],
+              "bits": [
+                0,
+                6
+              ]
+            },
+            {
+              "key": "he_partial_bss_color",
+              "label": "Partial BSS Color",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                1
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "he_bss_color_disabled",
+              "label": "BSS Color Disabled",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                1
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "he_basic_mcs",
+          "label": "Basic HE-MCS and NSS Set",
+          "text": "0xfffc",
+          "value": 65532,
+          "bytes": [
+            4,
+            2
+          ],
+          "children": [
+            {
+              "key": "nss_1",
+              "label": "1 Spatial Stream",
+              "text": "MCS 0-7 (0)",
+              "value": 0,
+              "value_name": "MCS 0-7",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "nss_2",
+              "label": "2 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "nss_3",
+              "label": "3 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                4,
+                2
+              ]
+            },
+            {
+              "key": "nss_4",
+              "label": "4 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                6,
+                2
+              ]
+            },
+            {
+              "key": "nss_5",
+              "label": "5 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "nss_6",
+              "label": "6 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                10,
+                2
+              ]
+            },
+            {
+              "key": "nss_7",
+              "label": "7 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                12,
+                2
+              ]
+            },
+            {
+              "key": "nss_8",
+              "label": "8 Spatial Streams",
+              "text": "Not supported (3)",
+              "value": 3,
+              "value_name": "Not supported",
+              "bytes": [
+                4,
+                2
+              ],
+              "bits": [
+                14,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "id": 221,
+      "oui": "00:50:f2",
+      "vendor_type": 2,
+      "type": "vendor.microsoft.wmm",
+      "name": "WMM",
+      "offset": 196,
+      "stream_length": 26,
+      "length": 24,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0050f2020101800003a4000027a4000042435e0062322f00",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vendor_oui",
+          "label": "OUI",
+          "text": "00:50:f2",
+          "value": "00:50:f2",
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "vendor_name",
+              "label": "Vendor",
+              "text": "Microsoft",
+              "value": "Microsoft",
+              "bytes": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vendor_type",
+          "label": "Vendor Type",
+          "text": "2",
+          "value": 2,
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "wmm_subtype",
+          "label": "Subtype",
+          "text": "WMM Parameter Element (1)",
+          "value": 1,
+          "value_name": "WMM Parameter Element",
+          "bytes": [
+            4,
+            1
+          ]
+        },
+        {
+          "key": "common_version",
+          "label": "Version",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            5,
+            1
+          ]
+        },
+        {
+          "key": "wmm_qos_info",
+          "label": "QoS Info",
+          "text": "0x80",
+          "value": 128,
+          "bytes": [
+            6,
+            1
+          ],
+          "children": [
+            {
+              "key": "wmm_parameter_set_count",
+              "label": "Parameter Set Count",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                6,
+                1
+              ],
+              "bits": [
+                0,
+                4
+              ]
+            },
+            {
+              "key": "wmm_uapsd",
+              "label": "U-APSD",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                6,
+                1
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "common_reserved",
+          "label": "Reserved",
+          "text": "0",
+          "value": 0,
+          "bytes": [
+            7,
+            1
+          ]
+        },
+        {
+          "key": "edca_ac_record",
+          "label": "Access Category Parameters",
+          "bytes": [
+            8,
+            4
+          ],
+          "children": [
+            {
+              "key": "edca_aci_aifsn",
+              "label": "ACI/AIFSN",
+              "text": "0x03",
+              "value": 3,
+              "bytes": [
+                8,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_aifsn",
+                  "label": "AIFSN",
+                  "text": "3",
+                  "value": 3,
+                  "bytes": [
+                    8,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_acm",
+                  "label": "ACM (Admission Control Mandatory)",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    8,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    1
+                  ]
+                },
+                {
+                  "key": "edca_aci",
+                  "label": "ACI",
+                  "text": "Best Effort (BE) (0)",
+                  "value": 0,
+                  "value_name": "Best Effort (BE)",
+                  "bytes": [
+                    8,
+                    1
+                  ],
+                  "bits": [
+                    5,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_ecw",
+              "label": "ECWmin/ECWmax",
+              "text": "0xa4",
+              "value": 164,
+              "bytes": [
+                9,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_cw_min",
+                  "label": "CWmin",
+                  "text": "15",
+                  "value": 15,
+                  "bytes": [
+                    9,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_cw_max",
+                  "label": "CWmax",
+                  "text": "1023",
+                  "value": 1023,
+                  "bytes": [
+                    9,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    4
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_txop_limit",
+              "label": "TXOP Limit",
+              "text": "0 µs",
+              "value": 0,
+              "unit": "µs",
+              "bytes": [
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "key": "edca_ac_record",
+          "label": "Access Category Parameters",
+          "bytes": [
+            12,
+            4
+          ],
+          "children": [
+            {
+              "key": "edca_aci_aifsn",
+              "label": "ACI/AIFSN",
+              "text": "0x27",
+              "value": 39,
+              "bytes": [
+                12,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_aifsn",
+                  "label": "AIFSN",
+                  "text": "7",
+                  "value": 7,
+                  "bytes": [
+                    12,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_acm",
+                  "label": "ACM (Admission Control Mandatory)",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    12,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    1
+                  ]
+                },
+                {
+                  "key": "edca_aci",
+                  "label": "ACI",
+                  "text": "Background (BK) (1)",
+                  "value": 1,
+                  "value_name": "Background (BK)",
+                  "bytes": [
+                    12,
+                    1
+                  ],
+                  "bits": [
+                    5,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_ecw",
+              "label": "ECWmin/ECWmax",
+              "text": "0xa4",
+              "value": 164,
+              "bytes": [
+                13,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_cw_min",
+                  "label": "CWmin",
+                  "text": "15",
+                  "value": 15,
+                  "bytes": [
+                    13,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_cw_max",
+                  "label": "CWmax",
+                  "text": "1023",
+                  "value": 1023,
+                  "bytes": [
+                    13,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    4
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_txop_limit",
+              "label": "TXOP Limit",
+              "text": "0 µs",
+              "value": 0,
+              "unit": "µs",
+              "bytes": [
+                14,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "key": "edca_ac_record",
+          "label": "Access Category Parameters",
+          "bytes": [
+            16,
+            4
+          ],
+          "children": [
+            {
+              "key": "edca_aci_aifsn",
+              "label": "ACI/AIFSN",
+              "text": "0x42",
+              "value": 66,
+              "bytes": [
+                16,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_aifsn",
+                  "label": "AIFSN",
+                  "text": "2",
+                  "value": 2,
+                  "bytes": [
+                    16,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_acm",
+                  "label": "ACM (Admission Control Mandatory)",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    16,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    1
+                  ]
+                },
+                {
+                  "key": "edca_aci",
+                  "label": "ACI",
+                  "text": "Video (VI) (2)",
+                  "value": 2,
+                  "value_name": "Video (VI)",
+                  "bytes": [
+                    16,
+                    1
+                  ],
+                  "bits": [
+                    5,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_ecw",
+              "label": "ECWmin/ECWmax",
+              "text": "0x43",
+              "value": 67,
+              "bytes": [
+                17,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_cw_min",
+                  "label": "CWmin",
+                  "text": "7",
+                  "value": 7,
+                  "bytes": [
+                    17,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_cw_max",
+                  "label": "CWmax",
+                  "text": "15",
+                  "value": 15,
+                  "bytes": [
+                    17,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    4
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_txop_limit",
+              "label": "TXOP Limit",
+              "text": "3008 µs",
+              "value": 3008,
+              "unit": "µs",
+              "bytes": [
+                18,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "key": "edca_ac_record",
+          "label": "Access Category Parameters",
+          "bytes": [
+            20,
+            4
+          ],
+          "children": [
+            {
+              "key": "edca_aci_aifsn",
+              "label": "ACI/AIFSN",
+              "text": "0x62",
+              "value": 98,
+              "bytes": [
+                20,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_aifsn",
+                  "label": "AIFSN",
+                  "text": "2",
+                  "value": 2,
+                  "bytes": [
+                    20,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_acm",
+                  "label": "ACM (Admission Control Mandatory)",
+                  "text": "no",
+                  "value": false,
+                  "bytes": [
+                    20,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    1
+                  ]
+                },
+                {
+                  "key": "edca_aci",
+                  "label": "ACI",
+                  "text": "Voice (VO) (3)",
+                  "value": 3,
+                  "value_name": "Voice (VO)",
+                  "bytes": [
+                    20,
+                    1
+                  ],
+                  "bits": [
+                    5,
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_ecw",
+              "label": "ECWmin/ECWmax",
+              "text": "0x32",
+              "value": 50,
+              "bytes": [
+                21,
+                1
+              ],
+              "children": [
+                {
+                  "key": "edca_cw_min",
+                  "label": "CWmin",
+                  "text": "3",
+                  "value": 3,
+                  "bytes": [
+                    21,
+                    1
+                  ],
+                  "bits": [
+                    0,
+                    4
+                  ]
+                },
+                {
+                  "key": "edca_cw_max",
+                  "label": "CWmax",
+                  "text": "7",
+                  "value": 7,
+                  "bytes": [
+                    21,
+                    1
+                  ],
+                  "bits": [
+                    4,
+                    4
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "edca_txop_limit",
+              "label": "TXOP Limit",
+              "text": "1504 µs",
+              "value": 1504,
+              "unit": "µs",
+              "bytes": [
+                22,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "id": 244,
+      "type": "rsn_extension",
+      "name": "RSN Extension",
+      "offset": 222,
+      "stream_length": 3,
+      "length": 1,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "20",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rsnx_capabilities",
+          "label": "Extended RSN Capabilities",
+          "text": "0x20",
+          "value": 32,
+          "bytes": [
+            0,
+            1
+          ],
+          "children": [
+            {
+              "key": "rsnx_field_length",
+              "label": "Field Length",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                0,
+                4
+              ]
+            },
+            {
+              "key": "rsnx_protected_twt",
+              "label": "Protected TWT Operations Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "rsnx_sae_h2e",
+              "label": "SAE Hash-to-Element",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "rsnx_sae_pk",
+              "label": "SAE-PK",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostics": []
+}

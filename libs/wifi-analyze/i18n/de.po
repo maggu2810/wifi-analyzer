@@ -1,35 +1,36 @@
 # SPDX-License-Identifier: MIT
 #
 # German translations of libwifianalyze domain messages.
+# Template: <build>/libs/wifi-analyze/generated/messages.pot (generated from WA_TR() uses).
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Language: de\n"
 
-msgctxt "hex.invalid_character"
+msgctxt "hex_invalid_character"
 msgid "Invalid character '{0}' at position {1}"
 msgstr "Ungültiges Zeichen '{0}' an Position {1}"
 
-msgctxt "hex.odd_length"
+msgctxt "hex_odd_length"
 msgid "Hex input has an odd number of digits ({0})"
 msgstr "Hex-Eingabe hat eine ungerade Anzahl an Ziffern ({0})"
 
-msgctxt "tlv.extension_without_id"
-msgid "Extension element at offset {0} has no Element ID Extension byte"
-msgstr "Extension-Element an Offset {0} hat kein Element-ID-Extension-Byte"
+msgctxt "tlv_extension_without_id"
+msgid "Extension element at offset {0} has no Element ID Extension octet"
+msgstr "Extension-Element an Offset {0} hat kein Element-ID-Extension-Oktett"
 
-msgctxt "tlv.fragmented"
+msgctxt "tlv_fragmented"
 msgid "Element reassembled from {0} fragments"
 msgstr "Element aus {0} Fragmenten zusammengesetzt"
 
-msgctxt "tlv.missing_length"
-msgid "Incomplete element header at offset {0}: length byte missing"
-msgstr "Unvollständiger Element-Header an Offset {0}: Längen-Byte fehlt"
+msgctxt "tlv_missing_length"
+msgid "Incomplete element header at offset {0}: length octet missing"
+msgstr "Unvollständiger Element-Header an Offset {0}: Längen-Oktett fehlt"
 
-msgctxt "tlv.orphan_fragment"
+msgctxt "tlv_orphan_fragment"
 msgid "Fragment element at offset {0} does not follow a fragmentable element"
 msgstr "Fragment-Element an Offset {0} folgt keinem fragmentierbaren Element"
 
-msgctxt "tlv.truncated"
-msgid "Element {0} at offset {1} declares {2} bytes but only {3} remain"
-msgstr "Element {0} an Offset {1} gibt {2} Bytes an, aber nur {3} sind vorhanden"
+msgctxt "tlv_truncated"
+msgid "Element {0} at offset {1} declares {2} octets but only {3} remain"
+msgstr "Element {0} an Offset {1} gibt {2} Oktette an, aber nur {3} sind vorhanden"

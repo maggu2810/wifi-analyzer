@@ -5,6 +5,8 @@
 
 #include <wifi_analyze/hex.hpp>
 
+#include "core/tr.hpp"
+
 namespace wifi_analyze {
 namespace {
 
@@ -60,7 +62,7 @@ std::expected<std::vector<std::uint8_t>, Diagnostic> parse_hex(std::string_view 
         if (!value) {
             return std::unexpected(Diagnostic{
                 .severity = Severity::error,
-                .message = MessageId::hex_invalid_character,
+                .message = WA_TR(hex_invalid_character, "Invalid character '{0}' at position {1}"),
                 .args = {printable(c), std::to_string(i)},
                 .bytes = ByteRange{.offset = i, .length = 1},
             });
@@ -78,7 +80,7 @@ std::expected<std::vector<std::uint8_t>, Diagnostic> parse_hex(std::string_view 
     if (high) {
         return std::unexpected(Diagnostic{
             .severity = Severity::error,
-            .message = MessageId::hex_odd_length,
+            .message = WA_TR(hex_odd_length, "Hex input has an odd number of digits ({0})"),
             .args = {std::to_string(digit_count)},
             .bytes = std::nullopt,
         });

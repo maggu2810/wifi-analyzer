@@ -1,0 +1,2182 @@
+{
+  "schema": "wifi-analyze.decoded",
+  "schema_version": 1,
+  "locale": "en",
+  "summary": {
+    "ssid": "OldRouter",
+    "ssid_hex": "4f6c64526f75746572",
+    "ssid_present": true,
+    "hidden": false,
+    "security": {
+      "type": "wpa_wpa2_personal",
+      "label": "WPA/WPA2-Personal",
+      "pmf": "disabled",
+      "pmf_label": "Disabled",
+      "rsn": true,
+      "wpa1": true,
+      "weak": true,
+      "sae_h2e": false,
+      "sae_pk": false,
+      "akms": [
+        {
+          "suite": "00:0f:ac:2",
+          "name": "PSK"
+        }
+      ],
+      "pairwise_ciphers": [
+        {
+          "suite": "00:0f:ac:4",
+          "name": "CCMP-128"
+        },
+        {
+          "suite": "00:0f:ac:2",
+          "name": "TKIP"
+        }
+      ],
+      "group_cipher": {
+        "suite": "00:0f:ac:2",
+        "name": "TKIP"
+      },
+      "group_management_cipher": null
+    },
+    "phy": {
+      "generation": 4,
+      "generation_label": "Wi-Fi 4",
+      "standards": [
+        "802.11b",
+        "802.11g",
+        "802.11n"
+      ],
+      "band": "2.4",
+      "band_label": "2.4 GHz",
+      "primary_channel": 6,
+      "primary_frequency_mhz": 2437,
+      "channel_width_mhz": 20,
+      "eighty_plus_eighty": false,
+      "center_frequencies_mhz": [
+        2437
+      ],
+      "punctured_subchannels": null,
+      "max_spatial_streams": 1,
+      "max_rate_mbps": 72.2,
+      "max_legacy_rate_mbps": 54
+    },
+    "bss_load": null,
+    "country": "",
+    "roaming": {
+      "k": false,
+      "v": false,
+      "r": false,
+      "ft_over_ds": false
+    },
+    "wmm": false,
+    "uapsd": false,
+    "bss_color": null,
+    "twt_responder": false,
+    "mlo": null,
+    "neighbors": [],
+    "nontransmitted_bssids": 0,
+    "device": {
+      "manufacturer": "ACME Inc",
+      "model_name": "Router1",
+      "model_number": "R-1",
+      "device_name": "ACME-R100",
+      "serial_number": "1234"
+    },
+    "access_network_type": null,
+    "internet": null,
+    "hotspot20_release": null,
+    "vendors": [
+      {
+        "oui": "00:50:f2",
+        "name": "Microsoft"
+      }
+    ],
+    "element_count": 10,
+    "problem_count": 0
+  },
+  "overview": [
+    {
+      "key": "ssid_name",
+      "label": "SSID",
+      "text": "OldRouter",
+      "value": "OldRouter"
+    },
+    {
+      "key": "summary_security",
+      "label": "Security",
+      "text": "WPA/WPA2-Personal",
+      "value": 8,
+      "value_name": "WPA/WPA2-Personal",
+      "significance": "warning",
+      "children": [
+        {
+          "key": "summary_pmf",
+          "label": "Management Frame Protection",
+          "text": "Disabled",
+          "value": 1,
+          "value_name": "Disabled"
+        },
+        {
+          "key": "summary_akms",
+          "label": "Authentication",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "PSK (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "PSK"
+            }
+          ]
+        },
+        {
+          "key": "summary_pairwise",
+          "label": "Pairwise Ciphers",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "CCMP-128 (00-0f-ac:4)",
+              "value": 1027076,
+              "value_name": "CCMP-128"
+            },
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "TKIP (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "TKIP"
+            }
+          ]
+        },
+        {
+          "key": "summary_group_cipher",
+          "label": "Group Cipher",
+          "children": [
+            {
+              "key": "common_item",
+              "label": "Item",
+              "text": "TKIP (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "TKIP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "summary_phy",
+      "label": "PHY",
+      "text": "Wi-Fi 4",
+      "value": "Wi-Fi 4",
+      "children": [
+        {
+          "key": "summary_standards",
+          "label": "Standards",
+          "text": "802.11b, 802.11g, 802.11n",
+          "value": "802.11b, 802.11g, 802.11n"
+        },
+        {
+          "key": "summary_band",
+          "label": "Band",
+          "text": "2.4 GHz",
+          "value": "2.4 GHz"
+        },
+        {
+          "key": "summary_primary_channel",
+          "label": "Primary Channel",
+          "text": "6",
+          "value": 6
+        },
+        {
+          "key": "summary_frequency",
+          "label": "Frequency",
+          "text": "2437 MHz",
+          "value": 2437,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_channel_width",
+          "label": "Channel Width",
+          "text": "20 MHz",
+          "value": "20 MHz"
+        },
+        {
+          "key": "summary_center_frequency",
+          "label": "Center Frequency",
+          "text": "2437 MHz",
+          "value": 2437,
+          "unit": "MHz"
+        },
+        {
+          "key": "summary_nss",
+          "label": "Spatial Streams",
+          "text": "1",
+          "value": 1
+        },
+        {
+          "key": "summary_max_rate",
+          "label": "Max PHY Rate (estimate)",
+          "text": "72.2 Mbit/s",
+          "value": 72.2,
+          "unit": "Mbit/s"
+        }
+      ]
+    },
+    {
+      "key": "summary_features",
+      "label": "Features",
+      "children": [
+        {
+          "key": "summary_11k",
+          "label": "802.11k (Radio Measurement)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_11v",
+          "label": "802.11v (BSS Transition)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_11r",
+          "label": "802.11r (Fast Transition)",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "element_wmm",
+          "label": "WMM",
+          "text": "no",
+          "value": false
+        },
+        {
+          "key": "summary_twt",
+          "label": "Target Wake Time",
+          "text": "no",
+          "value": false
+        }
+      ]
+    },
+    {
+      "key": "summary_device",
+      "label": "Device",
+      "children": [
+        {
+          "key": "wps_manufacturer",
+          "label": "Manufacturer",
+          "text": "ACME Inc",
+          "value": "ACME Inc"
+        },
+        {
+          "key": "wps_model_name",
+          "label": "Model Name",
+          "text": "Router1",
+          "value": "Router1"
+        },
+        {
+          "key": "wps_model_number",
+          "label": "Model Number",
+          "text": "R-1",
+          "value": "R-1"
+        },
+        {
+          "key": "wps_device_name",
+          "label": "Device Name",
+          "text": "ACME-R100",
+          "value": "ACME-R100"
+        },
+        {
+          "key": "wps_serial_number",
+          "label": "Serial Number",
+          "text": "1234",
+          "value": "1234"
+        }
+      ]
+    },
+    {
+      "key": "summary_vendors",
+      "label": "Vendor Elements",
+      "children": [
+        {
+          "key": "common_item",
+          "label": "Item",
+          "text": "00:50:f2 (Microsoft)",
+          "value": "00:50:f2 (Microsoft)"
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "index": 0,
+      "id": 0,
+      "type": "ssid",
+      "name": "SSID",
+      "offset": 0,
+      "stream_length": 11,
+      "length": 9,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "4f6c64526f75746572",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ssid_name",
+          "label": "SSID",
+          "text": "OldRouter",
+          "value": "OldRouter",
+          "bytes": [
+            0,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "id": 1,
+      "type": "supported_rates",
+      "name": "Supported Rates",
+      "offset": 11,
+      "stream_length": 10,
+      "length": 8,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "82848b960c121824",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "1 Mbit/s",
+          "value": 1,
+          "unit": "Mbit/s",
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "2 Mbit/s",
+          "value": 2,
+          "unit": "Mbit/s",
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "5.5 Mbit/s",
+          "value": 5.5,
+          "unit": "Mbit/s",
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "rates_basic_rate",
+          "label": "Basic Rate",
+          "text": "11 Mbit/s",
+          "value": 11,
+          "unit": "Mbit/s",
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "6 Mbit/s",
+          "value": 6,
+          "unit": "Mbit/s",
+          "bytes": [
+            4,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "9 Mbit/s",
+          "value": 9,
+          "unit": "Mbit/s",
+          "bytes": [
+            5,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "12 Mbit/s",
+          "value": 12,
+          "unit": "Mbit/s",
+          "bytes": [
+            6,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "18 Mbit/s",
+          "value": 18,
+          "unit": "Mbit/s",
+          "bytes": [
+            7,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": 3,
+      "type": "ds_parameter_set",
+      "name": "DSSS Parameter Set",
+      "offset": 21,
+      "stream_length": 3,
+      "length": 1,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "06",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ds_current_channel",
+          "label": "Current Channel",
+          "text": "6",
+          "value": 6,
+          "bytes": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": 42,
+      "type": "erp",
+      "name": "ERP Information",
+      "offset": 24,
+      "stream_length": 3,
+      "length": 1,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "00",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "erp_information",
+          "label": "ERP Information",
+          "text": "0x00",
+          "value": 0,
+          "bytes": [
+            0,
+            1
+          ],
+          "children": [
+            {
+              "key": "erp_non_erp_present",
+              "label": "Non-ERP Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "erp_use_protection",
+              "label": "Use Protection",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "erp_barker_preamble",
+              "label": "Barker Preamble Mode",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                1
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": 50,
+      "type": "extended_supported_rates",
+      "name": "Extended Supported Rates",
+      "offset": 27,
+      "stream_length": 6,
+      "length": 4,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "3048606c",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "24 Mbit/s",
+          "value": 24,
+          "unit": "Mbit/s",
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "36 Mbit/s",
+          "value": 36,
+          "unit": "Mbit/s",
+          "bytes": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "48 Mbit/s",
+          "value": 48,
+          "unit": "Mbit/s",
+          "bytes": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "rates_rate",
+          "label": "Supported Rate",
+          "text": "54 Mbit/s",
+          "value": 54,
+          "unit": "Mbit/s",
+          "bytes": [
+            3,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": 48,
+      "type": "rsn",
+      "name": "RSN",
+      "offset": 33,
+      "stream_length": 26,
+      "length": 24,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0100000fac020200000fac04000fac020100000fac020000",
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "key": "rsn_weak_cipher",
+          "message": "Insecure cipher in use (WEP or TKIP)",
+          "args": [],
+          "bytes": [
+            37,
+            4
+          ]
+        },
+        {
+          "severity": "warning",
+          "key": "rsn_weak_cipher",
+          "message": "Insecure cipher in use (WEP or TKIP)",
+          "args": [],
+          "bytes": [
+            47,
+            4
+          ]
+        }
+      ],
+      "tree": [
+        {
+          "key": "common_version",
+          "label": "Version",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            0,
+            2
+          ]
+        },
+        {
+          "key": "rsn_group_cipher",
+          "label": "Group Data Cipher Suite",
+          "text": "TKIP (00-0f-ac:2)",
+          "value": 1027074,
+          "value_name": "TKIP",
+          "bytes": [
+            2,
+            4
+          ],
+          "significance": "warning"
+        },
+        {
+          "key": "rsn_pairwise_list",
+          "label": "Pairwise Cipher Suites",
+          "bytes": [
+            6,
+            10
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "2",
+              "value": 2,
+              "bytes": [
+                6,
+                2
+              ]
+            },
+            {
+              "key": "rsn_pairwise",
+              "label": "Pairwise Cipher Suite",
+              "text": "CCMP-128 (00-0f-ac:4)",
+              "value": 1027076,
+              "value_name": "CCMP-128",
+              "bytes": [
+                8,
+                4
+              ]
+            },
+            {
+              "key": "rsn_pairwise",
+              "label": "Pairwise Cipher Suite",
+              "text": "TKIP (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "TKIP",
+              "bytes": [
+                12,
+                4
+              ],
+              "significance": "warning"
+            }
+          ]
+        },
+        {
+          "key": "rsn_akm_list",
+          "label": "AKM Suites",
+          "bytes": [
+            16,
+            6
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                16,
+                2
+              ]
+            },
+            {
+              "key": "rsn_akm",
+              "label": "AKM Suite",
+              "text": "PSK (00-0f-ac:2)",
+              "value": 1027074,
+              "value_name": "PSK",
+              "bytes": [
+                18,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "key": "rsn_capabilities",
+          "label": "RSN Capabilities",
+          "text": "0x0000",
+          "value": 0,
+          "bytes": [
+            22,
+            2
+          ],
+          "children": [
+            {
+              "key": "rsn_preauth",
+              "label": "Preauthentication",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "rsn_no_pairwise",
+              "label": "No Pairwise",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "rsn_ptksa_replay",
+              "label": "PTKSA Replay Counter",
+              "text": "1 (0)",
+              "value": 0,
+              "value_name": "1",
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "rsn_gtksa_replay",
+              "label": "GTKSA Replay Counter",
+              "text": "1 (0)",
+              "value": 0,
+              "value_name": "1",
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                4,
+                2
+              ]
+            },
+            {
+              "key": "rsn_mfpr",
+              "label": "Management Frame Protection Required",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "rsn_mfpc",
+              "label": "Management Frame Protection Capable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "rsn_joint_multiband",
+              "label": "Joint Multi-band RSNA",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                8,
+                1
+              ]
+            },
+            {
+              "key": "rsn_peerkey",
+              "label": "PeerKey Enabled",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                9,
+                1
+              ]
+            },
+            {
+              "key": "rsn_spp_amsdu_capable",
+              "label": "SPP A-MSDU Capable",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "rsn_spp_amsdu_required",
+              "label": "SPP A-MSDU Required",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            },
+            {
+              "key": "rsn_pbac",
+              "label": "PBAC",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "rsn_extended_key_id",
+              "label": "Extended Key ID for Individually Addressed Frames",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                13,
+                1
+              ]
+            },
+            {
+              "key": "rsn_ocvc",
+              "label": "OCVC (Operating Channel Validation)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                22,
+                2
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": 45,
+      "type": "ht_capabilities",
+      "name": "HT Capabilities",
+      "offset": 59,
+      "stream_length": 28,
+      "length": 26,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "2c0017ff00000000000000000000000000000000000000000000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ht_capability_info",
+          "label": "HT Capability Information",
+          "text": "0x002c",
+          "value": 44,
+          "bytes": [
+            0,
+            2
+          ],
+          "children": [
+            {
+              "key": "ht_ldpc",
+              "label": "LDPC Coding Capability",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "ht_channel_width_set",
+              "label": "Supported Channel Width Set",
+              "text": "20 MHz only (0)",
+              "value": 0,
+              "value_name": "20 MHz only",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "ht_sm_power_save",
+              "label": "SM Power Save",
+              "text": "Disabled (3)",
+              "value": 3,
+              "value_name": "Disabled",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                2,
+                2
+              ]
+            },
+            {
+              "key": "ht_greenfield",
+              "label": "HT-Greenfield",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "ht_short_gi_20",
+              "label": "Short GI for 20 MHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "ht_short_gi_40",
+              "label": "Short GI for 40 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_stbc",
+              "label": "Tx STBC",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "ht_rx_stbc",
+              "label": "Rx STBC",
+              "text": "Not supported (0)",
+              "value": 0,
+              "value_name": "Not supported",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_delayed_block_ack",
+              "label": "HT-Delayed Block Ack",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_max_amsdu",
+              "label": "Maximum A-MSDU Length",
+              "text": "3839 (0)",
+              "value": 0,
+              "value_name": "3839",
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            },
+            {
+              "key": "ht_dsss_cck_40",
+              "label": "DSSS/CCK Mode in 40 MHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "ht_40_intolerant",
+              "label": "Forty MHz Intolerant",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            },
+            {
+              "key": "ht_lsig_txop",
+              "label": "L-SIG TXOP Protection Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                0,
+                2
+              ],
+              "bits": [
+                15,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_ampdu_parameters",
+          "label": "A-MPDU Parameters",
+          "text": "0x17",
+          "value": 23,
+          "bytes": [
+            2,
+            1
+          ],
+          "children": [
+            {
+              "key": "ht_max_ampdu_length",
+              "label": "Maximum A-MPDU Length",
+              "text": "65535 octets",
+              "value": 65535,
+              "unit": "octets",
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "ht_min_mpdu_spacing",
+              "label": "Minimum MPDU Start Spacing",
+              "text": "4 µs (5)",
+              "value": 5,
+              "value_name": "4 µs",
+              "bytes": [
+                2,
+                1
+              ],
+              "bits": [
+                2,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_mcs_set",
+          "label": "Supported MCS Set",
+          "text": "ff000000000000000000000000000000",
+          "value": "ff000000000000000000000000000000",
+          "bytes": [
+            3,
+            16
+          ],
+          "children": [
+            {
+              "key": "ht_rx_mcs",
+              "label": "Rx MCS",
+              "text": "0-7",
+              "value": "0-7",
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                0,
+                77
+              ]
+            },
+            {
+              "key": "ht_rx_highest_rate",
+              "label": "Rx Highest Supported Data Rate",
+              "text": "0 Mbit/s",
+              "value": 0,
+              "unit": "Mbit/s",
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                80,
+                10
+              ]
+            },
+            {
+              "key": "ht_tx_mcs_defined",
+              "label": "Tx MCS Set Defined",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                96,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_rx_not_equal",
+              "label": "Tx Rx MCS Set Not Equal",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                97,
+                1
+              ]
+            },
+            {
+              "key": "ht_tx_max_nss",
+              "label": "Tx Maximum Number Spatial Streams Supported",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                98,
+                2
+              ]
+            },
+            {
+              "key": "ht_tx_unequal_modulation",
+              "label": "Tx Unequal Modulation Supported",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                3,
+                16
+              ],
+              "bits": [
+                100,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_extended_capabilities",
+          "label": "HT Extended Capabilities",
+          "text": "0x0000",
+          "value": 0,
+          "bytes": [
+            19,
+            2
+          ],
+          "children": [
+            {
+              "key": "ht_mcs_feedback",
+              "label": "MCS Feedback",
+              "text": "No feedback (0)",
+              "value": 0,
+              "value_name": "No feedback",
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_htc",
+              "label": "+HTC Support",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_rd_responder",
+              "label": "RD Responder",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                19,
+                2
+              ],
+              "bits": [
+                11,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_txbf_capabilities",
+          "label": "Transmit Beamforming Capabilities",
+          "text": "0x00000000",
+          "value": 0,
+          "bytes": [
+            21,
+            4
+          ]
+        },
+        {
+          "key": "ht_asel_capabilities",
+          "label": "ASEL Capabilities",
+          "text": "0x00",
+          "value": 0,
+          "bytes": [
+            25,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": 61,
+      "type": "ht_operation",
+      "name": "HT Operation",
+      "offset": 87,
+      "stream_length": 24,
+      "length": 22,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "06000000000000000000000000000000000000000000",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "ht_primary_channel",
+          "label": "Primary Channel",
+          "text": "6",
+          "value": 6,
+          "bytes": [
+            0,
+            1
+          ]
+        },
+        {
+          "key": "ht_operation_info",
+          "label": "HT Operation Information",
+          "text": "0x0000000000",
+          "value": 0,
+          "bytes": [
+            1,
+            5
+          ],
+          "children": [
+            {
+              "key": "ht_secondary_channel_offset",
+              "label": "Secondary Channel Offset",
+              "text": "No secondary channel (0)",
+              "value": 0,
+              "value_name": "No secondary channel",
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                0,
+                2
+              ]
+            },
+            {
+              "key": "ht_sta_channel_width",
+              "label": "STA Channel Width (any width allowed)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "ht_rifs",
+              "label": "RIFS Mode",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "ht_protection",
+              "label": "HT Protection",
+              "text": "No protection (0)",
+              "value": 0,
+              "value_name": "No protection",
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                8,
+                2
+              ]
+            },
+            {
+              "key": "ht_nongreenfield_present",
+              "label": "Nongreenfield HT STAs Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "ht_obss_non_ht_present",
+              "label": "OBSS Non-HT STAs Present",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                12,
+                1
+              ]
+            },
+            {
+              "key": "ht_ccfs2",
+              "label": "Channel Center Frequency Segment 2",
+              "text": "0",
+              "value": 0,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                13,
+                8
+              ]
+            },
+            {
+              "key": "ht_dual_beacon",
+              "label": "Dual Beacon",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                30,
+                1
+              ]
+            },
+            {
+              "key": "ht_dual_cts",
+              "label": "Dual CTS Protection",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                31,
+                1
+              ]
+            },
+            {
+              "key": "ht_stbc_beacon",
+              "label": "STBC Beacon",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                1,
+                5
+              ],
+              "bits": [
+                32,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "ht_basic_mcs_set",
+          "label": "Basic HT-MCS Set",
+          "text": "00000000000000000000000000000000",
+          "value": "00000000000000000000000000000000",
+          "bytes": [
+            6,
+            16
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": 221,
+      "oui": "00:50:f2",
+      "vendor_type": 1,
+      "type": "vendor.microsoft.wpa",
+      "name": "WPA",
+      "offset": 111,
+      "stream_length": 28,
+      "length": 26,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0050f20101000050f20202000050f2040050f20201000050f202",
+      "diagnostics": [
+        {
+          "severity": "warning",
+          "key": "rsn_weak_cipher",
+          "message": "Insecure cipher in use (WEP or TKIP)",
+          "args": [],
+          "bytes": [
+            119,
+            4
+          ]
+        },
+        {
+          "severity": "warning",
+          "key": "rsn_weak_cipher",
+          "message": "Insecure cipher in use (WEP or TKIP)",
+          "args": [],
+          "bytes": [
+            129,
+            4
+          ]
+        },
+        {
+          "severity": "warning",
+          "key": "wpa_legacy",
+          "message": "Legacy WPA (WPA1) is deprecated and insecure",
+          "args": []
+        }
+      ],
+      "tree": [
+        {
+          "key": "vendor_oui",
+          "label": "OUI",
+          "text": "00:50:f2",
+          "value": "00:50:f2",
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "vendor_name",
+              "label": "Vendor",
+              "text": "Microsoft",
+              "value": "Microsoft",
+              "bytes": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vendor_type",
+          "label": "Vendor Type",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "common_version",
+          "label": "Version",
+          "text": "1",
+          "value": 1,
+          "bytes": [
+            4,
+            2
+          ]
+        },
+        {
+          "key": "wpa_multicast_cipher",
+          "label": "Multicast Cipher Suite",
+          "text": "TKIP (00-50-f2:2)",
+          "value": 5304834,
+          "value_name": "TKIP",
+          "bytes": [
+            6,
+            4
+          ],
+          "significance": "warning"
+        },
+        {
+          "key": "wpa_unicast_ciphers",
+          "label": "Unicast Cipher Suites",
+          "bytes": [
+            10,
+            10
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "2",
+              "value": 2,
+              "bytes": [
+                10,
+                2
+              ]
+            },
+            {
+              "key": "rsn_pairwise",
+              "label": "Pairwise Cipher Suite",
+              "text": "CCMP-128 (00-50-f2:4)",
+              "value": 5304836,
+              "value_name": "CCMP-128",
+              "bytes": [
+                12,
+                4
+              ]
+            },
+            {
+              "key": "rsn_pairwise",
+              "label": "Pairwise Cipher Suite",
+              "text": "TKIP (00-50-f2:2)",
+              "value": 5304834,
+              "value_name": "TKIP",
+              "bytes": [
+                16,
+                4
+              ],
+              "significance": "warning"
+            }
+          ]
+        },
+        {
+          "key": "rsn_akm_list",
+          "label": "AKM Suites",
+          "bytes": [
+            20,
+            6
+          ],
+          "children": [
+            {
+              "key": "common_count",
+              "label": "Count",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                20,
+                2
+              ]
+            },
+            {
+              "key": "rsn_akm",
+              "label": "AKM Suite",
+              "text": "PSK (00-50-f2:2)",
+              "value": 5304834,
+              "value_name": "PSK",
+              "bytes": [
+                22,
+                4
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "id": 221,
+      "oui": "00:50:f2",
+      "vendor_type": 4,
+      "type": "vendor.microsoft.wps",
+      "name": "Wi-Fi Protected Setup",
+      "offset": 139,
+      "stream_length": 125,
+      "length": 123,
+      "content_offset": 0,
+      "fragmented": false,
+      "status": "ok",
+      "payload": "0050f204104a0001101044000102103b00010310470010000102030405060708090a0b0c0d0e0f1021000841434d4520496e6310230007526f757465723110240003522d3110420004313233341054000800060050f20400011011000941434d452d52313030100800022008103c0001011049000600372a000120",
+      "diagnostics": [],
+      "tree": [
+        {
+          "key": "vendor_oui",
+          "label": "OUI",
+          "text": "00:50:f2",
+          "value": "00:50:f2",
+          "bytes": [
+            0,
+            3
+          ],
+          "children": [
+            {
+              "key": "vendor_name",
+              "label": "Vendor",
+              "text": "Microsoft",
+              "value": "Microsoft",
+              "bytes": [
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "key": "vendor_type",
+          "label": "Vendor Type",
+          "text": "4",
+          "value": 4,
+          "bytes": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "common_version",
+          "label": "Version",
+          "text": "1.0",
+          "value": "1.0",
+          "bytes": [
+            4,
+            5
+          ]
+        },
+        {
+          "key": "wps_state",
+          "label": "Wi-Fi Protected Setup State",
+          "text": "Configured (2)",
+          "value": 2,
+          "value_name": "Configured",
+          "bytes": [
+            9,
+            5
+          ]
+        },
+        {
+          "key": "wps_response_type",
+          "label": "Response Type",
+          "text": "AP (3)",
+          "value": 3,
+          "value_name": "AP",
+          "bytes": [
+            14,
+            5
+          ]
+        },
+        {
+          "key": "wps_uuid_e",
+          "label": "UUID-E",
+          "text": "000102030405060708090a0b0c0d0e0f",
+          "value": "000102030405060708090a0b0c0d0e0f",
+          "bytes": [
+            19,
+            20
+          ]
+        },
+        {
+          "key": "wps_manufacturer",
+          "label": "Manufacturer",
+          "text": "ACME Inc",
+          "value": "ACME Inc",
+          "bytes": [
+            39,
+            12
+          ]
+        },
+        {
+          "key": "wps_model_name",
+          "label": "Model Name",
+          "text": "Router1",
+          "value": "Router1",
+          "bytes": [
+            51,
+            11
+          ]
+        },
+        {
+          "key": "wps_model_number",
+          "label": "Model Number",
+          "text": "R-1",
+          "value": "R-1",
+          "bytes": [
+            62,
+            7
+          ]
+        },
+        {
+          "key": "wps_serial_number",
+          "label": "Serial Number",
+          "text": "1234",
+          "value": "1234",
+          "bytes": [
+            69,
+            8
+          ]
+        },
+        {
+          "key": "wps_primary_device_type",
+          "label": "Primary Device Type",
+          "bytes": [
+            77,
+            12
+          ],
+          "children": [
+            {
+              "key": "wps_category",
+              "label": "Category",
+              "text": "Network Infrastructure (6)",
+              "value": 6,
+              "value_name": "Network Infrastructure",
+              "bytes": [
+                81,
+                2
+              ]
+            },
+            {
+              "key": "vendor_oui",
+              "label": "OUI",
+              "text": "00:50:f2:04",
+              "value": "00:50:f2:04",
+              "bytes": [
+                83,
+                4
+              ]
+            },
+            {
+              "key": "wps_subcategory",
+              "label": "Subcategory",
+              "text": "1",
+              "value": 1,
+              "bytes": [
+                87,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "key": "wps_device_name",
+          "label": "Device Name",
+          "text": "ACME-R100",
+          "value": "ACME-R100",
+          "bytes": [
+            89,
+            13
+          ]
+        },
+        {
+          "key": "wps_config_methods",
+          "label": "Config Methods",
+          "text": "0x000000002008",
+          "value": 8200,
+          "bytes": [
+            102,
+            6
+          ],
+          "children": [
+            {
+              "key": "wps_cm_usba",
+              "label": "USBA (Flash Drive)",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_ethernet",
+              "label": "Ethernet",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_label",
+              "label": "Label",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_display",
+              "label": "Display",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                3,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_ext_nfc",
+              "label": "External NFC Token",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                4,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_int_nfc",
+              "label": "Integrated NFC Token",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                5,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_nfc_interface",
+              "label": "NFC Interface",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                6,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_push_button",
+              "label": "Push Button",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                7,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_keypad",
+              "label": "Keypad",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                8,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_virtual_push_button",
+              "label": "Virtual Push Button",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                9,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_physical_push_button",
+              "label": "Physical Push Button",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                10,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_virtual_display",
+              "label": "Virtual Display PIN",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                13,
+                1
+              ]
+            },
+            {
+              "key": "wps_cm_physical_display",
+              "label": "Physical Display PIN",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                106,
+                2
+              ],
+              "bits": [
+                14,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "wps_rf_bands",
+          "label": "RF Bands",
+          "text": "0x0000000001",
+          "value": 1,
+          "bytes": [
+            108,
+            5
+          ],
+          "children": [
+            {
+              "key": "band_2_4",
+              "label": "2.4 GHz",
+              "text": "yes",
+              "value": true,
+              "bytes": [
+                108,
+                5
+              ],
+              "bits": [
+                0,
+                1
+              ]
+            },
+            {
+              "key": "band_5",
+              "label": "5 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                108,
+                5
+              ],
+              "bits": [
+                1,
+                1
+              ]
+            },
+            {
+              "key": "band_60",
+              "label": "60 GHz",
+              "text": "no",
+              "value": false,
+              "bytes": [
+                108,
+                5
+              ],
+              "bits": [
+                2,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "key": "wps_vendor_extension",
+          "label": "Vendor Extension",
+          "bytes": [
+            113,
+            10
+          ],
+          "children": [
+            {
+              "key": "vendor_oui",
+              "label": "OUI",
+              "text": "00:37:2a",
+              "value": "00:37:2a",
+              "bytes": [
+                117,
+                3
+              ]
+            },
+            {
+              "key": "wps_version2",
+              "label": "Version2",
+              "text": "2.0",
+              "value": "2.0",
+              "bytes": [
+                120,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "diagnostics": []
+}

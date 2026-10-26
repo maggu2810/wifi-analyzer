@@ -13,7 +13,7 @@ work="${root}/build/fuzz/corpus"
 cmake --preset fuzz -S "${root}" >/dev/null
 cmake --build --preset fuzz
 
-for target in split_elements parse_hex format_message; do
+for target in decode split_elements parse_hex format_message; do
     # Work corpus lives in the build tree; the checked-in seeds stay untouched.
     mkdir -p "${work}/${target}"
     echo "== fuzz_${target} (${seconds}s)"

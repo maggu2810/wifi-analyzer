@@ -5,6 +5,7 @@
 #include <wifi_analyze/tlv.hpp>
 
 #include "core/byte_reader.hpp"
+#include "core/tr.hpp"
 
 namespace wifi_analyze {
 namespace {
@@ -15,7 +16,8 @@ Diagnostic truncated_diagnostic(std::uint8_t id, std::size_t offset, std::size_t
                                 std::size_t available) {
     return Diagnostic{
         .severity = Severity::error,
-        .message = MessageId::tlv_truncated,
+        .message = WA_TR(tlv_truncated,
+                         "Element {0} at offset {1} declares {2} octets but only {3} remain"),
         .args = {std::to_string(id), std::to_string(offset), std::to_string(declared),
                  std::to_string(available)},
         .bytes = ByteRange{.offset = offset, .length = header_size + available},
@@ -52,7 +54,8 @@ ElementStream split_elements(std::span<const std::uint8_t> ies) {
             stream.trailing = ByteRange{.offset = offset, .length = reader.remaining()};
             stream.diagnostics.push_back(Diagnostic{
                 .severity = Severity::error,
-                .message = MessageId::tlv_missing_length,
+                .message = WA_TR(tlv_missing_length,
+                                 "Incomplete element header at offset {0}: length octet missing"),
                 .args = {std::to_string(offset)},
                 .bytes = stream.trailing,
             });
@@ -84,7 +87,7 @@ ElementStream split_elements(std::span<const std::uint8_t> ies) {
             if (element.fragmented()) {
                 element.diagnostics.push_back(Diagnostic{
                     .severity = Severity::info,
-                    .message = MessageId::tlv_fragmented,
+                    .message = WA_TR(tlv_fragmented, "Element reassembled from {0} fragments"),
                     .args = {std::to_string(element.payload_segments.size())},
                     .bytes = std::nullopt,
                 });
@@ -92,7 +95,9 @@ ElementStream split_elements(std::span<const std::uint8_t> ies) {
         } else {
             element.diagnostics.push_back(Diagnostic{
                 .severity = Severity::warning,
-                .message = MessageId::tlv_orphan_fragment,
+                .message =
+                    WA_TR(tlv_orphan_fragment,
+                          "Fragment element at offset {0} does not follow a fragmentable element"),
                 .args = {std::to_string(offset)},
                 .bytes = ByteRange{.offset = offset, .length = header_size + length},
             });
@@ -102,7 +107,9 @@ ElementStream split_elements(std::span<const std::uint8_t> ies) {
             if (element.payload.empty()) {
                 element.diagnostics.push_back(Diagnostic{
                     .severity = Severity::warning,
-                    .message = MessageId::tlv_extension_without_id,
+                    .message =
+                        WA_TR(tlv_extension_without_id,
+                              "Extension element at offset {0} has no Element ID Extension octet"),
                     .args = {std::to_string(offset)},
                     .bytes = ByteRange{.offset = offset, .length = header_size},
                 });

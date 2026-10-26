@@ -23,28 +23,56 @@ configure_file(src/version.hpp.in "${WIFI_ANALYZE_GENERATED_DIR}/version_config.
 find_package(Python3 3.9 REQUIRED COMPONENTS Interpreter)
 set(WIFI_ANALYZE_TOOLS_DIR "${CMAKE_CURRENT_LIST_DIR}/../../tools")
 
-set(WIFI_ANALYZE_I18N_POT "${CMAKE_CURRENT_SOURCE_DIR}/i18n/messages.pot")
+file(GLOB_RECURSE WIFI_ANALYZE_SOURCES CONFIGURE_DEPENDS
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp")
 file(GLOB WIFI_ANALYZE_I18N_PO CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/i18n/*.po")
 set(WIFI_ANALYZE_I18N_OUTPUTS
     "${WIFI_ANALYZE_GENERATED_DIR}/include/wifi_analyze/message_id.hpp"
-    "${WIFI_ANALYZE_GENERATED_DIR}/i18n_catalog.inc")
+    "${WIFI_ANALYZE_GENERATED_DIR}/i18n_catalog.inc"
+    "${WIFI_ANALYZE_GENERATED_DIR}/messages.pot")
 add_custom_command(
     OUTPUT ${WIFI_ANALYZE_I18N_OUTPUTS}
     COMMAND Python3::Interpreter "${WIFI_ANALYZE_TOOLS_DIR}/gen_i18n_catalog.py"
-        --pot "${WIFI_ANALYZE_I18N_POT}"
+        --sources "${CMAKE_CURRENT_SOURCE_DIR}/src"
         --po ${WIFI_ANALYZE_I18N_PO}
         --out "${WIFI_ANALYZE_GENERATED_DIR}"
-    DEPENDS "${WIFI_ANALYZE_TOOLS_DIR}/gen_i18n_catalog.py" "${WIFI_ANALYZE_I18N_POT}"
+    DEPENDS "${WIFI_ANALYZE_TOOLS_DIR}/gen_i18n_catalog.py" ${WIFI_ANALYZE_SOURCES}
         ${WIFI_ANALYZE_I18N_PO}
     COMMENT "Generating i18n message catalogs"
     VERBATIM)
 
+set(WIFI_ANALYZE_OUI_CSV "${CMAKE_CURRENT_SOURCE_DIR}/data/oui-builtin.csv")
+add_custom_command(
+    OUTPUT "${WIFI_ANALYZE_GENERATED_DIR}/oui_builtin.inc"
+    COMMAND Python3::Interpreter "${WIFI_ANALYZE_TOOLS_DIR}/gen_oui_table.py"
+        --csv "${WIFI_ANALYZE_OUI_CSV}" --out "${WIFI_ANALYZE_GENERATED_DIR}/oui_builtin.inc"
+    DEPENDS "${WIFI_ANALYZE_TOOLS_DIR}/gen_oui_table.py" "${WIFI_ANALYZE_OUI_CSV}"
+    COMMENT "Generating built-in OUI table"
+    VERBATIM)
+
 add_library(wifi_analyze
+    src/channel/channel.cpp
+    src/core/decoder.cpp
     src/core/tlv.cpp
     src/hex.cpp
     src/i18n/catalog.cpp
+    src/ie/eht.cpp
+    src/ie/ext_capabilities.cpp
+    src/ie/he.cpp
+    src/ie/ht_vht.cpp
+    src/ie/mbssid_rnr.cpp
+    src/ie/registry.cpp
+    src/ie/rsn.cpp
+    src/ie/standard_basic.cpp
+    src/ie/vendor_microsoft.cpp
+    src/ie/vendor_wfa.cpp
+    src/json/json.cpp
+    src/oui/oui.cpp
+    src/summary/summary.cpp
+    src/tree/tree.cpp
     src/version.cpp
     ${WIFI_ANALYZE_I18N_OUTPUTS}
+    "${WIFI_ANALYZE_GENERATED_DIR}/oui_builtin.inc"
 )
 add_library(wifi_analyze::wifi_analyze ALIAS wifi_analyze)
 
