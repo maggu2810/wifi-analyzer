@@ -1,0 +1,13 @@
+---
+# CLI frontend: relaxations for OS/stream interfacing code (argv, ioctl, byte views, streams).
+InheritParentConfig: true
+Checks: >
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -cppcoreguidelines-pro-type-vararg,
+  -cppcoreguidelines-use-enum-class,
+  -misc-const-correctness,
+  -performance-inefficient-vector-operation,
+  -performance-inefficient-string-concatenation,
+  -bugprone-unchecked-optional-access
+...
