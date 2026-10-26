@@ -35,7 +35,6 @@ apps/cli/              wifi-analyze-cli
 apps/android/          Gradle project (compiles libs/wifi-analyze via CMake/NDK)
 testdata/              shared real-world captures + golden outputs
 tools/                 build-time generators (OUI subset table, i18n catalogs)
-old/                   previous prototypes – READ-ONLY inspiration, not built
 ```
 
 ## Hard rules
@@ -61,8 +60,8 @@ old/                   previous prototypes – READ-ONLY inspiration, not built
    code). Proprietary vendor elements use the Wireshark dissector as only source. Unit tests use
    real captured bytes where available. Cross-check with Linux `include/linux/ieee80211.h`
    when in doubt; where sources disagree, the standard wins and the difference is documented.
-7. Do not copy tables or code from `old/` without verifying them: the old reference
-   tables contain known errors (see `docs/ie-coverage.md`). Do not modify `old/`.
+7. Never take element IDs or bit layouts from memory or secondary tables: verify them against
+   the standard, Linux `ieee80211.h` or Wireshark (the removed prototypes had wrong tables).
 8. Keep the JSON output schema versioned (`docs/data-formats.md`). A breaking change bumps
    the schema version and updates the golden files under `testdata/`.
 9. License is **MIT**. Every source file starts with

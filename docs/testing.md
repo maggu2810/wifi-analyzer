@@ -26,8 +26,7 @@ testdata/captures/
 ```
 
 Every capture gets a short note: device/AP type, band, what's interesting. Only
-anonymized or own-network data is committed. The old prototype's sample hex (from
-`old/wifi-ie-parser/README.md`) is a good first entry.
+anonymized or own-network data is committed.
 
 ## CLI
 

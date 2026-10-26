@@ -19,11 +19,10 @@ Every element that is not decoded is still **named** (from the full Element ID t
 and kept raw. The "Spec" column is filled in during implementation with the exact
 clause of IEEE 802.11-2024 (or the amendment / vendor spec).
 
-> ⚠️ The tables in `old/wifi-ie-parser/README.md` contain errors (e.g. HE 6 GHz Band
+> ⚠️ The tables of the earlier prototype (removed) contained errors (e.g. HE 6 GHz Band
 > Capabilities is Ext ID **59**, not 106; Ext 106/107/108 are EHT Operation / Multi-Link /
-> EHT Capabilities; Element 240 is **FILS Indication**, not proprietary). Every ID below
-> is to be re-verified against the standard / Linux `ieee80211.h` / Wireshark during
-> implementation.
+> EHT Capabilities; Element 240 is **FILS Indication**, not proprietary). All IDs below are
+> verified against the standard / Linux `ieee80211.h` / Wireshark.
 
 ## Standard elements
 
