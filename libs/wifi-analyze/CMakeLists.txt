@@ -51,6 +51,7 @@ add_custom_command(
     VERBATIM)
 
 add_library(wifi_analyze
+    src/capture/anonymize.cpp
     src/channel/channel.cpp
     src/core/decoder.cpp
     src/core/tlv.cpp

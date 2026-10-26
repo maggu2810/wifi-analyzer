@@ -2,6 +2,7 @@
 include(Catch)
 
 add_executable(wifi_analyze_tests
+    test_anonymize.cpp
     test_byte_reader.cpp
     test_elements.cpp
     test_golden.cpp
