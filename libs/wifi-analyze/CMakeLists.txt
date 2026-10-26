@@ -19,8 +19,30 @@ set(WIFI_ANALYZE_GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
 
 configure_file(src/version.hpp.in "${WIFI_ANALYZE_GENERATED_DIR}/version_config.hpp" @ONLY)
 
+# --- Generated sources (Python 3 is a build requirement) ---------------------------------
+find_package(Python3 3.9 REQUIRED COMPONENTS Interpreter)
+set(WIFI_ANALYZE_TOOLS_DIR "${CMAKE_CURRENT_LIST_DIR}/../../tools")
+
+set(WIFI_ANALYZE_I18N_POT "${CMAKE_CURRENT_SOURCE_DIR}/i18n/messages.pot")
+file(GLOB WIFI_ANALYZE_I18N_PO CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/i18n/*.po")
+set(WIFI_ANALYZE_I18N_OUTPUTS
+    "${WIFI_ANALYZE_GENERATED_DIR}/include/wifi_analyze/message_id.hpp"
+    "${WIFI_ANALYZE_GENERATED_DIR}/i18n_catalog.inc")
+add_custom_command(
+    OUTPUT ${WIFI_ANALYZE_I18N_OUTPUTS}
+    COMMAND Python3::Interpreter "${WIFI_ANALYZE_TOOLS_DIR}/gen_i18n_catalog.py"
+        --pot "${WIFI_ANALYZE_I18N_POT}"
+        --po ${WIFI_ANALYZE_I18N_PO}
+        --out "${WIFI_ANALYZE_GENERATED_DIR}"
+    DEPENDS "${WIFI_ANALYZE_TOOLS_DIR}/gen_i18n_catalog.py" "${WIFI_ANALYZE_I18N_POT}"
+        ${WIFI_ANALYZE_I18N_PO}
+    COMMENT "Generating i18n message catalogs"
+    VERBATIM)
+
 add_library(wifi_analyze
+    src/i18n/catalog.cpp
     src/version.cpp
+    ${WIFI_ANALYZE_I18N_OUTPUTS}
 )
 add_library(wifi_analyze::wifi_analyze ALIAS wifi_analyze)
 
@@ -32,6 +54,7 @@ set_target_properties(wifi_analyze PROPERTIES
 target_include_directories(wifi_analyze
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${WIFI_ANALYZE_GENERATED_DIR}/include>
         $<INSTALL_INTERFACE:include>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src

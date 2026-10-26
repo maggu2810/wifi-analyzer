@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: MIT
+#
+# Source catalog of libwifianalyze domain messages (see docs/i18n.md).
+#   msgctxt = stable message key (never change once released)
+#   msgid   = English text; positional placeholders {0}, {1}, ...
+# Keep entries sorted by key. Translations live in <locale>.po next to this file.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#. {0} = character, {1} = position in the input
+msgctxt "hex.invalid_character"
+msgid "Invalid character '{0}' at position {1}"
+msgstr ""
+
+#. {0} = number of hex digits
+msgctxt "hex.odd_length"
+msgid "Hex input has an odd number of digits ({0})"
+msgstr ""
+
+#. {0} = offset of the extension element
+msgctxt "tlv.extension_without_id"
+msgid "Extension element at offset {0} has no Element ID Extension byte"
+msgstr ""
+
+#. {0} = number of fragments
+msgctxt "tlv.fragmented"
+msgid "Element reassembled from {0} fragments"
+msgstr ""
+
+#. {0} = offset of the dangling byte
+msgctxt "tlv.missing_length"
+msgid "Incomplete element header at offset {0}: length byte missing"
+msgstr ""
+
+#. {0} = offset of the fragment element
+msgctxt "tlv.orphan_fragment"
+msgid "Fragment element at offset {0} does not follow a fragmentable element"
+msgstr ""
+
+#. {0} = element ID, {1} = offset, {2} = declared length, {3} = available bytes
+msgctxt "tlv.truncated"
+msgid "Element {0} at offset {1} declares {2} bytes but only {3} remain"
+msgstr ""
