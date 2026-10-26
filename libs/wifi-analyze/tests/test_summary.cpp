@@ -165,7 +165,7 @@ TEST_CASE("security classification without RSN", "[summary]") {
 }
 
 TEST_CASE("security classification of RSN variants", "[summary]") {
-    auto classify = [](std::string_view rsn_body) {
+    const auto classify = [](std::string_view rsn_body) {
         const auto body = test_support::hex(rsn_body);
         std::vector<std::uint8_t> ies{48, static_cast<std::uint8_t>(body.size())};
         ies.insert(ies.end(), body.begin(), body.end());

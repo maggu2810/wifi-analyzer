@@ -40,6 +40,36 @@ ElementValue decode_transmit_power_envelope(Decoder& d);
 ElementValue decode_operating_mode_notification(Decoder& d);
 ElementValue decode_extended_capabilities(Decoder& d);
 
+// standard_more.cpp
+ElementValue decode_fh_parameter_set(Decoder& d);
+ElementValue decode_cf_parameter_set(Decoder& d);
+ElementValue decode_edca_parameter_set(Decoder& d);
+ElementValue decode_ibss_dfs(Decoder& d);
+ElementValue decode_qos_capability(Decoder& d);
+ElementValue decode_secondary_channel_offset(Decoder& d);
+ElementValue decode_bss_average_access_delay(Decoder& d);
+ElementValue decode_measurement_pilot_transmission(Decoder& d);
+ElementValue decode_bss_available_admission_capacity(Decoder& d);
+ElementValue decode_time_advertisement(Decoder& d);
+ElementValue decode_bss_intolerant_channel_report(Decoder& d);
+ElementValue decode_bss_max_idle_period(Decoder& d);
+ElementValue decode_time_zone(Decoder& d);
+ElementValue decode_qos_map(Decoder& d);
+ElementValue decode_extended_bss_load(Decoder& d);
+ElementValue decode_wide_bandwidth_channel_switch(Decoder& d);
+ElementValue decode_channel_switch_wrapper(Decoder& d);
+ElementValue decode_neighbor_report(Decoder& d);
+ElementValue decode_twt(Decoder& d);
+ElementValue decode_fils_indication(Decoder& d);
+ElementValue decode_uora_parameter_set(Decoder& d);
+ElementValue decode_ndp_feedback_report_parameter_set(Decoder& d);
+ElementValue decode_ess_report(Decoder& d);
+ElementValue decode_ops(Decoder& d);
+ElementValue decode_he_bss_load(Decoder& d);
+ElementValue decode_max_channel_switch_time(Decoder& d);
+ElementValue decode_tid_to_link_mapping(Decoder& d);
+ElementValue decode_bandwidth_indication(Decoder& d);
+
 // ht_vht.cpp
 ElementValue decode_ht_capabilities(Decoder& d);
 ElementValue decode_ht_operation(Decoder& d);

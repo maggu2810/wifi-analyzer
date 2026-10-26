@@ -18,6 +18,8 @@
 namespace wifi_analyze::core {
 
 using NameFn = Text (*)(std::uint64_t);
+class Decoder;
+using SubDecodeFn = ElementValue (*)(Decoder&);
 
 /// Looks up a name in a dense table; out-of-range values are "Reserved".
 template <std::size_t N>
@@ -140,6 +142,11 @@ public:
     /// one node per element to `parent`. Returns the nested decode result.
     DecodedIes nested_elements(TreeNode& parent, std::span<const std::uint8_t> data,
                                std::size_t base);
+    /// Decodes `data` (at content offset `base`) with an element decoder, e.g. a subelement
+    /// whose format is that of an element. The fields are appended to `parent`; a short or
+    /// over-long body is reported as diagnostic. Returns the decoder's typed value.
+    ElementValue sub_decode(TreeNode& parent, SubDecodeFn fn, std::span<const std::uint8_t> data,
+                            std::size_t base);
 
 private:
     std::span<const std::uint8_t> content_;

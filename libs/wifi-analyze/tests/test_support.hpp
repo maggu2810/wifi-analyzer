@@ -15,7 +15,7 @@
 namespace test_support {
 
 inline std::string read_file(const std::string& path) {
-    std::ifstream in{path, std::ios::binary};
+    const std::ifstream in{path, std::ios::binary};
     if (!in) {
         throw std::runtime_error("cannot open " + path);
     }

@@ -66,10 +66,10 @@ TEST_CASE("unknown and named-only elements keep their data", "[elements]") {
     CHECK(std::get<std::vector<std::uint8_t>>(unknown.tree.children[0].value) ==
           std::vector<std::uint8_t>{0xaa, 0xbb});
 
-    const auto named = single("3402 aabb"); // Neighbor Report: named, not decoded
+    const auto named = single("2102 aabb"); // Power Capability: named, not decoded
     CHECK(named.status == DecodeStatus::unknown);
-    CHECK(named.type == "neighbor_report");
-    CHECK(named.name == MessageId::element_neighbor_report);
+    CHECK(named.type == "power_capability");
+    CHECK(named.name == MessageId::element_power_capability);
 
     const auto ext = single("ff03 7f 0102");
     CHECK(ext.type == "extension");

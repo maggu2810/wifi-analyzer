@@ -5,6 +5,7 @@ add_executable(wifi_analyze_tests
     test_anonymize.cpp
     test_byte_reader.cpp
     test_elements.cpp
+    test_elements_more.cpp
     test_golden.cpp
     test_hex.cpp
     test_i18n.cpp

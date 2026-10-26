@@ -41,17 +41,18 @@ void anonymize_mac_at(std::vector<std::uint8_t>& data, std::size_t pos, const An
 void append_element(std::vector<std::uint8_t>& out, std::uint8_t id,
                     std::span<const std::uint8_t> payload) {
     // Fragment if needed (IEEE 802.11-2020 element fragmentation).
-    std::size_t pos = 0;
-    bool first = true;
-    do {
+    // An empty payload still yields one (empty) element.
+    for (std::size_t pos = 0; pos == 0 || pos < payload.size();) {
         const auto chunk = std::min<std::size_t>(element_max_length, payload.size() - pos);
-        out.push_back(first ? id : element_id_fragment);
+        out.push_back(pos == 0 ? id : element_id_fragment);
         out.push_back(static_cast<std::uint8_t>(chunk));
         out.insert(out.end(), payload.begin() + static_cast<std::ptrdiff_t>(pos),
                    payload.begin() + static_cast<std::ptrdiff_t>(pos + chunk));
         pos += chunk;
-        first = false;
-    } while (pos < payload.size());
+        if (chunk == 0) {
+            break;
+        }
+    }
 }
 
 std::vector<std::uint8_t> anonymize_wps(std::span<const std::uint8_t> payload,
@@ -119,7 +120,7 @@ std::vector<std::uint8_t> anonymize_payload(const RawElement& e, const Anonymize
             if (pos + 2 + len > p.size()) {
                 break;
             }
-            auto body = std::span{p}.subspan(pos + 2, len);
+            const auto body = std::span{p}.subspan(pos + 2, len);
             const auto replaced = sub_id == 0 ? anonymize_stream(body, o, depth + 1)
                                               : std::vector<std::uint8_t>(body.begin(), body.end());
             if (replaced.size() > 255) {

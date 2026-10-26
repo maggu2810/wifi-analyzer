@@ -4,6 +4,15 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## libwifianalyze
 
+### 0.2.0 – 2026-10-26
+- New decoders: FILS Indication, Target Wake Time, EDCA Parameter Set, Neighbor Report
+  (with element-format subelements), QoS Map, Time Advertisement, Time Zone, QoS
+  Capability, IBSS DFS, FH / CF Parameter Set, Secondary Channel Offset, BSS Average Access
+  Delay, Measurement Pilot Transmission, BSS Available Admission Capacity, 20/40 BSS
+  Intolerant Channel Report, BSS Max Idle Period, Extended BSS Load, Wide Bandwidth Channel
+  Switch, Channel Switch Wrapper; extension elements UORA, NDP Feedback Report, ESS Report,
+  OPS, HE BSS Load, Max Channel Switch Time, TID-to-Link Mapping, Bandwidth Indication.
+
 ### 0.1.0 – 2026-10-26
 - Baseline: IE decoding (P1 + most P2 elements, see `docs/ie-coverage.md`), BSS summary,
   JSON schema `wifi-analyze.decoded` v1, channel utilities, OUI lookup (built-in subset +
@@ -12,11 +21,17 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## wifi-analyze-cli
 
+### 0.1.1 – 2026-10-26
+- Embeds libwifianalyze 0.2.0 (more elements decoded).
+
 ### 0.1.0 – 2026-10-26
 - Baseline: `decode`, `list`, `interactive`, `elements`, `oui`; inputs hex, `wpa_cli BSS`
   dumps, capture JSON; text, JSON and capture output; anonymization.
 
 ## Android app (de.maggu2810.android.wifianalyzer)
+
+### 0.1.1 (versionCode 2) – 2026-10-26
+- Embeds libwifianalyze 0.2.0 (more elements decoded).
 
 ### 0.1.0 (versionCode 1) – 2026-10-26
 - Baseline: network list (search, filters, sorting, grouping), detail view (overview,

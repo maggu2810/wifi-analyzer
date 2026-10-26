@@ -426,6 +426,32 @@ DecodedIes Decoder::nested_elements(TreeNode& parent, std::span<const std::uint8
     return nested;
 }
 
+ElementValue Decoder::sub_decode(TreeNode& parent, SubDecodeFn fn,
+                                 std::span<const std::uint8_t> data, std::size_t base) {
+    if (depth_ + 1 > context_.max_depth) {
+        parent.children.push_back(node(msg::data,
+                                       std::vector<std::uint8_t>(data.begin(), data.end()),
+                                       ByteRange{.offset = base, .length = data.size()}));
+        return {};
+    }
+    Decoder sub{data, context_, {}, depth_ + 1};
+    auto value = fn(sub);
+    if (!sub.is_malformed() && sub.remaining() > 0) {
+        sub.rest(sub.root(), WA_TR(common_unparsed, "Unparsed Data"));
+    }
+    for (auto& child : sub.root().children) {
+        shift_bytes(child, base);
+        parent.children.push_back(std::move(child));
+    }
+    for (auto diag : sub.take_diagnostics()) {
+        if (diag.bytes) {
+            diag.bytes->offset += base;
+        }
+        diagnostics_.push_back(std::move(diag));
+    }
+    return value;
+}
+
 // --- free functions ----------------------------------------------------------------------
 
 std::string format_mac(std::span<const std::uint8_t> mac) {
