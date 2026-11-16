@@ -5,6 +5,21 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+// App version (SemVer): set by tools/android_release.py at a release (even minor) and at the
+// start of the next development round (odd minor), see AGENTS.md "Versioning".
+val appVersion = "0.2.1"
+
+// Build identity from git (docs/decisions/0008-versioning-from-git.md): versionName is
+// "0.2.1" at tag android-v0.2.1, otherwise e.g. "0.3.0-dev.4+g1a2b3c4[.dirty]";
+// versionCode is the commit count (strictly increasing on main).
+val gitVersionTool = rootDir.resolve("../../tools/git_version.py").path
+val gitVersionName = providers.exec {
+    commandLine("python3", gitVersionTool, "--prefix", "android-v", "--version", appVersion)
+}.standardOutput.asText.map { it.trim() }
+val gitVersionCode = providers.exec {
+    commandLine("python3", gitVersionTool, "--count")
+}.standardOutput.asText.map { it.trim().toInt() }
+
 android {
     namespace = "de.maggu2810.android.wifianalyzer"
     compileSdk = 37
@@ -15,9 +30,8 @@ android {
         applicationId = "de.maggu2810.android.wifianalyzer"
         minSdk = 30
         targetSdk = 37
-        // SemVer; bump versionName AND versionCode (+1) on every change (AGENTS.md "Versioning").
-        versionCode = 5
-        versionName = "0.2.1"
+        versionCode = gitVersionCode.get()
+        versionName = gitVersionName.get()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             // Must match the ABIs of :wifi-analyze-native.

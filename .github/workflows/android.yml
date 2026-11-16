@@ -33,6 +33,8 @@ jobs:
         working-directory: apps/android
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0 # tags + full history: versionName/versionCode come from git
 
       - uses: actions/setup-java@v5
         with:
@@ -63,13 +65,14 @@ jobs:
       - name: Determine version
         id: version
         run: |
-          name=$(sed -n 's/^ *versionName = "\(.*\)".*/\1/p' app/build.gradle.kts)
-          code=$(sed -n 's/^ *versionCode = \([0-9]*\).*/\1/p' app/build.gradle.kts)
-          test -n "$name" && test -n "$code"
+          name=$(sed -n 's/^val appVersion = "\(.*\)"$/\1/p' app/build.gradle.kts)
+          code=$(python3 ../../tools/git_version.py --count)
+          stamp=$(python3 ../../tools/git_version.py --prefix android-v --version "$name")
+          test -n "$name" && test -n "$code" && test -n "$stamp"
           if [[ "$GITHUB_REF" == refs/tags/android-v* ]]; then
             tag="${GITHUB_REF_NAME}"
-            if [[ "$tag" != "android-v$name" ]]; then
-              echo "::error::tag $tag does not match versionName $name"
+            if [[ "$tag" != "android-v$name" || "$stamp" != "$name" ]]; then
+              echo "::error::tag $tag does not match appVersion $name (versionName $stamp)"
               exit 1
             fi
             apk="wifi-analyzer-$name.apk"
@@ -78,6 +81,7 @@ jobs:
             apk="wifi-analyzer-$name-nightly-${GITHUB_SHA::7}.apk"
           fi
           echo "name=$name" >> "$GITHUB_OUTPUT"
+          echo "stamp=$stamp" >> "$GITHUB_OUTPUT"
           echo "code=$code" >> "$GITHUB_OUTPUT"
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "apk=$apk" >> "$GITHUB_OUTPUT"
@@ -118,7 +122,7 @@ jobs:
           {
             echo "Automatic build of \`main\` at ${GITHUB_SHA} – not a release."
             echo
-            echo "versionName ${{ steps.version.outputs.name }}, versionCode ${{ steps.version.outputs.code }}."
+            echo "versionName ${{ steps.version.outputs.stamp }}, versionCode ${{ steps.version.outputs.code }}."
             echo "Signed with the same key as the releases, so it installs over them and vice versa"
             echo "(Android refuses a lower versionCode)."
           } > "$RUNNER_TEMP/notes.md"

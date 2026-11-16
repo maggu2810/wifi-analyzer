@@ -71,25 +71,37 @@ tools/                 build-time generators (OUI subset table, i18n catalogs)
 
 ## Versioning (mandatory)
 
-Every change to a deliverable **bumps its version in the same commit** (SemVer) and adds an
-entry to `CHANGELOG.md`.
+SemVer per deliverable, with even/odd minor (ADR-0008): **even minor = release**, **odd minor =
+development round** (e.g. release 0.4.0 → development 0.5.0 → release 0.6.0). The exact build
+identity comes from git, not from per-commit bumps.
 
-| Deliverable | Version lives in |
-|---|---|
-| `libwifianalyze` | `libs/wifi-analyze/CMakeLists.txt` → `project(wifi-analyze VERSION x.y.z)` |
-| `wifi-analyze-cli` | `apps/cli/CMakeLists.txt` → `WIFI_CLI_VERSION` |
-| Android app | `apps/android/app/build.gradle.kts` → `versionName` **and** `versionCode` (+1 every time) |
-| JSON formats | `json_schema_version` (`json.hpp`), `capture_format_version` (`capture.hpp`) – only on format changes |
+| Deliverable | Version lives in | Tag |
+|---|---|---|
+| `libwifianalyze` | `libs/wifi-analyze/CMakeLists.txt` → `project(wifi-analyze VERSION x.y.z)` | `lib-vX.Y.Z` |
+| `wifi-analyze-cli` | `apps/cli/CMakeLists.txt` → `WIFI_CLI_VERSION` | `cli-vX.Y.Z` |
+| Android app | `apps/android/app/build.gradle.kts` → `val appVersion` | `android-vX.Y.Z` |
+| JSON formats | `json_schema_version` (`json.hpp`), `capture_format_version` (`capture.hpp`) – only on format changes | – |
 
-- PATCH: bug fixes without behaviour change for users of the API/output.
-- MINOR: new features, backward compatible (new elements decoded, new options, new JSON fields).
-- MAJOR: breaking changes (library public API or JSON schema; CLI options/output format;
-  app data/export compatibility). While a version is `0.x`, breaking changes bump MINOR.
-- A library change that is visible in the CLI or the app (they embed the library) also bumps
-  those (at least PATCH) – e.g. a decoder fix bumps lib, CLI and app.
-- No bump for changes that do not affect a deliverable: docs, tests, CI, `tools/` scripts,
-  test data.
-- Releases are tagged `lib-vX.Y.Z`, `cli-vX.Y.Z`, `android-vX.Y.Z` (only when asked).
+- **Every change to a deliverable adds an entry to `CHANGELOG.md`** in the topmost
+  `### X.Y.Z (unreleased)` section of that deliverable, in the same commit. Do **not** bump the
+  version per change. A library change visible in the CLI or the app (they embed it) also gets
+  an entry in their sections.
+- A version is released when its tag exists. If the topmost section of a deliverable is
+  released, start a development round first (next odd minor, patch 0, new
+  `### X.Y.Z (unreleased)` heading) – for the app `tools/android_release.py` does this.
+- Versions are only set at a release and at the start of a development round. Release: even
+  minor; development: odd minor. A minor bump resets patch to 0, a major bump resets minor and
+  patch. Choose the release version by the changes since the last release: PATCH = fixes only,
+  MINOR = backward-compatible features (new elements decoded, new options, new JSON fields),
+  MAJOR = breaking changes (library public API, JSON schema, CLI options/output format, app
+  data/export compatibility). While a version is `0.x`, breaking changes bump MINOR.
+- Build identity (`tools/git_version.py`, generated at build time): `X.Y.Z` exactly at its tag
+  with a clean tree, otherwise `X.Y.Z-dev.N+gHASH[.dirty]`. It is reported by
+  `wifi_analyze::version()`, `wifi-analyze-cli --version` and the app's `versionName`; the
+  Android `versionCode` is the git commit count (never set by hand; `main` is never rewritten).
+- Android release: `tools/android_release.py` (asks for both versions, checks the rules,
+  commits, tags, starts the next round; push is up to the maintainer). Library/CLI releases are
+  done by hand following the same rules, only when asked.
 
 ## Coding conventions
 

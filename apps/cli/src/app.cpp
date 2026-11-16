@@ -21,6 +21,7 @@
 #include <wifi_analyze/json.hpp>
 #include <wifi_analyze/version.hpp>
 
+#include "cli_version_stamp.hpp"
 #include "input.hpp"
 #include "oui_cache.hpp"
 #include "render.hpp"
@@ -30,7 +31,7 @@ namespace {
 
 namespace wa = wifi_analyze;
 
-constexpr std::string_view cli_version = WIFI_CLI_VERSION;
+constexpr std::string_view cli_version = config::version_stamp;
 
 std::string version_text() {
     return std::format("{} (libwifianalyze {})", cli_version, wa::version());

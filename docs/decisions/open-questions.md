@@ -18,6 +18,7 @@
 | Generated tables | Generated at build time, not checked in; Python 3 is a build requirement |
 | `old/` | Removed once the work is finished – done 2026-10-26 |
 | Commits | Agent commits each functional part itself (no push) |
+| Versioning | Even minor = release, odd = development round, build identity from git, versionCode = commit count (ADR-0008, 2026-11-16) |
 | License | MIT |
 | Android SDK levels | minSdk 30 (floor for IE access), compile/targetSdk latest; newer APIs behind `SDK_INT` checks, no feature loss on Android 16/17 |
 

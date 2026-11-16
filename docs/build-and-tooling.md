@@ -49,10 +49,14 @@ Planned job list for later:
 
 ## Versioning
 
-See `AGENTS.md` → "Versioning" (mandatory rules) and `CHANGELOG.md`. Each deliverable has
-its own SemVer version; releases are tagged `lib-vX.Y.Z`, `cli-vX.Y.Z`, `android-vX.Y.Z`.
-`wifi-analyze-cli --version` prints `<cli> (libwifianalyze <lib>)`; the Android settings
-screen shows app and library version.
+See `AGENTS.md` → "Versioning" (mandatory rules), ADR-0008 and `CHANGELOG.md`. Each
+deliverable has its own SemVer version (even minor = release, odd minor = development);
+releases are tagged `lib-vX.Y.Z`, `cli-vX.Y.Z`, `android-vX.Y.Z`. `tools/git_version.py`
+turns the version into the build identity (`0.5.0-dev.3+g1a2b3c4[.dirty]`, or `0.4.0` at the
+tag) – CMake (`cmake/WifiVersionStamp.cmake`) regenerates a header on every build, Gradle
+sets `versionName`/`versionCode` from it. `wifi-analyze-cli --version` prints
+`<cli> (libwifianalyze <lib>)`; the Android settings screen shows app and library version.
+Android releases: `tools/android_release.py`, then `git push --atomic origin main android-vX.Y.Z`.
 
 ## Generated sources
 

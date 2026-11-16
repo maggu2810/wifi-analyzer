@@ -40,7 +40,8 @@ JAVA_HOME=/usr/lib/jvm/java-25-openjdk ./gradlew assembleDebug testDebugUnitTest
 
 Signed release APKs are built by GitHub Actions (ADR-0007): every push to `main` replaces the
 pre-release `android-nightly`, a tag `android-vX.Y.Z` (must equal `versionName`) creates the
-release. To sign locally, set `ANDROID_KEYSTORE_FILE` (PKCS12), `ANDROID_KEYSTORE_PASSWORD`
+release (created by `tools/android_release.py`). versionName/versionCode come from git
+(ADR-0008). To sign locally, set `ANDROID_KEYSTORE_FILE` (PKCS12), `ANDROID_KEYSTORE_PASSWORD`
 and `ANDROID_KEY_ALIAS` and run `./gradlew --no-configuration-cache assembleRelease`.
 
 Toolchain as built: Gradle 9.6.0, AGP 9.4.1 (built-in Kotlin), Kotlin 2.4.21, Compose BOM

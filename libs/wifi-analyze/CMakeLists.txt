@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.31...4.3)
 
 # Usable standalone (e.g. add_subdirectory from the Android build) or as part of the repo.
 # The library always declares its own project (and version), also when included.
-# SemVer; bump on every change (AGENTS.md "Versioning").
+# SemVer, set at release / start of a development round (AGENTS.md "Versioning");
+# builds report it with their git identity (tools/git_version.py).
 project(wifi-analyze VERSION 0.4.0 LANGUAGES CXX)
 if(PROJECT_IS_TOP_LEVEL)
     option(WIFI_BUILD_TESTS "Build unit tests" OFF)
@@ -15,11 +16,9 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/../../cmake")
 include(WifiWarnings)
+include(WifiVersionStamp)
 
-set(WIFI_ANALYZE_VERSION "${PROJECT_VERSION}")
 set(WIFI_ANALYZE_GENERATED_DIR "${CMAKE_CURRENT_BINARY_DIR}/generated")
-
-configure_file(src/version.hpp.in "${WIFI_ANALYZE_GENERATED_DIR}/version_config.hpp" @ONLY)
 
 # --- Generated sources (Python 3 is a build requirement) ---------------------------------
 find_package(Python3 3.9 REQUIRED COMPONENTS Interpreter)
@@ -95,6 +94,8 @@ target_include_directories(wifi_analyze
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${WIFI_ANALYZE_GENERATED_DIR})
 wifi_set_warnings(wifi_analyze)
+wifi_version_stamp(wifi_analyze PREFIX lib-v VERSION "${PROJECT_VERSION}"
+    NAME wifi_analyze::config::version_stamp OUT "${WIFI_ANALYZE_GENERATED_DIR}/version_stamp.hpp")
 
 if(WIFI_BUILD_TESTS)
     add_subdirectory(tests)

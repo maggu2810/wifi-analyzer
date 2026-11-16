@@ -1,10 +1,14 @@
 # Changelog
 
 Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest first.
+A version is released when its tag (`lib-v`, `cli-v`, `android-v` + version) exists; changes go
+into the topmost `### X.Y.Z (unreleased)` section of their deliverable.
 
 ## libwifianalyze
 
-### 0.4.0 – 2026-10-26
+### 0.4.0 (unreleased)
+- `version()` returns the version with build identity from git: `0.4.0` at tag `lib-v0.4.0`,
+  otherwise e.g. `0.5.0-dev.3+g1a2b3c4[.dirty]` (`tools/git_version.py`).
 - RSN overriding (Wi-Fi Alliance WPA3 Specification v3.4): RSN Element Override / Override 2
   and RSNX Override are typed (`RsnOverride`, `RsnxOverride`) and summarized in
   `SecuritySummary::overrides`; `security_label()` shows legacy and overriding configuration;
@@ -43,7 +47,9 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## wifi-analyze-cli
 
-### 0.2.0 – 2026-10-26
+### 0.2.0 (unreleased)
+- `--version` and capture `app_version` carry the git build identity (`0.2.0` at tag
+  `cli-v0.2.0`, otherwise e.g. `0.3.0-dev.3+g1a2b3c4`), also for the embedded library.
 - Embeds libwifianalyze 0.4.0; `list` shows the security display label (incl. RSN overriding)
   in a SECURITY column that widens as needed; JSON contains `display_label` / `overrides`.
 
@@ -59,7 +65,11 @@ Versions per deliverable (SemVer, see `AGENTS.md` → "Versioning"). Newest firs
 
 ## Android app (de.maggu2810.android.wifianalyzer)
 
-### 0.2.1 (versionCode 5) – 2026-10-26
+### 0.2.1 (unreleased)
+- versionName carries the git build identity (`0.2.1` at tag `android-v0.2.1`, otherwise e.g.
+  `0.3.0-dev.3+g1a2b3c4`), shown in Settings → About and stored in exported captures;
+  versionCode is the git commit count.
+- Signed APKs from GitHub Actions: nightly pre-release from `main`, releases from tags.
 - Display name spelled "Wi-Fi Analyzer" (official Wi-Fi spelling).
 
 ### 0.2.0 (versionCode 4) – 2026-10-26
