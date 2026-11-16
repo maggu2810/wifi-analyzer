@@ -65,6 +65,8 @@ into the topmost `### X.Y.Z (unreleased)` section of their deliverable.
 
 ## Android app (de.maggu2810.android.wifianalyzer)
 
+### 0.3.0 (unreleased)
+
 ### 0.2.1 – 2026-11-16
 - versionName carries the git build identity (`0.2.1` at tag `android-v0.2.1`, otherwise e.g.
   `0.3.0-dev.3+g1a2b3c4`), shown in Settings → About and stored in exported captures;

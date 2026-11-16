@@ -7,7 +7,7 @@ plugins {
 
 // App version (SemVer): set by tools/android_release.py at a release (even minor) and at the
 // start of the next development round (odd minor), see AGENTS.md "Versioning".
-val appVersion = "0.2.1"
+val appVersion = "0.3.0"
 
 // Build identity from git (docs/decisions/0008-versioning-from-git.md): versionName is
 // "0.2.1" at tag android-v0.2.1, otherwise e.g. "0.3.0-dev.4+g1a2b3c4[.dirty]";
