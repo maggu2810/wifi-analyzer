@@ -32,7 +32,12 @@
   which pulls the decoder sources from `../../libs/wifi-analyze` – no prebuilt binaries.
 - ktlint or detekt for Kotlin style (decide in M3).
 
-## CI (not set up for now – planned job list for later)
+## CI
+
+Implemented: `.github/workflows/android.yml` builds the signed release APK and publishes it
+(push to `main` → pre-release `android-nightly`, tag `android-vX.Y.Z` → release; ADR-0007).
+
+Planned job list for later:
 
 | Job | Content |
 |---|---|

@@ -9,8 +9,8 @@
 | Library name | `libwifianalyze` in `libs/wifi-analyze` (ADR-0001) |
 | CLI binary name | `wifi-analyze-cli` |
 | Android applicationId / display name | `de.maggu2810.android.wifianalyzer` / "Wi-Fi Analyzer" |
-| Android distribution | Self-distributed (sideload) for now |
-| CI | None for now |
+| Android distribution | Self-distributed (sideload); signed APKs as GitHub releases, nightly pre-release from `main` (ADR-0007, 2026-11-16) |
+| CI | Only the Android APK workflow (ADR-0007, 2026-11-16); other jobs planned |
 | i18n | Domain text in the library (gettext catalogs compiled to tables), app chrome per frontend (ADR-0005) |
 | OUI | Small built-in subset + optional full DB via internet download or file import (ADR-0006); Android declares `INTERNET` |
 | Test framework | Catch2 v3 |

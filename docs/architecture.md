@@ -66,6 +66,7 @@ Hence the library is named `libwifianalyze` (ADR-0001), with IE decoding as its 
 - **ADR-0004** Monorepo layout below.
 - **ADR-0005** i18n of domain text lives in the library.
 - **ADR-0006** OUI: small built-in table + optional full database loaded at runtime.
+- **ADR-0007** Android APKs: signed by GitHub Actions, nightly pre-release from `main`, releases from `android-v*` tags.
 
 ## Directory layout
 

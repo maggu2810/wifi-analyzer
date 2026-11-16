@@ -56,4 +56,4 @@ Scope: library, CLI, Android app. Linux scan acquisition and Qt app are postpone
   new labels, Wi-Fi RTT on Android, pcap input for the CLI.
 - `wifi-scan-linux` (wpa_supplicant ctrl/D-Bus, nl80211) + CLI `scan` command.
 - Qt desktop app.
-- CI.
+- CI for library/CLI checks (the Android APK workflow exists, ADR-0007).

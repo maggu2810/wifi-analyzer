@@ -38,6 +38,11 @@ JAVA_HOME=/usr/lib/jvm/java-25-openjdk ./gradlew assembleDebug testDebugUnitTest
 ./gradlew assembleRelease                # unsigned, R8-shrunk, stripped native libs (~7 MB)
 ```
 
+Signed release APKs are built by GitHub Actions (ADR-0007): every push to `main` replaces the
+pre-release `android-nightly`, a tag `android-vX.Y.Z` (must equal `versionName`) creates the
+release. To sign locally, set `ANDROID_KEYSTORE_FILE` (PKCS12), `ANDROID_KEYSTORE_PASSWORD`
+and `ANDROID_KEY_ALIAS` and run `./gradlew --no-configuration-cache assembleRelease`.
+
 Toolchain as built: Gradle 9.6.0, AGP 9.4.1 (built-in Kotlin), Kotlin 2.4.21, Compose BOM
 2026.09.00 (Material3 1.4), compileSdk/targetSdk 37, minSdk 30, NDK 30.0.16248370, ABIs
 arm64-v8a, armeabi-v7a, x86_64. Python 3 must be on the PATH (library code generators).

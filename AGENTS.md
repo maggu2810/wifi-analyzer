@@ -134,7 +134,8 @@ cd apps/android && ./gradlew connectedDebugAndroidTest                       # n
 Toolchain in use: GCC 16, Clang 23, CMake 4.3 (minimum 3.31), NDK 30 (Clang 21). GCC's
 ASan runtime is not installed on the dev machine, hence sanitizer/fuzz presets use Clang.
 
-There is no CI for now. Before declaring work done: build, run tests (dev + asan), keep
+CI only builds and publishes the signed Android APK (`.github/workflows/android.yml`,
+ADR-0007) – it runs no checks for you. Before declaring work done: build, run tests (dev + asan), keep
 clang-tidy clean, check the NDK build for library changes, and update the relevant doc if
 behaviour changed.
 
